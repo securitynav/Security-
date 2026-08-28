@@ -1,6 +1,10 @@
 package com.securitynav.security.data.database
 
 import android.content.Context
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SQLiteOpenHelper
+
+import android.content.Context
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 
 class SecurityDatabase(context: Context) {
