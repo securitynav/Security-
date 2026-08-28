@@ -24,15 +24,16 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew assembleDebug --stacktrace --info --full-stacktrace
+      run: |
+        set -o pipefail
+        ./gradlew assembleDebug --stacktrace --info --full-stacktrace 2>&1 | tee build_output.log
 
-    - name: Generar Reportaje de Error
+    - name: Extraer y Reportar Errores
       if: failure()
       run: |
-        echo "## ❌ Reporte de Error de Compilación" >> $GITHUB_STEP_SUMMARY
+        echo "## ❌ Reporte Automático de Error" >> $GITHUB_STEP_SUMMARY
         echo "**Estado:** Fallido 🔴" >> $GITHUB_STEP_SUMMARY
-        echo "**Detalles:** La compilación del APK fue interrumpida por un error. Revisa el registro (log) del paso *Build with Gradle*." >> $GITHUB_STEP_SUMMARY
-        echo "### 🔍 Posibles causas a verificar:" >> $GITHUB_STEP_SUMMARY
-        echo "- **Memoria (OOM):** Verifica que \`gradle.properties\` tenga asignada suficiente memoria (ej. \`-Xmx2048m\`)." >> $GITHUB_STEP_SUMMARY
-        echo "- **Sintaxis:** Revisa si hay errores de código en los últimos commits enviados." >> $GITHUB_STEP_SUMMARY
-        echo "- **Dependencias:** Confirma que las librerías en tu \`build.gradle\` estén bien escritas y accesibles." >> $GITHUB_STEP_SUMMARY
+        echo "### 🔍 Líneas exactas del fallo:" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+        grep -E "(FAILURE:|Error:|e: |Exception|Task .* failed|Could not resolve)" build_output.log | tail -n 35 >> $GITHUB_STEP_SUMMARY || echo "Revisa el log completo en la pestaña Actions." >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
