@@ -28,7 +28,7 @@ object AppTrafficMonitor {
             if (rx != TrafficStats.UNSUPPORTED && tx != TrafficStats.UNSUPPORTED && (rx > 0 || tx > 0)) {
                 val appName = pm.getApplicationLabel(appInfo).toString()
                 trafficList.add(AppTrafficInfo(appInfo.packageName, appName, rx, tx))
-                Log.d(TAG, "App: \$appName [\${appInfo.packageName}] - RX: \$rx bytes, TX: \$tx bytes")
+                Log.d(TAG, "App: $appName [${appInfo.packageName}] - RX: $rx bytes, TX: $tx bytes")
             }
         }
         return trafficList
