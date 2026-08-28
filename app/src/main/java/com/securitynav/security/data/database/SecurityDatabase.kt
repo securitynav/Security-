@@ -4,16 +4,36 @@ import android.content.Context
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SQLiteOpenHelper
 
-import android.content.Context
-import net.zetetic.database.sqlcipher.SQLiteDatabase
+class SecurityDatabase(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
-class SecurityDatabase(context: Context) {
     init {
         SQLiteDatabase.loadLibs(context)
     }
 
-    fun getWritableDatabase(passphrase: ByteArray): SQLiteDatabase {
-        val dbFile = context.getDatabasePath("security_local_forensics.db")
-        return SQLiteDatabase.openOrCreateDatabase(dbFile, passphrase, null, null)
+    override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL(
+            """
+            CREATE TABLE IF NOT EXISTS security_logs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp LONG,
+                event_type TEXT,
+                details TEXT
+            )
+            """.trimIndent()
+        )
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL("DROP TABLE IF EXISTS security_logs")
+        onCreate(db)
+    }
+
+    fun getWritableEncryptedDatabase(passphrase: ByteArray): SQLiteDatabase {
+        return getWritableDatabase(passphrase)
+    }
+
+    companion object {
+        private const val DATABASE_NAME = "security_nav.db"
+        private const val DATABASE_VERSION = 1
     }
 }
