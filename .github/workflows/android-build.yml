@@ -26,8 +26,13 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew assembleDebug --stacktrace --info --full-stacktrace
 
-    - name: Reportar Errores Detallados
+    - name: Generar Reportaje de Error
       if: failure()
       run: |
-        echo "## ❌ Error de Compilación" >> $GITHUB_STEP_SUMMARY
-        echo "Revisa los registros de la pestaña Actions para ver el desglose del fallo." >> $GITHUB_STEP_SUMMARY
+        echo "## ❌ Reporte de Error de Compilación" >> $GITHUB_STEP_SUMMARY
+        echo "**Estado:** Fallido 🔴" >> $GITHUB_STEP_SUMMARY
+        echo "**Detalles:** La compilación del APK fue interrumpida por un error. Revisa el registro (log) del paso *Build with Gradle*." >> $GITHUB_STEP_SUMMARY
+        echo "### 🔍 Posibles causas a verificar:" >> $GITHUB_STEP_SUMMARY
+        echo "- **Memoria (OOM):** Verifica que \`gradle.properties\` tenga asignada suficiente memoria (ej. \`-Xmx2048m\`)." >> $GITHUB_STEP_SUMMARY
+        echo "- **Sintaxis:** Revisa si hay errores de código en los últimos commits enviados." >> $GITHUB_STEP_SUMMARY
+        echo "- **Dependencias:** Confirma que las librerías en tu \`build.gradle\` estén bien escritas y accesibles." >> $GITHUB_STEP_SUMMARY
