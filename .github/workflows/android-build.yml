@@ -1,4 +1,4 @@
-name: Android CI - Compilación completa de APK
+name: Android CI
 
 on:
   push:
@@ -23,20 +23,5 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Build with Gradle
-      run: |
-        set -o pipefail
-        ./gradlew clean assembleDebug --stacktrace --info 2>&1 | tee build_output.log
-
-    - name: Extraer y Reportar Errores
-      if: failure()
-      run: |
-        echo "## ❌ Reporte Automático de Error" >> $GITHUB_STEP_SUMMARY
-        echo "**Estado:** Fallido 🔴" >> $GITHUB_STEP_SUMMARY
-        echo "```" >> $GITHUB_STEP_SUMMARY
-        if [ -f build_output.log ]; then
-          tail -n 40 build_output.log >> $GITHUB_STEP_SUMMARY
-        else
-          echo "El archivo build_output.log no se generó. Revisa los pasos anteriores." >> $GITHUB_STEP_SUMMARY
-        fi
-        echo "```" >> $GITHUB_STEP_SUMMARY
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug --stacktrace
