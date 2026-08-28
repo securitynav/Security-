@@ -34,5 +34,9 @@ jobs:
         echo "## ❌ Reporte Automático de Error" >> $GITHUB_STEP_SUMMARY
         echo "**Estado:** Fallido 🔴" >> $GITHUB_STEP_SUMMARY
         echo "```" >> $GITHUB_STEP_SUMMARY
-        tail -n 40 build_output.log >> $GITHUB_STEP_SUMMARY
+        if [ -f build_output.log ]; then
+          tail -n 40 build_output.log >> $GITHUB_STEP_SUMMARY
+        else
+          echo "El archivo build_output.log no se generó. Revisa los pasos anteriores." >> $GITHUB_STEP_SUMMARY
+        fi
         echo "```" >> $GITHUB_STEP_SUMMARY
