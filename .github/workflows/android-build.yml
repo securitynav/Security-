@@ -1,39 +1,33 @@
-name: Android CI - Complete APK Build
+name: Android CI - Compilación completa de APK
 
 on:
-  workflow_dispatch:
   push:
+    branches: [ "main" ]
+  pull_request:
     branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-          cache: 'gradle'
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug --stacktrace --info --full-stacktrace --stacktrace --info
-
-      - name: Upload Debug APK Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: SecurityNav-Debug-APK
-          path: app/build/outputs/apk/debug/*.apk
-          retention-days: 7
+    - name: Build with Gradle
+      run: ./gradlew assembleDebug --stacktrace --info --full-stacktrace
 
     - name: Reportar Errores Detallados
       if: failure()
       run: |
         echo "## ❌ Error de Compilación" >> $GITHUB_STEP_SUMMARY
-        echo "Revisa los registros para solucionar fallos actuales y prever errores en futuras ramas." >> $GITHUB_STEP_SUMMARY
+        echo "Revisa los registros de la pestaña Actions para ver el desglose del fallo." >> $GITHUB_STEP_SUMMARY
