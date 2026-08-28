@@ -1,4 +1,4 @@
-name: Android CI - Complete APK Build & Packaging
+name: Android CI - Complete APK Build
 
 on:
   workflow_dispatch:
@@ -12,7 +12,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           fetch-depth: 0
 
       - name: Set up JDK 17
@@ -20,42 +19,21 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'gradle'
 
-      - name: Set up Node.js Environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Package Backend Bundle for App Assets
-        working-directory: tools/backend
-        run: |
-          if [ -f package.json ]; then
-            npm install --production
-            tar -czf ../../app/src/main/assets/backend_bundle.tar.gz .
-          fi
-
-      - name: Ensure Gradle Wrapper Executable
+      - name: Ensure Gradle Wrapper
         run: |
           if [ ! -f gradlew ]; then
             gradle wrapper --gradle-version 8.2 --distribution-type full
           fi
           chmod +x gradlew
 
-      - name: Assemble Android APK & Validate Manifest
+      - name: Build Debug APK
         run: |
-          ./gradlew assembleDebug --stacktrace --info --no-daemon
+          ./gradlew assembleDebug --stacktrace --no-daemon
 
       - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SecurityNav-Complete-Debug-APK
+          name: SecurityNav-Debug-APK
           path: app/build/outputs/apk/debug/*.apk
-          retention-days: 7
-
-      - name: Upload Complete Backend Bundle
-        uses: actions/upload-artifact@v4
-        with:
-          name: SecurityNav-Backend-Bundle
-          path: app/src/main/assets/backend_bundle.tar.gz
           retention-days: 7
