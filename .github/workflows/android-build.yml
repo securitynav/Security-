@@ -26,12 +26,13 @@ jobs:
     - name: Build with Gradle
       run: |
         set -o pipefail
-        ./gradlew assembleDebug --stacktrace --info --full-stacktrace 2>&1 | tee build_output.log
+        ./gradlew clean assembleDebug --stacktrace --info 2>&1 | tee build_output.log
 
-    - name: Extraer y Reportar Errores AAPT2
+    - name: Extraer y Reportar Errores
       if: failure()
       run: |
-        echo "## ❌ Error de Recursos (AAPT2)" >> $GITHUB_STEP_SUMMARY
+        echo "## ❌ Reporte Automático de Error" >> $GITHUB_STEP_SUMMARY
+        echo "**Estado:** Fallido 🔴" >> $GITHUB_STEP_SUMMARY
         echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-        grep -C 5 "Aapt2Exception" build_output.log || head -n 50 build_output.log >> $GITHUB_STEP_SUMMARY
+        tail -n 40 build_output.log >> $GITHUB_STEP_SUMMARY
         echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
