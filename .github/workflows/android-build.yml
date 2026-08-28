@@ -19,17 +19,11 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+          cache: 'gradle'
 
-      - name: Ensure Gradle Wrapper
+      - name: Build Debug APK with System Gradle
         run: |
-          if [ ! -f gradlew ]; then
-            gradle wrapper --gradle-version 8.2 --distribution-type full
-          fi
-          chmod +x gradlew
-
-      - name: Build Debug APK
-        run: |
-          ./gradlew assembleDebug --stacktrace --no-daemon
+          gradle assembleDebug --stacktrace --no-daemon
 
       - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
