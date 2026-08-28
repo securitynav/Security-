@@ -23,10 +23,10 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Build with Gradle
+    - name: Limpiar y Compilar con Gradle
       run: |
         set -o pipefail
-        ./gradlew assembleDebug --stacktrace --info --full-stacktrace 2>&1 | tee build_output.log
+        ./gradlew clean assembleDebug --stacktrace --info --full-stacktrace 2>&1 | tee build_output.log
 
     - name: Extraer y Reportar Errores
       if: failure()
