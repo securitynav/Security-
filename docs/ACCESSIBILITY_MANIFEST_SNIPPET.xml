@@ -1,0 +1,51 @@
+<!--
+Snippet to add an AccessibilityService declaration to your AndroidManifest.
+Place the <service> element inside the <application> element of app/src/main/AndroidManifest.xml.
+Also create the res/xml/accessibility_service_config.xml file described below.
+Important: Accessibility services cannot be granted automatically; the user must enable them in Settings > Accessibility.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app">
+
+    <!-- Optional: foreground service permission if your accessibility service needs to run in foreground -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher">
+
+        <!-- Accessibility service declaration -->
+        <service
+            android:name=".MyAccessibilityService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <!-- Link to a res/xml configuration file that defines the service capabilities -->
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+    </application>
+</manifest>
+
+<!--
+Create the file res/xml/accessibility_service_config.xml with content like below.
+Place it at app/src/main/res/xml/accessibility_service_config.xml
+-->
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeAllMask"
+    android:accessibilityFeedbackType="feedbackSpoken"
+    android:notificationTimeout="100"
+    android:canRetrieveWindowContent="true"
+    android:settingsActivity="com.example.app.MyAccessibilitySettingsActivity"
+    android:canRequestFilterKeyEvents="false"
+    android:description="@string/accessibility_service_description"/>
+-->
