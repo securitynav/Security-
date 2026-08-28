@@ -1,63 +1,61 @@
-name: Android CI - build APK
+name: Android CI - Complete APK Build & Packaging
 
 on:
   workflow_dispatch:
   push:
-    paths:
-      - 'app/**'
-      - 'gradle/**'
-      - 'build.gradle'
-      - 'settings.gradle'
-      - 'tools/backend/**'
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Set up Node.js (for backend dev deps)
-        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-
-      - name: Enable corepack and prepare yarn
-        run: |
-          corepack enable
-          corepack prepare yarn@stable --activate
-
-      - name: Install backend dependencies (yarn)
-        working-directory: tools/backend
-        run: |
-          if [ -f package.json ]; then yarn install --frozen-lockfile || yarn install; else echo "No backend package.json found"; fi
+          submodules: recursive
+          fetch-depth: 0
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: 17
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
 
-      - name: Grant execute permission for gradlew
-        run: |
-          if [ -f ./gradlew ]; then chmod +x ./gradlew; fi
-
-      - name: Cache Gradle
-        uses: actions/cache@v4
+      - name: Set up Node.js Environment
+        uses: actions/setup-node@v4
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          node-version: '18'
 
-      - name: Build debug APK
+      - name: Package Backend Bundle for App Assets
+        working-directory: tools/backend
         run: |
-          if [ -f ./gradlew ]; then ./gradlew assembleDebug --no-daemon; else echo "No gradlew found in repo. Add the Gradle wrapper to build."; exit 1; fi
+          if [ -f package.json ]; then
+            npm install --production
+            tar -czf ../../app/src/main/assets/backend_bundle.tar.gz .
+          fi
 
-      - name: Upload APK artifact
+      - name: Ensure Gradle Wrapper Executable
+        run: |
+          if [ ! -f gradlew ]; then
+            gradle wrapper --gradle-version 8.2 --distribution-type full
+          fi
+          chmod +x gradlew
+
+      - name: Assemble Android APK & Validate Manifest
+        run: |
+          ./gradlew assembleDebug --stacktrace --info --no-daemon
+
+      - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug-apk
+          name: SecurityNav-Complete-Debug-APK
           path: app/build/outputs/apk/debug/*.apk
+          retention-days: 7
+
+      - name: Upload Complete Backend Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: SecurityNav-Backend-Bundle
+          path: app/src/main/assets/backend_bundle.tar.gz
+          retention-days: 7
