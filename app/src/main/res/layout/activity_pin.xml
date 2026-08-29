@@ -1,67 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/bg_dark"
     android:gravity="center"
-    android:padding="24dp"
-    android:background="#0A0E17">
+    android:orientation="vertical"
+    android:padding="24dp">
 
     <ImageView
-        android:id="@+id/ivPinLockLogo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/ic_3d_shield_fg"
-        android:layout_marginBottom="16dp" />
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@android:drawable/ic_lock_lock"
+        app:tint="@color/neon_cyan" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SECURITY NAV"
-        android:textColor="#00FF66"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:letterSpacing="0.1" />
+        android:layout_marginTop="16dp"
+        android:text="Bóveda Bloqueada"
+        android:textColor="@color/neon_cyan"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tvPinSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ingrese su PIN de Seguridad de 4 dígitos"
-        android:textColor="#888888"
-        android:textSize="14sp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="32dp" />
+        android:layout_marginTop="4dp"
+        android:text="Ingresa tu PIN Maestro para continuar"
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp" />
 
-    <EditText
-        android:id="@+id/etPinCode"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:inputType="numberPassword"
-        android:maxLength="4"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:textColor="#00E5FF"
-        android:background="#161D2F"
-        android:letterSpacing="0.4"
-        android:layout_marginBottom="24dp" />
-
-    <Button
-        android:id="@+id/btnLoginPin"
-        android:layout_width="200dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DESBLOQUEAR"
-        android:textStyle="bold"
-        android:backgroundTint="#00E5FF"
-        android:textColor="#0A0E17"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginTop="28dp"
+        android:hint="PIN de Acceso"
+        app:hintTextColor="@color/neon_cyan"
+        app:boxStrokeColor="@color/neon_cyan"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    <Button
-        android:id="@+id/btnRegisterPin"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="REGISTRAR NUEVO PIN"
-        android:backgroundTint="#005577"
-        android:textColor="#FFFFFF" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPinInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            android:textColor="@color/text_primary" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="20dp"
+        android:text="DESBLOQUEAR" />
 
 </LinearLayout>
