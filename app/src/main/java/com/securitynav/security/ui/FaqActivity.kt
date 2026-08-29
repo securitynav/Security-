@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.securitynav.security.R
 
 class FaqActivity : AppCompatActivity() {
-    protected override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_faq)
     }
