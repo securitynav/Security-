@@ -4,20 +4,43 @@
     android:layout_height="match_parent"
     android:background="@color/bg_dark"
     android:orientation="vertical"
+    android:gravity="center"
     android:padding="24dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registro"
+        android:text="Registro de PIN"
         android:textColor="@color/text_primary"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_marginBottom="24dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/etNewPin"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Configure sus credenciales de seguridad"
-        android:textColor="@color/text_secondary"
-        android:textSize="14sp" />
+        android:hint="Nuevo PIN"
+        android:inputType="numberPassword"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_secondary"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/etConfirmPin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirmar PIN"
+        android:inputType="numberPassword"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_secondary"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnRegisterPin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrar"
+        android:backgroundTint="@color/neon_green"
+        android:textColor="@color/black" />
 
 </LinearLayout>
