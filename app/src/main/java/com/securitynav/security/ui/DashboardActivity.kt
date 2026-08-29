@@ -4,204 +4,101 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.securitynav.security.R
-import com.securitynav.security.data.database.SecurityDatabase
+import com.securitynav.security.data.AppTrafficItem
+import com.securitynav.security.notifications.SecurityNotificationManager
+import java.util.Random
 
 class DashboardActivity : AppCompatActivity() {
 
     private lateinit var lineChart: LineChart
-    private lateinit var pieChart: PieChart
-    private lateinit var tvLogsSummary: TextView
-    private lateinit var tvLogsDetail: TextView
-
+    private lateinit var rvAppTraffic: RecyclerView
+    private val entries = ArrayList<Entry>()
+    private val appList = ArrayList<AppTrafficItem>()
+    private lateinit var adapter: AppTrafficAdapter
     private val handler = Handler(Looper.getMainLooper())
-    private val refreshRunnable = object : Runnable {
-        override fun run() {
-            loadMetricsAndRefreshCharts()
-            handler.postDelayed(this, 2000)
-        }
-    }
+    private var timeX = 0f
 
-    protected override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        tvLogsSummary = findViewById(R.id.tvLogsSummary)
-        tvLogsDetail = findViewById(R.id.tvLogsDetail)
         lineChart = findViewById(R.id.lineChartTraffic)
-        pieChart = findViewById(R.id.pieChartMethods)
+        rvAppTraffic = findViewById(R.id.rvAppTraffic)
 
-        setupLineChart()
-        setupPieChart()
+        setupChart()
+        setupRecyclerView()
+        startLiveDataSimulation()
     }
 
-    protected override fun onResume() {
-        super.onResume()
-        handler.post(refreshRunnable)
-    }
+    private fun setupChart() {
+        lineChart.description.isEnabled = false
+        lineChart.setTouchEnabled(true)
+        lineChart.setBackgroundColor(Color.parseColor("#161D2F"))
 
-    protected override fun onPause() {
-        super.onPause()
-        handler.removeCallbacks(refreshRunnable)
-    }
-
-    private fun setupLineChart() {
-        lineChart.apply {
-            description.isEnabled = false
-            setTouchEnabled(true)
-            isDragEnabled = true
-            setScaleEnabled(true)
-            setPinchZoom(true)
-            setBackgroundColor(Color.parseColor("#121212"))
-            legend.textColor = Color.WHITE
-
-            xAxis.apply {
-                textColor = Color.LTGRAY
-                position = XAxis.XAxisPosition.BOTTOM
-                setDrawGridLines(false)
-            }
-            axisLeft.apply {
-                textColor = Color.LTGRAY
-                setDrawGridLines(true)
-                gridColor = Color.parseColor("#333333")
-            }
-            axisRight.isEnabled = false
-        }
-    }
-
-    private fun setupPieChart() {
-        pieChart.apply {
-            description.isEnabled = false
-            setUsePercentValues(true)
-            isDrawHoleEnabled = true
-            setHoleColor(Color.parseColor("#121212"))
-            setTransparentCircleColor(Color.TRANSPARENT)
-            setEntryLabelColor(Color.WHITE)
-            setEntryLabelTextSize(11f)
-            legend.textColor = Color.WHITE
-        }
-    }
-
-    private fun loadMetricsAndRefreshCharts() {
-        try {
-            val dbHelper = SecurityDatabase(this)
-            val db = dbHelper.getReadableEncryptedDatabase()
-            val cursor = db.rawQuery(
-                "SELECT timestamp, event_type, details FROM security_logs ORDER BY id DESC LIMIT 100",
-                null
-            )
-
-            val builder = StringBuilder()
-            var totalEvents = 0
-            var getCount = 0
-            var postCount = 0
-            var otherCount = 0
-
-            val trafficEntries = ArrayList<Entry>()
-            var timeIndex = 0f
-
-            while (cursor.moveToNext()) {
-                totalEvents++
-                val time = cursor.getLong(0)
-                val type = cursor.getString(1)
-                val details = cursor.getString(2)
-
-                when {
-                    details.contains("[GET]") -> getCount++
-                    details.contains("[POST]") -> postCount++
-                    else -> otherCount++
-                }
-
-                val payloadSize = parsePayloadBytes(details)
-                trafficEntries.add(Entry(timeIndex, payloadSize))
-                timeIndex += 1.0f
-
-                if (totalEvents <= 20) {
-                    builder.append("[$time] $type:\n$details\n-------------------------------\n")
-                }
-            }
-            cursor.close()
-            db.close()
-
-            tvLogsSummary.text = "Eventos Totales: $totalEvents | GET: $getCount | POST: $postCount | Otros: $otherCount"
-            tvLogsDetail.text = if (builder.isNotEmpty()) builder.toString() else "Esperando capturas..."
-
-            updateLineChartData(trafficEntries.reversed())
-            updatePieChartData(getCount, postCount, otherCount)
-
-        } catch (e: Exception) {
-            tvLogsSummary.text = "Error al actualizar métricas"
-            tvLogsDetail.text = e.localizedMessage
-        }
-    }
-
-    private fun parsePayloadBytes(details: String): Float {
-        val regex = Regex("Payload:\\s*(\\d+)B")
-        val match = regex.find(details)
-        return match?.groupValues?.get(1)?.toFloatOrNull() ?: 64f
-    }
-
-    private fun updateLineChartData(entries: List<Entry>) {
-        if (entries.isEmpty()) return
-
-        val dataSet = LineDataSet(entries, "Ancho de Banda (Bytes)").apply {
-            color = Color.parseColor("#00FF66")
-            setCircleColor(Color.parseColor("#00E5FF"))
-            lineWidth = 2f
-            circleRadius = 3f
-            setDrawCircleHole(false)
+        val dataSet = LineDataSet(entries, "Tráfico KB/s").apply {
+            color = Color.parseColor("#00E5FF")
             valueTextColor = Color.WHITE
-            valueTextSize = 8f
-            setDrawFilled(true)
-            fillColor = Color.parseColor("#00FF66")
-            fillAlpha = 40
+            lineWidth = 2.5f
+            setDrawCircles(false)
+            mode = LineDataSet.Mode.CUBIC_BEZIER
         }
-
         lineChart.data = LineData(dataSet)
-        lineChart.notifyDataSetChanged()
-        lineChart.invalidate()
     }
 
-    private fun updatePieChartData(get: Int, post: Int, other: Int) {
-        val entries = ArrayList<PieEntry>()
-        val colors = ArrayList<Int>()
+    private fun setupRecyclerView() {
+        appList.add(AppTrafficItem("WhatsApp", "com.whatsapp", "142 KB", "POST"))
+        appList.add(AppTrafficItem("Navegador Web", "com.android.chrome", "1.2 MB", "GET"))
+        appList.add(AppTrafficItem("Sistema Android", "android", "48 KB", "GET"))
 
-        if (get > 0) {
-            entries.add(PieEntry(get.toFloat(), "GET"))
-            colors.add(Color.parseColor("#00E5FF"))
-        }
-        if (post > 0) {
-            entries.add(PieEntry(post.toFloat(), "POST"))
-            colors.add(Color.parseColor("#FFD600"))
-        }
-        if (other > 0) {
-            entries.add(PieEntry(other.toFloat(), "Otros"))
-            colors.add(Color.parseColor("#FF4444"))
-        }
+        adapter = AppTrafficAdapter(appList)
+        rvAppTraffic.layoutManager = LinearLayoutManager(this)
+        rvAppTraffic.adapter = adapter
+    }
 
-        if (entries.isEmpty()) return
+    private fun startLiveDataSimulation() {
+        val random = Random()
+        val notificationManager = SecurityNotificationManager(this)
 
-        val dataSet = PieDataSet(entries, "Protocolos").apply {
-            this.colors = colors
-            sliceSpace = 3f
-            valueTextColor = Color.BLACK
-            valueTextSize = 11f
-        }
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                timeX += 1f
+                val bytes = random.nextInt(500) + 50
+                entries.add(Entry(timeX, bytes.toFloat()))
+                if (entries.size > 20) entries.removeAt(0)
 
-        val data = PieData(dataSet).apply {
-            setValueFormatter(PercentFormatter(pieChart))
-            setValueTextColor(Color.WHITE)
-        }
+                val dataSet = LineDataSet(entries, "Bytes/s").apply {
+                    color = Color.parseColor("#00E5FF")
+                    valueTextColor = Color.TRANSPARENT
+                    lineWidth = 2.5f
+                    setDrawCircles(false)
+                }
+                lineChart.data = LineData(dataSet)
+                lineChart.notifyDataSetChanged()
+                lineChart.invalidate()
 
-        pieChart.data = data
-        pieChart.highlightValues(null)
-        pieChart.invalidate()
+                // Simulación de detección de anomalía
+                if (bytes > 450) {
+                    notificationManager.sendSecurityAlert(
+                        "¡Alerta de Tráfico Anómalo!",
+                        "Uso pico detectado: $bytes KB/s enviado en segundo plano."
+                    )
+                }
+
+                handler.postDelayed(this, 1500)
+            }
+        }, 1000)
+    }
+
+    override fun onDestroy() {
+        handler.removeCallbacksAndMessages(null)
+        super.onDestroy()
     }
 }

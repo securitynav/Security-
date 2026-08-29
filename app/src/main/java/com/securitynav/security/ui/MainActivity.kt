@@ -2,11 +2,9 @@ package com.securitynav.security.ui
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.RelativeLayout
 import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
@@ -14,11 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.securitynav.security.R
+import com.securitynav.security.notifications.SecurityNotificationManager
 import com.securitynav.security.services.TrafficMonitorService
 
 class MainActivity : AppCompatActivity() {
-
-    private var isProtectionActive = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,16 +24,13 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         val btnOpenMenu = findViewById<ImageButton>(R.id.btnOpenMenu)
         val navView = findViewById<NavigationView>(R.id.navigationView)
-
-        val btnMainLock = findViewById<RelativeLayout>(R.id.btnMainLock)
+        val btnMainLock = findViewById<CustomPulseLockView>(R.id.btnMainLock)
         val tvLockState = findViewById<TextView>(R.id.tvLockState)
         val btnViewCharts = findViewById<Button>(R.id.btnViewCharts)
 
-        val switchVpnTraffic = findViewById<Switch>(R.id.switchVpnTraffic)
+        val notificationManager = SecurityNotificationManager(this)
 
-        btnOpenMenu.setOnClickListener {
-            drawerLayout.open()
-        }
+        btnOpenMenu.setOnClickListener { drawerLayout.open() }
 
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -54,28 +48,27 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        // Alternar estados: VERDE (Seguro) -> AMARILLO (Alerta Pulsante) -> ROJO (Peligro)
         btnMainLock.setOnClickListener {
-            isProtectionActive = !isProtectionActive
-            if (isProtectionActive) {
-                tvLockState.text = "ESTADO: PROTECCIÓN ACTIVA"
-                tvLockState.setTextColor(Color.parseColor("#00FF66"))
-                btnMainLock.animate().rotationBy(360f).setDuration(500).start()
-                startService(Intent(this, TrafficMonitorService::class.java))
-                Toast.makeText(this, "Contramedidas de Seguridad Activadas", Toast.LENGTH_SHORT).show()
-            } else {
-                tvLockState.text = "ESTADO: PROTECCIÓN PAUSADA"
-                tvLockState.setTextColor(Color.parseColor("#FF4444"))
-                btnMainLock.animate().rotationBy(-360f).setDuration(500).start()
-                stopService(Intent(this, TrafficMonitorService::class.java))
-                Toast.makeText(this, "Contramedidas Desactivadas", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        switchVpnTraffic.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                startService(Intent(this, TrafficMonitorService::class.java))
-            } else {
-                stopService(Intent(this, TrafficMonitorService::class.java))
+            when (btnMainLock.currentState) {
+                SecurityState.SECURE -> {
+                    btnMainLock.setSecurityState(SecurityState.WARNING)
+                    tvLockState.text = "ESTADO: ALERTA DE RIESGO"
+                    tvLockState.setTextColor(android.graphics.Color.parseColor("#FFD600"))
+                    notificationManager.sendSecurityAlert("Advertencia de Seguridad", "Superposición de pantalla detectada.")
+                }
+                SecurityState.WARNING -> {
+                    btnMainLock.setSecurityState(SecurityState.DANGER)
+                    tvLockState.text = "ESTADO: PELIGRO DETECTADO"
+                    tvLockState.setTextColor(android.graphics.Color.parseColor("#FF3366"))
+                    notificationManager.sendSecurityAlert("AMENAZA CRÍTICA", "Tráfico malicioso bloqueado.")
+                }
+                SecurityState.DANGER -> {
+                    btnMainLock.setSecurityState(SecurityState.SECURE)
+                    tvLockState.text = "ESTADO: PROTECCIÓN ACTIVA"
+                    tvLockState.setTextColor(android.graphics.Color.parseColor("#00FF66"))
+                    Toast.makeText(this, "Sistema Restablecido", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

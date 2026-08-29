@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <!-- Barra Superior Neón -->
-        <RelativeLayout
+        <com.securitynav.security.ui.CustomPulseLockView
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="#161D2F"
@@ -37,7 +37,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-        </RelativeLayout>
+        </com.securitynav.security.ui.CustomPulseLockView>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                 android:gravity="center_horizontal">
 
                 <!-- INTERRUPTOR PRINCIPAL: CANDADO DINÁMICO -->
-                <RelativeLayout
+                <com.securitynav.security.ui.CustomPulseLockView
                     android:id="@+id/btnMainLock"
                     android:layout_width="140dp"
                     android:layout_height="140dp"
@@ -67,7 +67,7 @@
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_3d_shield_fg" />
 
-                </RelativeLayout>
+                </com.securitynav.security.ui.CustomPulseLockView>
 
                 <TextView
                     android:id="@+id/tvLockState"
