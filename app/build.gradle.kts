@@ -43,7 +43,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
 
     // Base de datos cifrada (SQLCipher)
-    implementation("net.zetetic:android-database-sqlcipher:4.5.4")
+    implementation("net.zetetic:android-database-sqlcipher:4.6.1")
     implementation("androidx.sqlite:sqlite:2.4.0")
 
     // Gráficos en tiempo real (MPAndroidChart vía JitPack)
