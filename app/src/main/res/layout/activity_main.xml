@@ -1,53 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
-    android:background="#0F172A">
+    android:background="#0A0E17">
 
-    <TextView
+    <!-- Contenido Principal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Barra Superior Neón -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#161D2F"
+            android:paddingHorizontal="16dp">
+
+            <ImageButton
+                android:id="@+id/btnOpenMenu"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                app:tint="#00FF66" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="SECURITY NAV"
+                android:textColor="#00FF66"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <!-- INTERRUPTOR PRINCIPAL: CANDADO DINÁMICO -->
+                <RelativeLayout
+                    android:id="@+id/btnMainLock"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_marginVertical="20dp"
+                    android:background="@drawable/ic_3d_shield_bg"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:id="@+id/ivLockIcon"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_3d_shield_fg" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tvLockState"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ESTADO: PROTECCIÓN ACTIVA"
+                    android:textColor="#00FF66"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- TARJETA 1: CANALES HEURÍSTICOS & DEGRADACIÓN DE TORRE -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#161D2F"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Análisis Heurístico y Red Móvil"
+                            android:textColor="#00E5FF"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <Switch
+                            android:id="@+id/switchHeuristics"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Canales Heurísticos de Malware"
+                            android:textColor="#FFFFFF"
+                            android:checked="true"
+                            android:layout_marginTop="8dp" />
+
+                        <Switch
+                            android:id="@+id/switchTowerDegradation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Detección de Degradación de Torre"
+                            android:textColor="#FFFFFF"
+                            android:checked="true"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- TARJETA 2: ABUSO DE ACCESIBILIDAD Y TAPJACKING -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#161D2F"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Protección de Interfaz y Permisos"
+                            android:textColor="#00E5FF"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <Switch
+                            android:id="@+id/switchAccessibilityAbuse"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Anti-Abuso de Servicios de Accesibilidad"
+                            android:textColor="#FFFFFF"
+                            android:checked="true"
+                            android:layout_marginTop="8dp" />
+
+                        <Switch
+                            android:id="@+id/switchOverlayProtect"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Anti-Superposiciones (Tapjacking)"
+                            android:textColor="#FFFFFF"
+                            android:checked="true"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- TARJETA 3: INSPECCIÓN DE TRÁFICO VPN (ESTILO AMARILLO/DORADO DESPLEGABLE) -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#211E10"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="VPN Local e Inspección de Paquetes por App"
+                            android:textColor="#FFD600"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <Switch
+                            android:id="@+id/switchVpnTraffic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Monitor de Tráfico de Red VPN"
+                            android:textColor="#FFFFFF"
+                            android:checked="true"
+                            android:layout_marginTop="8dp" />
+
+                        <TextView
+                            android:id="@+id/tvAppTrafficDetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Datos inspeccionados: 0 B | HTTP GET/POST por aplicación activo"
+                            android:textColor="#BBBBBB"
+                            android:textSize="12sp"
+                            android:fontFamily="monospace"
+                            android:layout_marginTop="8dp" />
+
+                        <Button
+                            android:id="@+id/btnViewCharts"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="ABRIR GRÁFICAS DE TRÁFICO EN TIEMPO REAL"
+                            android:backgroundTint="#FFD600"
+                            android:textColor="#0A0E17"
+                            android:layout_marginTop="12dp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- TARJETA 4: ALMACENAMIENTO SEGURO HW KEYSTORE + SQLCIPHER -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#161D2F"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    android:layout_marginBottom="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Base de Datos Cifrada (SQLCipher + HW KeyStore)"
+                            android:textColor="#00E5FF"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Estado: Clave Maestra Protegida en Android Hardware KeyStore (TEE)."
+                            android:textColor="#00FF66"
+                            android:textSize="12sp"
+                            android:layout_marginTop="8dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <!-- Menú Lateral Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Consola de Control de Seguridad"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#F8FAFC"
-        android:layout_marginBottom="24dp" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#161D2F"
+        app:itemTextColor="#FFFFFF"
+        app:menu="@menu/drawer_menu" />
 
-    <Button
-        android:id="@+id/btnStartVpn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Activar Escudo Cortafuegos VPN"
-        android:backgroundTint="#16A34A"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="12dp" />
-
-    <Button
-        android:id="@+id/btnScanAntivirus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ejecutar Análisis Antivirus Heurístico"
-        android:backgroundTint="#D97706"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="12dp" />
-
-    <Button
-        android:id="@+id/btnOpenDashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ver Panel de Amenazas y Registro Forense"
-        android:backgroundTint="#2563EB"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="24dp" />
-
-    <TextView
-        android:id="@+id/tvStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Estado: Servicios Inicializados"
-        android:textColor="#94A3B8"
-        android:textSize="14sp" />
-
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

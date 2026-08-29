@@ -3,77 +3,89 @@ package com.securitynav.security.services
 import android.content.Intent
 import android.net.VpnService
 import android.os.ParcelFileDescriptor
-import com.securitynav.security.engine.PacketInspectorEngine
+import android.util.Log
+import com.securitynav.security.data.database.SecurityDatabase
+import com.securitynav.security.notifications.SecurityNotificationManager
 import java.io.FileInputStream
-import java.io.FileOutputStream
 import java.nio.ByteBuffer
-import kotlin.concurrent.thread
 
-class TrafficMonitorService : VpnService() {
+class TrafficMonitorService : VpnService(), Runnable {
 
+    private var vpnThread: Thread? = null
     private var vpnInterface: ParcelFileDescriptor? = null
-    private var isRunning = false
-    private lateinit var inspectorEngine: PacketInspectorEngine
-
-    override fun onCreate() {
-        super.onCreate()
-        inspectorEngine = PacketInspectorEngine(this)
-    }
+    @Volatile private var isRunning = false
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (!isRunning) {
-            setupVpnAndStartRelay()
+            isRunning = true
+            vpnThread = Thread(this, "TrafficVPNThread").apply { start() }
         }
         return START_STICKY
     }
 
-    private fun setupVpnAndStartRelay() {
+    override fun run() {
         try {
             val builder = Builder()
-                .addAddress("10.0.0.2", 24)
+                .addAddress("10.0.0.2", 32)
                 .addRoute("0.0.0.0", 0)
-                .addDnsServer("8.8.8.8")
-                .addDnsServer("1.1.1.1")
-                .setSession("SecurityNavEngine")
-
-            // Evitar redirigir el tráfico de la propia app para no generar un bucle infinito
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-                builder.addDisallowedApplication(packageName)
-            }
+                .setSession("SecurityNavVPN")
 
             vpnInterface = builder.establish()
-            isRunning = true
+            val inputStream = FileInputStream(vpnInterface?.fileDescriptor)
+            val buffer = ByteBuffer.allocate(32768)
 
-            thread(start = true, name = "VPN_Packet_Relay") {
-                val input = FileInputStream(vpnInterface?.fileDescriptor)
-                val output = FileOutputStream(vpnInterface?.fileDescriptor)
-                val buffer = ByteBuffer.allocate(32767)
+            val dbHelper = SecurityDatabase(this)
+            val notificationManager = SecurityNotificationManager(this)
 
-                while (isRunning) {
-                    val readBytes = input.read(buffer.array())
-                    if (readBytes > 0) {
-                        buffer.limit(readBytes)
-                        buffer.rewind()
+            while (isRunning) {
+                val readBytes = inputStream.read(buffer.array())
+                // FIX: Validar la lectura real de bytes para evitar que cuente infinitamente
+                if (readBytes > 0) {
+                    val packetData = String(buffer.array(), 0, readBytes, Charsets.ISO_8859_1)
+                    var method = "OTHER"
+                    if (packetData.contains("GET ")) method = "GET"
+                    else if (packetData.contains("POST ")) method = "POST"
 
-                        // Inspeccionar paquetes en segundo plano
-                        inspectorEngine.inspectPacketBuffer(buffer, readBytes)
+                    val logDetail = "IP Packet Processed: $readBytes B | Verb: [$method]"
+                    val db = dbHelper.getWritableEncryptedDatabase()
+                    db.execSQL(
+                        "INSERT INTO security_logs (timestamp, event_type, details) VALUES (?, ?, ?)",
+                        arrayOf(System.currentTimeMillis(), "VPN_TRAFFIC", logDetail)
+                    )
+                    db.close()
 
-                        // Reenviar el paquete al bus nativo sin bloquear
-                        buffer.rewind()
-                        output.write(buffer.array(), 0, readBytes)
-                        buffer.clear()
+                    if (method == "POST") {
+                        notificationManager.sendSecurityAlert(
+                            "Inspección de Tráfico Outbound",
+                            "Se detectó envío de paquetes POST ($readBytes Bytes)."
+                        )
                     }
+
+                    buffer.clear()
+                } else {
+                    // Prevenir el bucle activo consumiendo CPU si no hay datos
+                    Thread.sleep(100)
                 }
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("TrafficVPN", "Error en túnel de inspección", e)
+        } finally {
+            closeVpn()
+        }
+    }
+
+    private fun closeVpn() {
+        try {
+            vpnInterface?.close()
+            vpnInterface = null
+        } catch (e: Exception) {
+            Log.e("TrafficVPN", "Error cerrando interfaz", e)
         }
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         isRunning = false
-        vpnInterface?.close()
-        vpnInterface = null
+        closeVpn()
+        super.onDestroy()
     }
 }
