@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="neon_cyan">#00E5FF</color>
-    <color name="neon_green">#00FF66</color>
-    <color name="dark_bg">#0A0E17</color>
-    <color name="card_surface">#121824</color>
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#8A99AD</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bg_dark">#FF0A0E17</color>
+    <color name="surface_dark">#FF141B2D</color>
+    <color name="neon_cyan">#FF00F3FF</color>
+    <color name="neon_green">#FF00FF66</color>
 </resources>
