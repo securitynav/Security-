@@ -28,8 +28,12 @@ class SecurityDatabase(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         onCreate(db)
     }
 
-    fun getWritableEncryptedDatabase(passphrase: ByteArray): SQLiteDatabase {
+    fun getWritableEncryptedDatabase(passphrase: String): SQLiteDatabase {
         return getWritableDatabase(passphrase)
+    }
+
+    fun getWritableEncryptedDatabase(passphrase: ByteArray): SQLiteDatabase {
+        return getWritableDatabase(String(passphrase))
     }
 
     companion object {
