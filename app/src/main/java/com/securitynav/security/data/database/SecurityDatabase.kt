@@ -1,23 +1,27 @@
 package com.securitynav.security.data.database
 
 import android.content.Context
+import com.securitynav.security.data.security.KeyStoreManager
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SQLiteOpenHelper
 
-class SecurityDatabase(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
+class SecurityDatabase(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
-    init {
-        SQLiteDatabase.loadLibs(context)
+    companion object {
+        private const val DATABASE_NAME = "security_nav_vault.db"
+        private const val DATABASE_VERSION = 1
     }
+
+    private val keyStoreManager = KeyStoreManager(context)
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
             """
             CREATE TABLE IF NOT EXISTS security_logs (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                timestamp LONG,
-                event_type TEXT,
-                details TEXT
+                timestamp LONG NOT NULL,
+                event_type TEXT NOT NULL,
+                details TEXT NOT NULL
             )
             """.trimIndent()
         )
@@ -28,16 +32,28 @@ class SecurityDatabase(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         onCreate(db)
     }
 
-    fun getWritableEncryptedDatabase(passphrase: String): SQLiteDatabase {
+    fun getWritableEncryptedDatabase(): SQLiteDatabase {
+        SQLiteDatabase.loadLibs(context)
+        val passphrase = keyStoreManager.getMasterPassphrase()
         return getWritableDatabase(passphrase)
     }
 
-    fun getWritableEncryptedDatabase(passphrase: ByteArray): SQLiteDatabase {
-        return getWritableDatabase(String(passphrase))
+    fun getReadableEncryptedDatabase(): SQLiteDatabase {
+        SQLiteDatabase.loadLibs(context)
+        val passphrase = keyStoreManager.getMasterPassphrase()
+        return getReadableDatabase(passphrase)
     }
 
-    companion object {
-        private const val DATABASE_NAME = "security_nav.db"
-        private const val DATABASE_VERSION = 1
+    fun logEvent(eventType: String, details: String) {
+        try {
+            val db = getWritableEncryptedDatabase()
+            db.execSQL(
+                "INSERT INTO security_logs (timestamp, event_type, details) VALUES (?, ?, ?)",
+                arrayOf(System.currentTimeMillis(), eventType, details)
+            )
+            db.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

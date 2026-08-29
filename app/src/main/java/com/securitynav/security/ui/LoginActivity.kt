@@ -23,19 +23,17 @@ class LoginActivity : AppCompatActivity() {
             if (password.isNotEmpty()) {
                 try {
                     val dbHelper = SecurityDatabase(this)
-                    val db = dbHelper.getWritableEncryptedDatabase(password)
+                    val db = dbHelper.getWritableEncryptedDatabase()
                     db.close()
 
-                    val intent = Intent(this, MainActivity::class.java).apply {
-                        putExtra("MASTER_KEY", password)
-                    }
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } catch (e: Exception) {
-                    Toast.makeText(this, "Error al desbloquear almacén cifrado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error al acceder a Android KeyStore Hardware", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Ingrese la clave maestra", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Ingrese la clave de acceso", Toast.LENGTH_SHORT).show()
             }
         }
     }

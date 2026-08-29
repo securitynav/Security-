@@ -17,7 +17,7 @@ class DashboardActivity : AppCompatActivity() {
 
         try {
             val dbHelper = SecurityDatabase(this)
-            val db = dbHelper.getReadableEncryptedDatabase("master_key_temp")
+            val db = dbHelper.getReadableEncryptedDatabase()
             val cursor = db.rawQuery("SELECT timestamp, event_type, details FROM security_logs ORDER BY id DESC LIMIT 50", null)
 
             val builder = StringBuilder()
@@ -31,12 +31,13 @@ class DashboardActivity : AppCompatActivity() {
                 builder.append("[$time] $type:\n$details\n-------------------------------\n")
             }
             cursor.close()
+            db.close()
 
-            tvLogsSummary.text = "Eventos Registrados en Almacén Cifrado: $count"
+            tvLogsSummary.text = "Eventos en Almacén Cifrado (Protegido por KeyStore HW): $count"
             tvLogsDetail.text = if (builder.isNotEmpty()) builder.toString() else "No hay eventos anómalos registrados."
 
         } catch (e: Exception) {
-            tvLogsSummary.text = "Error al leer base de datos cifrada."
+            tvLogsSummary.text = "Error al acceder al almacén cifrado"
             tvLogsDetail.text = e.localizedMessage
         }
     }
