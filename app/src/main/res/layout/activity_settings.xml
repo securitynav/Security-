@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#121212">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Configuración de SecurityNav"
+            android:textColor="#00FF66"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp" />
+
+        <Switch
+            android:id="@+id/switchDeepHttp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inspección Profunda HTTP (GET/POST/Headers)"
+            android:textColor="#FFFFFF"
+            android:checked="true"
+            android:layout_marginBottom="16dp" />
+
+        <Switch
+            android:id="@+id/switchUnity3d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Renderizado 3D de Amenazas (Motor Unity)"
+            android:textColor="#FFFFFF"
+            android:checked="true"
+            android:layout_marginBottom="16dp" />
+
+        <Switch
+            android:id="@+id/switchAutoBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bloqueo Automático de IPs Sospechosas"
+            android:textColor="#FFFFFF"
+            android:checked="false"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/btnClearDatabase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Limpiar Historial Forense Local"
+            android:backgroundTint="#FF4444"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+</ScrollView>
