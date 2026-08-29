@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.textfield.TextInputEditText
 import com.securitynav.security.R
 
 class PinActivity : AppCompatActivity() {
@@ -17,7 +17,6 @@ class PinActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("security_nav_auth", Context.MODE_PRIVATE)
         val savedPin = prefs.getString("user_pin", null)
 
-        // Si es la primera vez (no hay PIN), redirigir automáticamente a Registro
         if (savedPin.isNullOrEmpty()) {
             startActivity(Intent(this, RegisterActivity::class.java))
             finish()
@@ -26,7 +25,7 @@ class PinActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_pin)
 
-        val etPin = findViewById<TextInputEditText>(R.id.etPinInput)
+        val etPin = findViewById<EditText>(R.id.etPinInput)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
 
         btnLogin.setOnClickListener {
