@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,8 +31,12 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        lineChart = findViewById(R.id.lineChartTraffic)
+        val chartContainer = findViewById<FrameLayout>(R.id.chartContainer)
         rvAppTraffic = findViewById(R.id.rvAppTraffic)
+
+        // Crear LineChart programáticamente
+        lineChart = LineChart(this)
+        chartContainer.addView(lineChart)
 
         setupChart()
         setupRecyclerView()
