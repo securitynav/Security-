@@ -1,21 +1,19 @@
 package com.securitynav.security.db
 
 import android.content.Context
-import net.zetetic.database.sqlite.SQLiteDatabase
-import net.zetetic.database.sqlite.SQLiteOpenHelper
+import net.zetetic.database.sqlcipher.SQLiteDatabase
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 
-class SQLCipherHelper(context: Context) : SQLiteOpenHelper(context, "secure_nav.db", null, 1) {
+class SQLCipherHelper(context: Context) : SQLiteOpenHelper(context, "security_secure.db", null, 1) {
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS traffic_logs (id INTEGER PRIMARY KEY AUTOINCREMENT, data TEXT, timestamp INTEGER);")
+        db.execSQL("CREATE TABLE IF NOT EXISTS security_events (id TEXT PRIMARY KEY, event_type TEXT, description TEXT, timestamp INTEGER);")
+        db.execSQL("CREATE TABLE IF NOT EXISTS traffic_packets (packet_id TEXT PRIMARY KEY, source_ip TEXT, destination_ip TEXT, source_port INTEGER, destination_port INTEGER, protocol TEXT, payload_size INTEGER, timestamp INTEGER);")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.execSQL("DROP TABLE IF EXISTS traffic_logs")
+        db.execSQL("DROP TABLE IF EXISTS security_events")
+        db.execSQL("DROP TABLE IF EXISTS traffic_packets")
         onCreate(db)
-    }
-
-    fun getSecureDatabase(passphrase: String): SQLiteDatabase {
-        return super.getWritableDatabase(passphrase)
     }
 }

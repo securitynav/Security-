@@ -8,16 +8,15 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface SecurityApiService {
-
-    @POST("api/v1/telemetry/traffic")
-    suspend fun uploadTrafficPacket(
-        @Header("Authorization") authToken: String,
-        @Body packet: TrafficPacketModel
+    @POST("api/v1/events")
+    suspend fun uploadSecurityEvent(
+        @Header("Authorization") token: String,
+        @Body event: SecurityEventModel
     ): Response<Void>
 
-    @POST("api/v1/security/events")
-    suspend fun reportSecurityEvent(
-        @Header("Authorization") authToken: String,
-        @Body event: SecurityEventModel
+    @POST("api/v1/traffic")
+    suspend fun uploadTrafficPacket(
+        @Header("Authorization") token: String,
+        @Body packet: TrafficPacketModel
     ): Response<Void>
 }
