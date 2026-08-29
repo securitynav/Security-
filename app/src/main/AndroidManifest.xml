@@ -16,7 +16,7 @@
         android:theme="@style/Theme.SecurityNav">
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.PinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,9 +24,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.PinActivity" android:exported="false" />
+        <activity android:name=".ui.MainActivity" android:exported="false" />
         <activity android:name=".ui.RegisterActivity" android:exported="false" />
         <activity android:name=".ui.DashboardActivity" android:exported="false" />
+        <activity android:name=".ui.SettingsActivity" android:exported="false" />
+        <activity android:name=".ui.FaqActivity" android:exported="false" />
 
         <service
             android:name=".vpn.LocalVpnService"
