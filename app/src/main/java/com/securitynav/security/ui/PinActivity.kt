@@ -13,30 +13,38 @@ class PinActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        try {
+            val prefs = getSharedPreferences("security_nav_auth", Context.MODE_PRIVATE)
+            val savedPin = prefs.getString("user_pin", null)
 
-        val prefs = getSharedPreferences("security_nav_auth", Context.MODE_PRIVATE)
-        val savedPin = prefs.getString("user_pin", null)
-
-        if (savedPin.isNullOrEmpty()) {
-            startActivity(Intent(this, RegisterActivity::class.java))
-            finish()
-            return
-        }
-
-        setContentView(R.layout.activity_pin)
-
-        val etPin = findViewById<EditText>(R.id.etPinInput)
-        val btnLogin = findViewById<Button>(R.id.btnLogin)
-
-        btnLogin.setOnClickListener {
-            val enteredPin = etPin.text?.toString() ?: ""
-            if (enteredPin == savedPin) {
-                startActivity(Intent(this, MainActivity::class.java))
+            if (savedPin.isNullOrEmpty()) {
+                startActivity(Intent(this, RegisterActivity::class.java))
                 finish()
-            } else {
-                Toast.makeText(this, "PIN Incorrecto", Toast.LENGTH_SHORT).show()
-                etPin.setText("")
+                return
             }
+
+            setContentView(R.layout.activity_pin)
+
+            val etPin = findViewById<EditText>(R.id.etPinInput)
+            val btnLogin = findViewById<Button>(R.id.btnLogin)
+
+            btnLogin.setOnClickListener {
+                try {
+                    val enteredPin = etPin.text?.toString() ?: ""
+                    if (enteredPin == savedPin) {
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(this, "PIN Incorrecto", Toast.LENGTH_SHORT).show()
+                        etPin.setText("")
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Error al validar: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+                }
+            }
+        } catch (e: Exception) {
+            Toast.makeText(this, "Error crítico: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+            e.printStackTrace()
         }
     }
 }
