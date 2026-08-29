@@ -8,8 +8,8 @@ import com.securitynav.security.data.database.SecurityDatabase
 
 class DashboardActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate()
+    protected override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
         val tvLogsSummary = findViewById<TextView>(R.id.tvLogsSummary)

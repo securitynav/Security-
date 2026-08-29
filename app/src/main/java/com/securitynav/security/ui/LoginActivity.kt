@@ -11,8 +11,8 @@ import com.securitynav.security.data.database.SecurityDatabase
 
 class LoginActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate()
+    protected override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         val etMasterPassword = findViewById<EditText>(R.id.etMasterPassword)
