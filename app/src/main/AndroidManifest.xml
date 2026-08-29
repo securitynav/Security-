@@ -15,13 +15,16 @@
         android:theme="@style/Theme.AppCompat.Light">
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.MainActivity" android:exported="false" />
+        <activity android:name=".ui.DashboardActivity" android:exported="false" />
 
         <service
             android:name=".services.SecurityMonitorService"
@@ -80,7 +83,7 @@
             android:name=".receivers.ConnectivityReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 

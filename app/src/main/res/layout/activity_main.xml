@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#0F172A">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consola de Control de Seguridad"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#F8FAFC"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/btnStartVpn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activar Escudo Cortafuegos VPN"
+        android:backgroundTint="#16A34A"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnScanAntivirus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ejecutar Análisis Antivirus Heurístico"
+        android:backgroundTint="#D97706"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnOpenDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver Panel de Amenazas y Registro Forense"
+        android:backgroundTint="#2563EB"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Estado: Servicios Inicializados"
+        android:textColor="#94A3B8"
+        android:textSize="14sp" />
+
+</LinearLayout>
