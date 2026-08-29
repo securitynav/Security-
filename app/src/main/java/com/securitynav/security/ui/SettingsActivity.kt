@@ -1,6 +1,7 @@
 package com.securitynav.security.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Switch
@@ -20,6 +21,7 @@ class SettingsActivity : AppCompatActivity() {
         val switchDeepHttp = findViewById<Switch>(R.id.switchDeepHttp)
         val switchUnity3d = findViewById<Switch>(R.id.switchUnity3d)
         val switchAutoBlock = findViewById<Switch>(R.id.switchAutoBlock)
+        val btnOpenFaq = findViewById<Button>(R.id.btnOpenFaq)
         val btnClearDatabase = findViewById<Button>(R.id.btnClearDatabase)
 
         switchDeepHttp.isChecked = prefs.getBoolean("deep_http", true)
@@ -36,6 +38,10 @@ class SettingsActivity : AppCompatActivity() {
 
         switchAutoBlock.setOnCheckedChangeListener { _, isChecked ->
             prefs.edit().putBoolean("auto_block", isChecked).apply()
+        }
+
+        btnOpenFaq.setOnClickListener {
+            startActivity(Intent(this, FaqActivity::class.java))
         }
 
         btnClearDatabase.setOnClickListener {

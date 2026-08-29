@@ -13,17 +13,26 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Configuración de SecurityNav"
+            android:text="Configuración Avanzada"
             android:textColor="#00FF66"
             android:textSize="22sp"
             android:textStyle="bold"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/tvSignStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Firma Criptográfica: PERMANENTE (RSA 2048)"
+            android:textColor="#00E5FF"
+            android:textSize="13sp"
             android:layout_marginBottom="20dp" />
 
         <Switch
             android:id="@+id/switchDeepHttp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Inspección Profunda HTTP (GET/POST/Headers)"
+            android:text="Inspección Profunda HTTP (GET/POST)"
             android:textColor="#FFFFFF"
             android:checked="true"
             android:layout_marginBottom="16dp" />
@@ -32,7 +41,7 @@
             android:id="@+id/switchUnity3d"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Renderizado 3D de Amenazas (Motor Unity)"
+            android:text="Motor Gráfico de Amenazas 3D"
             android:textColor="#FFFFFF"
             android:checked="true"
             android:layout_marginBottom="16dp" />
@@ -45,6 +54,15 @@
             android:textColor="#FFFFFF"
             android:checked="false"
             android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/btnOpenFaq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ver Preguntas Frecuentes (FAQ)"
+            android:backgroundTint="#005577"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
 
         <Button
             android:id="@+id/btnClearDatabase"

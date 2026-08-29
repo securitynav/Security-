@@ -15,8 +15,21 @@ android {
         versionName "1.0"
     }
 
+    signingConfigs {
+        permanentConfig {
+            storeFile file('securitynav.keystore')
+            storePassword 'SecurityNavPass2026'
+            keyAlias 'securitynav_key'
+            keyPassword 'SecurityNavPass2026'
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.permanentConfig
+        }
         release {
+            signingConfig signingConfigs.permanentConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -36,4 +49,5 @@ dependencies {
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'net.zetetic:android-database-sqlcipher:4.5.4@aar'
     implementation 'androidx.sqlite:sqlite-ktx:2.4.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

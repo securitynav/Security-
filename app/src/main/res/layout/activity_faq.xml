@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#121212">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Centro de Ayuda y FAQ"
+            android:textColor="#00FF66"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Q1 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. ¿Cómo protege Android KeyStore mis claves?"
+            android:textColor="#00E5FF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="La clave maestra de cifrado no se guarda en el archivo ni en disco. Se genera en un módulo de hardware seguro (TEE / StrongBox) y solo se descifra en la memoria RAM volátil mientras la app está abierta."
+            android:textColor="#CCCCCC"
+            android:textSize="14sp"
+            android:layout_marginBottom="15dp" />
+
+        <!-- Q2 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. ¿Qué inspecciona la interfaz VPN?"
+            android:textColor="#00E5FF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Analiza paquetes IPv4 en tiempo real para extraer cabeceras HTTP (GET, POST, PUT, DELETE), midiendo el consumo de datos y bloqueando peticiones maliciosas sin enviar datos fuera de tu dispositivo."
+            android:textColor="#CCCCCC"
+            android:textSize="14sp"
+            android:layout_marginBottom="15dp" />
+
+        <!-- Q3 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3. ¿Cómo funciona la firma permanente?"
+            android:textColor="#00E5FF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SecurityNav utiliza una clave RSA de 2048 bits propia guardada en el proyecto. Esto previene ataques de suplantación y permite actualizar la app sin perder el almacén cifrado local."
+            android:textColor="#CCCCCC"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp" />
+
+    </LinearLayout>
+</ScrollView>

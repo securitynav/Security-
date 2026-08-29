@@ -12,6 +12,7 @@
 
     <application
         android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
         android:label="SecurityNav"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
@@ -28,6 +29,7 @@
         <activity android:name=".ui.MainActivity" android:exported="false" />
         <activity android:name=".ui.DashboardActivity" android:exported="false" />
         <activity android:name=".ui.SettingsActivity" android:exported="false" />
+        <activity android:name=".ui.FaqActivity" android:exported="false" />
 
         <service
             android:name=".services.SecurityMonitorService"
@@ -46,11 +48,6 @@
 
         <service
             android:name=".services.ScreenSpyAuditService"
-            android:enabled="true"
-            android:exported="false" />
-
-        <service
-            android:name=".services.CellularSabotageDetectionService"
             android:enabled="true"
             android:exported="false" />
 
