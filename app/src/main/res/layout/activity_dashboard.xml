@@ -3,37 +3,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0A0E17"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#1a1a2e">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Métricas de Tráfico e Inspección en Tiempo Real"
-        android:textColor="#00FF66"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="12dp" />
+        android:text="Dashboard - Monitoreo de Tráfico"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold" />
 
-    <com.github.mikephil.charting.charts.LineChart
+    <com.github.PhilJay.MPAndroidChart.charts.LineChart
         android:id="@+id/lineChartTraffic"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="#161D2F"
-        android:layout_marginBottom="12dp" />
+        android:layout_height="300dp"
+        android:layout_marginBottom="20dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Inspección de Tráfico por Aplicación"
-        android:textColor="#00E5FF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp" />
+        android:text="Aplicaciones Activas"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAppTraffic"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>
