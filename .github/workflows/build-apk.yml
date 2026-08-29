@@ -1,0 +1,150 @@
+name: "Build King System APK Release"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-release-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout del Repositorio
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Configurar Node.js (v24)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: ☕ Configurar Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: 🏗️ Arquitectura, Saneamiento e Inyección de Dependencias
+        run: |
+          # 1. Sanitizar package.json y asegurar overrides estructurales
+          node -e '
+          const fs = require("fs");
+          let pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
+          pkg.name = "king-system-interfaz";
+          pkg.displayName = "King System";
+          pkg.version = pkg.version && pkg.version.trim() !== "" ? pkg.version : "1.0.0";
+          
+          pkg.overrides = pkg.overrides || {};
+          pkg.overrides["connect"] = "3.7.0";
+
+          ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"].forEach(section => {
+            if (pkg[section]) {
+              let clean = {};
+              for (let [k, v] of Object.entries(pkg[section])) {
+                if (k && typeof k === "string" && k.trim() !== "" && v && typeof v === "string" && v.trim() !== "") {
+                  clean[k.trim()] = v.trim();
+                }
+              }
+              pkg[section] = clean;
+            }
+          });
+          fs.writeFileSync("package.json", JSON.stringify(pkg, null, 2));
+          '
+
+          # 2. Generar package-lock.json limpio
+          npm install --package-lock-only --legacy-peer-deps
+
+          # 3. Crear metro.config.js robusto
+          cat << 'INNER_EOF' > metro.config.js
+          const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
+          const config = {};
+          module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+          INNER_EOF
+
+          # 4. PARCHE CRÍTICO: Inyectar dependencias nativas faltantes (SQLCipher y MPAndroidChart)
+          GRADLE_PATH="android/app/build.gradle"
+          if [ -f "$GRADLE_PATH" ]; then
+            node -e '
+            const fs = require("fs");
+            let content = fs.readFileSync("'"$GRADLE_PATH"'", "utf8");
+            const extraDeps = `
+    // Librerías de soporte inyectadas de forma automática
+    implementation "net.zetetic:android-database-sqlcipher:4.5.4"
+    implementation "androidx.sqlite:sqlite:2.4.0"
+    implementation "com.github.PhilJay:MPAndroidChart:v3.1.0"
+`;
+            if (!content.includes("android-database-sqlcipher")) {
+                content = content.replace(/(dependencies\s*\{)/, "$1" + extraDeps);
+                fs.writeFileSync("'"$GRADLE_PATH"'", content, "utf8");
+                console.log("Dependencias inyectadas con éxito en build.gradle");
+            }
+            '
+          fi
+
+          # 5. PARCHE CRÍTICO: Configurar repositorio Jitpack para resolver com.github
+          SETTINGS_PATH="android/settings.gradle"
+          if [ -f "$SETTINGS_PATH" ]; then
+            node -e '
+            const fs = require("fs");
+            let content = fs.readFileSync("'"$SETTINGS_PATH"'", "utf8");
+            if (!content.includes("https://jitpack.io")) {
+                content = content.replace(/(repositories\s*\{)/g, "$1\n        maven { url \"https://jitpack.io\" }");
+                fs.writeFileSync("'"$SETTINGS_PATH"'", content, "utf8");
+                console.log("JitPack añadido con éxito en settings.gradle");
+            }
+            '
+          fi
+
+          # 6. Actualizar strings.xml para el nombre de Android
+          STRINGS_PATH="android/app/src/main/res/values/strings.xml"
+          if [ -f "$STRINGS_PATH" ]; then
+            sed -i 's/<string name="app_name">.*<\/string>/<string name="app_name">King System<\/string>/g' "$STRINGS_PATH"
+          fi
+
+          # 7. Inyectar Permisos de Red y Hardware en AndroidManifest.xml
+          python3 -c '
+          import re
+          path = "android/app/src/main/AndroidManifest.xml"
+          try:
+              with open(path, "r") as f:
+                  content = f.read()
+              perms = """
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+              """
+              if "android.permission.INTERNET" not in content:
+                  content = re.sub(r"(<application)", perms + r"\1", content)
+                  with open(path, "w") as f:
+                      f.write(content)
+          except Exception as e:
+              print("Manifest check skipped:", e)
+          '
+
+      - name: 📥 Instalar Dependencias de Producción
+        run: npm install --legacy-peer-deps
+
+      - name: 📂 Crear Directorio de Assets de Android
+        run: mkdir -p android/app/src/main/assets
+
+      - name: ⚡ Generar Bundle Offline de la Aplicación
+        run: |
+          npx react-native bundle \
+            --platform android \
+            --dev false \
+            --entry-file index.js \
+            --bundle-output android/app/src/main/assets/index.android.bundle \
+            --assets-dest android/app/src/main/res
+
+      - name: 🔨 Compilar APK de Producción con Gradle
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon
+
+      - name: 📤 Subir APK como Artefacto Funcional
+        uses: actions/upload-artifact@v4
+        with:
+          name: King-System-Release-APK
+          path: android/app/build/outputs/apk/release/app-release.apk
