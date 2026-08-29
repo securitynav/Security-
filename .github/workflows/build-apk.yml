@@ -1,4 +1,4 @@
-name: "Build SecurityNav APK"
+name: "Publicar APK Release"
 
 on:
   workflow_dispatch:
@@ -23,9 +23,13 @@ jobs:
     - name: 🔨 Compilar APK de Depuración
       run: ./gradlew assembleDebug --no-daemon
 
-    - name: 📤 Subir APK como Artefacto Accesible
-      uses: actions/upload-artifact@v4
+    - name: 🚀 Subir y Publicar en Releases
+      uses: softprops/action-gh-release@v1
       with:
-        name: SecurityNav-Debug-APK
-        path: app/build/outputs/apk/debug/app-debug.apk
-        retention-days: 7
+        tag_name: v1.0-${{ github.run_number }}
+        name: "SecurityNav v1.0 (Build ${{ github.run_number }})"
+        files: app/build/outputs/apk/debug/app-debug.apk
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
