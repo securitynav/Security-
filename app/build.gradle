@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+def customKeystore = file('securitynav.keystore')
+
 android {
     namespace 'com.securitynav.security'
     compileSdk 34
@@ -17,19 +19,25 @@ android {
 
     signingConfigs {
         permanentConfig {
-            storeFile file('securitynav.keystore')
-            storePassword 'SecurityNavPass2026'
-            keyAlias 'securitynav_key'
-            keyPassword 'SecurityNavPass2026'
+            if (customKeystore.exists()) {
+                storeFile customKeystore
+                storePassword 'SecurityNavPass2026'
+                keyAlias 'securitynav_key'
+                keyPassword 'SecurityNavPass2026'
+            }
         }
     }
 
     buildTypes {
         debug {
-            signingConfig signingConfigs.permanentConfig
+            if (customKeystore.exists()) {
+                signingConfig signingConfigs.permanentConfig
+            }
         }
         release {
-            signingConfig signingConfigs.permanentConfig
+            if (customKeystore.exists()) {
+                signingConfig signingConfigs.permanentConfig
+            }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
