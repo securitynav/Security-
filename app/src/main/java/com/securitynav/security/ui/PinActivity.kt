@@ -1,50 +1,41 @@
 package com.securitynav.security.ui
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.securitynav.security.R
+import com.securitynav.security.data.AuthManager
+import com.securitynav.security.databinding.ActivityPinBinding
+import android.widget.Toast
 
 class PinActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityPinBinding
+    private lateinit var authManager: AuthManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        try {
-            val prefs = getSharedPreferences("security_nav_auth", Context.MODE_PRIVATE)
-            val savedPin = prefs.getString("user_pin", null)
+        binding = ActivityPinBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-            if (savedPin.isNullOrEmpty()) {
-                startActivity(Intent(this, RegisterActivity::class.java))
+        authManager = AuthManager.getInstance(applicationContext)
+
+        val savedPin = authManager.getPin()
+        if (savedPin.isNullOrBlank()) {
+            // No PIN registered -> go to register flow
+            startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
+            return
+        }
+
+        binding.btnLogin.setOnClickListener {
+            val enteredPin = binding.etPinInput.text?.toString()?.trim() ?: ""
+            if (enteredPin == savedPin) {
+                startActivity(Intent(this, MainActivity::class.java))
                 finish()
-                return
+            } else {
+                Toast.makeText(this, "PIN Incorrecto", Toast.LENGTH_SHORT).show()
+                binding.etPinInput.setText("")
             }
-
-            setContentView(R.layout.activity_pin)
-
-            val etPin = findViewById<EditText>(R.id.etPinInput)
-            val btnLogin = findViewById<Button>(R.id.btnLogin)
-
-            btnLogin.setOnClickListener {
-                try {
-                    val enteredPin = etPin.text?.toString() ?: ""
-                    if (enteredPin == savedPin) {
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
-                    } else {
-                        Toast.makeText(this, "PIN Incorrecto", Toast.LENGTH_SHORT).show()
-                        etPin.setText("")
-                    }
-                } catch (e: Exception) {
-                    Toast.makeText(this, "Error al validar: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
-                }
-            }
-        } catch (e: Exception) {
-            Toast.makeText(this, "Error crítico: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
-            e.printStackTrace()
         }
     }
 }
