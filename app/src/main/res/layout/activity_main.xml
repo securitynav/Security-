@@ -4,7 +4,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0E17">
+    android:background="@color/bg_dark">
 
     <!-- Contenido Principal -->
     <LinearLayout
@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="#161D2F"
+            android:background="@color/surface_dark"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:paddingHorizontal="16dp">
@@ -27,15 +27,15 @@
                 android:layout_height="40dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@android:drawable/ic_menu_sort_by_size"
-                app:tint="#00FF66" />
+                app:tint="@color/neon_green" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="SECURITY NAV"
-                android:textColor="#00FF66"
+                android:text="@string/main_title"
+                android:textColor="@color/neon_green"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -66,65 +66,73 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ESTADO: PROTECCIÓN ACTIVA"
-                    android:textColor="#00FF66"
+                    android:textColor="@color/neon_green"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="24dp" />
 
                 <!-- Quick Actions: VPN control and Diagnostics -->
-                <LinearLayout
+                <androidx.constraintlayout.motion.widget.MotionLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="4"
-                    android:layout_marginBottom="12dp">
+                    app:layoutDescription="@xml/motion_scene_main">
 
-                    <Button
-                        android:id="@+id/btnStartVpn"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                    <LinearLayout
+                        android:id="@+id/quickActions"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Iniciar VPN"
-                        android:backgroundTint="#00FF66"
-                        android:textColor="#0A0E17" />
+                        android:orientation="horizontal"
+                        android:weightSum="4"
+                        android:layout_marginBottom="12dp">
 
-                    <Button
-                        android:id="@+id/btnStopVpn"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="Detener VPN"
-                        android:layout_marginStart="8dp"
-                        android:backgroundTint="#FF3366"
-                        android:textColor="#FFFFFF" />
+                        <Button
+                            android:id="@+id/btnStartVpn"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/action_start_vpn"
+                            android:backgroundTint="@color/neon_green"
+                            android:textColor="@color/on_primary" />
 
-                    <Button
-                        android:id="@+id/btnDiagnostics"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="Diagnósticos"
-                        android:layout_marginStart="8dp"
-                        android:backgroundTint="#FFD600"
-                        android:textColor="#0A0E17" />
+                        <Button
+                            android:id="@+id/btnStopVpn"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/action_stop_vpn"
+                            android:layout_marginStart="8dp"
+                            android:backgroundTint="@color/neon_red"
+                            android:textColor="@color/text_primary" />
 
-                    <Button
-                        android:id="@+id/btnAbout"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="Acerca de"
-                        android:layout_marginStart="8dp"
-                        android:backgroundTint="#00E5FF"
-                        android:textColor="#0A0E17" />
+                        <Button
+                            android:id="@+id/btnDiagnostics"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/action_diagnostics"
+                            android:layout_marginStart="8dp"
+                            android:backgroundTint="@color/neon_yellow"
+                            android:textColor="@color/on_secondary" />
 
-                </LinearLayout>
+                        <Button
+                            android:id="@+id/btnAbout"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/action_about"
+                            android:layout_marginStart="8dp"
+                            android:backgroundTint="@color/neon_cyan"
+                            android:textColor="@color/on_primary" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.motion.widget.MotionLayout>
 
                 <!-- TARJETA 1: CANALES HEURÍSTICOS & DEGRADACIÓN DE TORRE -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#161D2F"
+                    app:cardBackgroundColor="@color/surface_dark"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp"
                     android:layout_marginBottom="12dp">
@@ -138,8 +146,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Análisis Heurístico y Red Móvil"
-                            android:textColor="#00E5FF"
+                            android:text="@string/card_heuristics"
+                            android:textColor="@color/neon_cyan"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -148,7 +156,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Canales Heurísticos de Malware"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/text_primary"
                             android:checked="true"
                             android:layout_marginTop="8dp" />
 
@@ -157,7 +165,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Detección de Degradación de Torre"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/text_primary"
                             android:checked="true"
                             android:layout_marginTop="4dp" />
                     </LinearLayout>
@@ -167,7 +175,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#161D2F"
+                    app:cardBackgroundColor="@color/surface_dark"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp"
                     android:layout_marginBottom="12dp">
@@ -181,8 +189,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Protección de Interfaz y Permisos"
-                            android:textColor="#00E5FF"
+                            android:text="@string/card_interface_protection"
+                            android:textColor="@color/neon_cyan"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -191,7 +199,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Anti-Abuso de Servicios de Accesibilidad"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/text_primary"
                             android:checked="true"
                             android:layout_marginTop="8dp" />
 
@@ -200,7 +208,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Anti-Superposiciones (Tapjacking)"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/text_primary"
                             android:checked="true"
                             android:layout_marginTop="4dp" />
                     </LinearLayout>
@@ -210,7 +218,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#211E10"
+                    app:cardBackgroundColor="@color/surface"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp"
                     android:layout_marginBottom="12dp">
@@ -224,8 +232,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="VPN Local e Inspección de Paquetes por App"
-                            android:textColor="#FFD600"
+                            android:text="@string/card_vpn_inspection"
+                            android:textColor="@color/neon_yellow"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -234,7 +242,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Monitor de Tráfico de Red VPN"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/text_primary"
                             android:checked="true"
                             android:layout_marginTop="8dp" />
 
@@ -243,7 +251,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Datos inspeccionados: 0 B | HTTP GET/POST por aplicación activo"
-                            android:textColor="#BBBBBB"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp"
                             android:fontFamily="monospace"
                             android:layout_marginTop="8dp" />
@@ -252,9 +260,9 @@
                             android:id="@+id/btnViewCharts"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="ABRIR GRÁFICAS DE TRÁFICO EN TIEMPO REAL"
-                            android:backgroundTint="#FFD600"
-                            android:textColor="#0A0E17"
+                            android:text="@string/btn_view_charts"
+                            android:backgroundTint="@color/neon_yellow"
+                            android:textColor="@color/on_secondary"
                             android:layout_marginTop="12dp" />
 
                     </LinearLayout>
@@ -264,7 +272,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#161D2F"
+                    app:cardBackgroundColor="@color/surface_dark"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp"
                     android:layout_marginBottom="24dp">
@@ -279,7 +287,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Base de Datos Cifrada (SQLCipher + HW KeyStore)"
-                            android:textColor="#00E5FF"
+                            android:textColor="@color/neon_cyan"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -287,7 +295,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Estado: Clave Maestra Protegida en Android Hardware KeyStore (TEE)."
-                            android:textColor="#00FF66"
+                            android:textColor="@color/neon_green"
                             android:textSize="12sp"
                             android:layout_marginTop="8dp" />
                     </LinearLayout>
@@ -304,8 +312,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#161D2F"
-        app:itemTextColor="#FFFFFF"
+        android:background="@color/surface_dark"
+        app:itemTextColor="@color/text_primary"
         app:menu="@menu/drawer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

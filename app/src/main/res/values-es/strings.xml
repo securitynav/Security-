@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">SecurityNav</string>
 
-    <!-- Main screen -->
+    <!-- Pantalla principal (es) -->
     <string name="main_title">SECURITY NAV</string>
     <string name="action_start_vpn">Iniciar VPN</string>
     <string name="action_stop_vpn">Detener VPN</string>

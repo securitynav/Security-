@@ -57,4 +57,7 @@ dependencies {
 
     // Gráficos en tiempo real (MPAndroidChart vía JitPack)
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // Lottie for animations
+    implementation("com.airbnb.android:lottie:6.1.0")
 }
