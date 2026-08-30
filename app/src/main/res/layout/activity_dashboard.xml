@@ -2,38 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_dark"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#1a1a2e">
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dashboard - Gráficas de Tráfico"
+        android:textColor="@color/neon_cyan"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dashboard - Monitoreo de Tráfico"
-        android:textSize="24sp"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="20dp"
-        android:textStyle="bold" />
-
-    <FrameLayout
-        android:id="@+id/chartContainer"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginBottom="20dp"
-        android:background="#161D2F" />
+        android:text="Análisis de tráfico de red en tiempo real."
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aplicaciones Activas"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="10dp"
-        android:textStyle="bold" />
+        android:text="Aplicaciones monitoreadas: 0"
+        android:textColor="@color/text_primary"
+        android:textSize="14sp"
+        android:layout_marginTop="16dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAppTraffic"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content"
+        android:text="Datos transferidos: 0 MB"
+        android:textColor="@color/text_primary"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp" />
+
 </LinearLayout>

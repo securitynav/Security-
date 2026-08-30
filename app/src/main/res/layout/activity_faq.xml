@@ -2,76 +2,75 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#121212">
+    android:background="@color/bg_dark">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Centro de Ayuda y FAQ"
-            android:textColor="#00FF66"
-            android:textSize="22sp"
+            android:text="Preguntas Frecuentes"
+            android:textColor="@color/neon_cyan"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="16dp" />
 
-        <!-- Q1 -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1. ¿Cómo protege Android KeyStore mis claves?"
-            android:textColor="#00E5FF"
+            android:text="¿Qué es SecurityNav?"
+            android:textColor="@color/neon_green"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="12dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="La clave maestra de cifrado no se guarda en el archivo ni en disco. Se genera en un módulo de hardware seguro (TEE / StrongBox) y solo se descifra en la memoria RAM volátil mientras la app está abierta."
-            android:textColor="#CCCCCC"
-            android:textSize="14sp"
-            android:layout_marginBottom="15dp" />
+            android:text="SecurityNav es una aplicación de seguridad que protege tu dispositivo contra amenazas de red, malware y superposiciones de pantalla maliciosa."
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:layout_marginTop="4dp" />
 
-        <!-- Q2 -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="2. ¿Qué inspecciona la interfaz VPN?"
-            android:textColor="#00E5FF"
+            android:text="¿Cómo activo la protección VPN?"
+            android:textColor="@color/neon_green"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="16dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Analiza paquetes IPv4 en tiempo real para extraer cabeceras HTTP (GET, POST, PUT, DELETE), midiendo el consumo de datos y bloqueando peticiones maliciosas sin enviar datos fuera de tu dispositivo."
-            android:textColor="#CCCCCC"
-            android:textSize="14sp"
-            android:layout_marginBottom="15dp" />
+            android:text="Ve a Configuración y activa la opción de Protección VPN Activa."
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:layout_marginTop="4dp" />
 
-        <!-- Q3 -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="3. ¿Cómo funciona la firma permanente?"
-            android:textColor="#00E5FF"
+            android:text="¿Qué datos recopila la app?"
+            android:textColor="@color/neon_green"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="16dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SecurityNav utiliza una clave RSA de 2048 bits propia guardada en el proyecto. Esto previene ataques de suplantación y permite actualizar la app sin perder el almacén cifrado local."
-            android:textColor="#CCCCCC"
-            android:textSize="14sp"
-            android:layout_marginBottom="20dp" />
+            android:text="SecurityNav solo recopila datos de tráfico de red para análisis de seguridad. Todos los datos se almacenan localmente en tu dispositivo."
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="24dp" />
 
     </LinearLayout>
+
 </ScrollView>

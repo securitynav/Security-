@@ -1,76 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#121212">
+    android:background="@color/bg_dark"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <LinearLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Configuración"
+        android:textColor="@color/neon_cyan"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:text="Protección VPN Activa"
+        android:textColor="@color/text_primary"
+        android:checked="true"
+        android:layout_marginBottom="12dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Configuración Avanzada"
-            android:textColor="#00FF66"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="20dp" />
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notificaciones de Seguridad"
+        android:textColor="@color/text_primary"
+        android:checked="true"
+        android:layout_marginBottom="12dp" />
 
-        <TextView
-            android:id="@+id/tvSignStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Firma Criptográfica: PERMANENTE (RSA 2048)"
-            android:textColor="#00E5FF"
-            android:textSize="13sp"
-            android:layout_marginBottom="20dp" />
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detección de Malware"
+        android:textColor="@color/text_primary"
+        android:checked="true"
+        android:layout_marginBottom="12dp" />
 
-        <Switch
-            android:id="@+id/switchDeepHttp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Inspección Profunda HTTP (GET/POST)"
-            android:textColor="#FFFFFF"
-            android:checked="true"
-            android:layout_marginBottom="16dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Versión: 1.0.0"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        android:layout_marginTop="24dp" />
 
-        <Switch
-            android:id="@+id/switchUnity3d"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Motor Gráfico de Amenazas 3D"
-            android:textColor="#FFFFFF"
-            android:checked="true"
-            android:layout_marginBottom="16dp" />
-
-        <Switch
-            android:id="@+id/switchAutoBlock"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Bloqueo Automático de IPs Sospechosas"
-            android:textColor="#FFFFFF"
-            android:checked="false"
-            android:layout_marginBottom="24dp" />
-
-        <Button
-            android:id="@+id/btnOpenFaq"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ver Preguntas Frecuentes (FAQ)"
-            android:backgroundTint="#005577"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="12dp" />
-
-        <Button
-            android:id="@+id/btnClearDatabase"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Limpiar Historial Forense Local"
-            android:backgroundTint="#FF4444"
-            android:textColor="#FFFFFF" />
-
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>
