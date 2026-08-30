@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.MotionLayout
 import com.airbnb.lottie.LottieCompositionFactory
 import com.eightbitlab.blurview.RenderScriptBlur
 import com.eightbitlab.blurview.BlurView
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var authManager: AuthManager
     private lateinit var vpnPrepareLauncher: ActivityResultLauncher<Intent>
     private lateinit var requestNotificationPermissionLauncher: ActivityResultLauncher<String>
+    private var motionExpanded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +43,6 @@ class MainActivity : AppCompatActivity() {
             binding.lottieLock.setComposition(comp)
         }
         LottieCompositionFactory.fromAsset(this, "lottie/success_animation.json").addListener { comp ->
-            // success lottie used in RegisterActivity as well; set here for quick access
-            // If present in this binding, set it; else ignore
             try {
                 binding.lottieLock.setProgress(0f)
             } catch (_: Exception) {}
@@ -76,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         val btnMainLock = binding.btnMainLock
         val tvLockState = binding.tvLockState
         val btnViewCharts = binding.btnViewCharts
+        val motionLayout = findViewById<MotionLayout>(R.id.motionLayout)
 
         val notificationManager = SecurityNotificationManager(this)
 
@@ -102,9 +103,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnMainLock.setOnClickListener {
-            // play lock animation on toggle
+            // bring Lottie to front and play
             try {
+                binding.lottieLock.bringToFront()
                 binding.lottieLock.playAnimation()
+            } catch (_: Exception) {}
+
+            // toggle motion layout expansion
+            try {
+                if (!motionExpanded) {
+                    motionLayout.transitionToEnd()
+                } else {
+                    motionLayout.transitionToStart()
+                }
+                motionExpanded = !motionExpanded
             } catch (_: Exception) {}
 
             when (btnMainLock.currentState) {
