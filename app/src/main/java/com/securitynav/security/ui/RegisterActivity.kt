@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
 import com.securitynav.security.R
 
 class RegisterActivity : AppCompatActivity() {
@@ -15,8 +15,8 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val etNewPin = findViewById<EditText>(R.id.etNewPin)
-        val etConfirmPin = findViewById<EditText>(R.id.etConfirmPin)
+        val etNewPin = findViewById<TextInputEditText>(R.id.etNewPin)
+        val etConfirmPin = findViewById<TextInputEditText>(R.id.etConfirmPin)
         val btnRegister = findViewById<Button>(R.id.btnRegisterPin)
 
         btnRegister.setOnClickListener {

@@ -15,25 +15,37 @@
         android:textSize="24sp"
         android:layout_marginBottom="24dp" />
 
-    <EditText
-        android:id="@+id/etNewPin"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nuevo PIN"
-        android:inputType="numberPassword"
-        android:textColor="@color/text_primary"
-        android:textColorHint="@color/text_secondary"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp">
 
-    <EditText
-        android:id="@+id/etConfirmPin"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNewPin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nuevo PIN"
+            android:inputType="numberPassword"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Confirmar PIN"
-        android:inputType="numberPassword"
-        android:textColor="@color/text_primary"
-        android:textColorHint="@color/text_secondary"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etConfirmPin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirmar PIN"
+            android:inputType="numberPassword"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnRegisterPin"
