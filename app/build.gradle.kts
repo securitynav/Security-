@@ -62,5 +62,5 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.1.0")
 
     // BlurView for glassmorphism effect
-    implementation("com.github.Dimezis:BlurView:2.0.6")
+    implementation("com.github.Dimezis:BlurView:version-2.0.6")
 }
