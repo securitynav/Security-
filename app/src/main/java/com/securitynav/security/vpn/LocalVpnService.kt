@@ -19,6 +19,10 @@ import java.io.FileOutputStream
  * - Uses Notification channel "vpn_service_channel" (created in Application)
  * - Starts foreground with id = 1
  * - Establishes a TUN interface and processes I/O on Dispatchers.IO
+ *
+ * Behavior:
+ * - If started with intent.extra "monitor_only" == true -> does NOT add default route (no device traffic interception).
+ * - For full VPN interception (advanced), a proper userspace stack (tun2socks or native) must be integrated.
  */
 class LocalVpnService : VpnService() {
 
@@ -36,13 +40,20 @@ class LocalVpnService : VpnService() {
         Log.i(TAG, "onStartCommand: starting VPN service (startId=$startId)")
         startForegroundIfNeeded()
 
+        val monitorOnly = intent?.getBooleanExtra("monitor_only", true) ?: true
+        Log.i(TAG, "VPN mode monitorOnly=$monitorOnly")
+
         // Build and establish TUN interface
         try {
             val builder = Builder()
                 .setSession("SecurityNavVPN")
                 .addAddress("10.0.0.2", 32)
-                .addRoute("0.0.0.0", 0)
                 .setMtu(1500)
+
+            if (!monitorOnly) {
+                // Only add default route if not in monitor-only mode (advanced usage)
+                builder.addRoute("0.0.0.0", 0)
+            }
 
             vpnInterface?.close()
             vpnInterface = builder.establish()
@@ -52,7 +63,7 @@ class LocalVpnService : VpnService() {
                 workerJob?.cancel()
                 workerJob = serviceScope.launch {
                     Log.i(TAG, "VPN loop: starting worker job")
-                    runVpnLoop(vpnInterface!!)
+                    runVpnLoop(vpnInterface!!, monitorOnly)
                     Log.i(TAG, "VPN loop: worker job finished")
                 }
             } else {
@@ -68,8 +79,8 @@ class LocalVpnService : VpnService() {
         return Service.START_STICKY
     }
 
-    private suspend fun runVpnLoop(pfd: ParcelFileDescriptor) {
-        Log.i(TAG, "runVpnLoop: entering loop")
+    private suspend fun runVpnLoop(pfd: ParcelFileDescriptor, monitorOnly: Boolean) {
+        Log.i(TAG, "runVpnLoop: entering loop (monitorOnly=$monitorOnly)")
         val input = FileInputStream(pfd.fileDescriptor)
         val output = FileOutputStream(pfd.fileDescriptor)
         val buffer = ByteArray(32 * 1024)
@@ -81,8 +92,8 @@ class LocalVpnService : VpnService() {
                     Log.d(TAG, "runVpnLoop: read $read bytes")
                     NetworkMonitor.recordInbound(read.toLong())
 
-                    // TODO: Insert packet processing/filtering logic here.
-                    // For now we echo the bytes back (template). DON'T use this in production.
+                    // If monitorOnly we do minimal processing and don't block forwarding.
+                    // For demo purposes echoing back; in monitorOnly mode this won't affect device connectivity since no default route.
                     withContext(Dispatchers.IO) { output.write(buffer, 0, read) }
                     NetworkMonitor.recordOutbound(read.toLong())
                 } else {

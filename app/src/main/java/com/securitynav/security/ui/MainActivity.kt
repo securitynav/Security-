@@ -2,6 +2,7 @@ package com.securitynav.security.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.media.RingtoneManager
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
@@ -10,17 +11,22 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.material.navigation.NavigationView
 import com.securitynav.security.R
 import com.securitynav.security.data.AuthManager
 import com.securitynav.security.databinding.ActivityMainBinding
+import com.securitynav.security.monitor.NetworkMonitor
 import com.securitynav.security.notifications.SecurityNotificationManager
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var authManager: AuthManager
     private lateinit var vpnPrepareLauncher: ActivityResultLauncher<Intent>
+    private lateinit var requestNotificationPermissionLauncher: ActivityResultLauncher<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +39,20 @@ class MainActivity : AppCompatActivity() {
         vpnPrepareLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
                 // Permission granted
-                startVpnService()
+                startVpnService(monitorOnly = true)
             } else {
                 Toast.makeText(this, "Permiso VPN denegado", Toast.LENGTH_SHORT).show()
             }
         }
+
+        // Request notifications permission on Android 13+
+        requestNotificationPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+            if (!granted) {
+                Toast.makeText(this, "Permiso de notificaciones denegado; algunas alertas no se mostrarán", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        maybeRequestNotificationPermission()
 
         val drawerLayout = binding.drawerLayout
         val btnOpenMenu = binding.btnOpenMenu
@@ -55,6 +70,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_dashboard -> startActivity(Intent(this, DashboardActivity::class.java))
                 R.id.nav_settings -> startActivity(Intent(this, SettingsActivity::class.java))
                 R.id.nav_faq -> startActivity(Intent(this, FaqActivity::class.java))
+                R.id.nav_start_vpn -> requestVpnPermission()
+                R.id.nav_stop_vpn -> stopService(Intent(this, com.securitynav.security.vpn.LocalVpnService::class.java))
+                R.id.nav_diagnostics -> showDiagnostics()
+                R.id.nav_about -> showAbout()
+                R.id.nav_support -> showSupport()
                 R.id.nav_logout -> {
                     authManager.clearPin()
                     startActivity(Intent(this, PinActivity::class.java))
@@ -87,14 +107,24 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Long-press to request VPN permission and start VPN service (non-intrusive demo)
-        btnMainLock.setOnLongClickListener {
-            requestVpnPermission()
-            true
+        // Wire quick-action buttons
+        binding.btnStartVpn.setOnClickListener { requestVpnPermission() }
+        binding.btnStopVpn.setOnClickListener {
+            stopService(Intent(this, com.securitynav.security.vpn.LocalVpnService::class.java))
+            Toast.makeText(this, "Solicitud de parada de VPN enviada", Toast.LENGTH_SHORT).show()
         }
+        binding.btnDiagnostics.setOnClickListener { showDiagnostics() }
+        binding.btnAbout.setOnClickListener { showAbout() }
 
         btnViewCharts.setOnClickListener {
             startActivity(Intent(this, DashboardActivity::class.java))
+        }
+
+    }
+
+    private fun maybeRequestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestNotificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
         }
     }
 
@@ -104,16 +134,44 @@ class MainActivity : AppCompatActivity() {
             vpnPrepareLauncher.launch(prepareIntent)
         } else {
             // Already have permission
-            startVpnService()
+            startVpnService(monitorOnly = true)
         }
     }
 
-    private fun startVpnService() {
+    private fun startVpnService(monitorOnly: Boolean) {
         val svcIntent = Intent(this, com.securitynav.security.vpn.LocalVpnService::class.java)
+        svcIntent.putExtra("monitor_only", monitorOnly)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(svcIntent)
         } else {
             startService(svcIntent)
         }
+    }
+
+    private fun showDiagnostics() {
+        val inBytes = NetworkMonitor.totalBytesIn.value
+        val outBytes = NetworkMonitor.totalBytesOut.value
+        val msg = "Bytes In: $inBytes\nBytes Out: $outBytes"
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Diagnósticos de Red")
+            .setMessage(msg)
+            .setPositiveButton("Cerrar", null)
+            .show()
+    }
+
+    private fun showAbout() {
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Acerca de SecurityNav")
+            .setMessage("SecurityNav v1.0\nProtección local ligera\nContacto: soporte@securitynav.local")
+            .setPositiveButton("Cerrar", null)
+            .show()
+    }
+
+    private fun showSupport() {
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Soporte y Reporte")
+            .setMessage("Para soporte, por favor envía un informe desde la app o contacta soporte@securitynav.local")
+            .setPositiveButton("Cerrar", null)
+            .show()
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SecurityNav" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#00E5FF</item>
+        <item name="colorPrimaryVariant">#00A8BF</item>
+        <item name="colorOnPrimary">#0A0E17</item>
+        <item name="colorSecondary">#FFD600</item>
+        <item name="android:statusBarColor">#061018</item>
+        <item name="android:navigationBarColor">#061018</item>
+        <item name="android:windowBackground">@color/bg_dark</item>
+        <item name="materialCardViewStyle">@style/Widget.SecurityNav.GlassCard</item>
+    </style>
+
+    <style name="Widget.SecurityNav.GlassCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardElevation">8dp</item>
+        <item name="cardBackgroundColor">#1AFFFFFF</item> <!-- translucent white -->
+    </style>
+</resources>
