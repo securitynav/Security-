@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Colores personalizados SecurityNav -->
     <color name="bg_dark">#0A0E17</color>
     <color name="text_primary">#FFFFFF</color>
     <color name="text_secondary">#AAAAAA</color>
@@ -8,4 +9,16 @@
     <color name="neon_red">#FF3366</color>
     <color name="neon_yellow">#FFD600</color>
     <color name="black">#0A0E17</color>
+    
+    <!-- Colores Material Design requeridos -->
+    <color name="surface_dark">#161D2F</color>
+    <color name="surface">#161D2F</color>
+    <color name="primary">#00E5FF</color>
+    <color name="secondary">#FFD600</color>
+    <color name="tertiary">#00FF66</color>
+    <color name="error">#FF3366</color>
+    <color name="on_primary">#0A0E17</color>
+    <color name="on_secondary">#0A0E17</color>
+    <color name="on_background">#FFFFFF</color>
+    <color name="background">#0A0E17</color>
 </resources>
