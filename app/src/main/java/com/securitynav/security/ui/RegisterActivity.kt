@@ -1,14 +1,14 @@
 package com.securitynav.security.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.securitynav.security.R
 import com.securitynav.security.data.AuthManager
 import com.securitynav.security.databinding.ActivityRegisterBinding
-import com.google.android.material.textfield.TextInputEditText
-import android.widget.Toast
-import android.content.Context
-import android.text.InputFilter
+import com.securitynav.security.util.LottieCache
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -23,12 +23,12 @@ class RegisterActivity : AppCompatActivity() {
         authManager = AuthManager.getInstance(applicationContext)
 
         // Ensure inputs accept only digits and limit length to 4
-        val digitFilter = InputFilter { source, _, _, _, _, _ ->
+        val digitFilter = android.text.InputFilter { source, _, _, _, _, _ ->
             if (source == null) return@InputFilter null
             if (source.toString().matches(Regex("^[0-9]*$"))) source else ""
         }
-        binding.etNewPin.filters = arrayOf(digitFilter, InputFilter.LengthFilter(4))
-        binding.etConfirmPin.filters = arrayOf(digitFilter, InputFilter.LengthFilter(4))
+        binding.etNewPin.filters = arrayOf(digitFilter, android.text.InputFilter.LengthFilter(4))
+        binding.etConfirmPin.filters = arrayOf(digitFilter, android.text.InputFilter.LengthFilter(4))
 
         binding.btnRegisterPin.setOnClickListener {
             val pin = binding.etNewPin.text?.toString()?.trim() ?: ""
@@ -47,9 +47,19 @@ class RegisterActivity : AppCompatActivity() {
             // Save securely using EncryptedSharedPreferences
             authManager.savePin(pin)
 
-            Toast.makeText(this, "Registro exitoso. Bóveda activada.", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            // Play success animation then navigate
+            try {
+                LottieCache.success?.let { binding.lottieSuccess.setComposition(it) } ?: binding.lottieSuccess.setAnimation("lottie/success_animation.json")
+                binding.lottieSuccess.playAnimation()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+            binding.postDelayed({
+                Toast.makeText(this, "Registro exitoso. Bóveda activada.", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }, 900)
         }
     }
 }

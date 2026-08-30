@@ -6,12 +6,16 @@ import android.app.NotificationManager
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Build
+import com.airbnb.lottie.LottieComposition
+import com.airbnb.lottie.LottieCompositionFactory
+import com.securitynav.security.util.LottieCache
 
 class SecurityNavApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
         createVpnNotificationChannel()
+        preloadLottieAnimations()
     }
 
     private fun createVpnNotificationChannel() {
@@ -34,6 +38,26 @@ class SecurityNavApp : Application() {
                 setSound(soundUri, audioAttributes)
             }
             (getSystemService(NotificationManager::class.java))?.createNotificationChannel(channel)
+        }
+    }
+
+    private fun preloadLottieAnimations() {
+        // Preload compositions asynchronously and cache them in LottieCache to reduce UI jank
+        try {
+            LottieCompositionFactory.fromAsset(this, "lottie/lock_animation.json")
+                .addListener { composition: LottieComposition? ->
+                    LottieCache.lock = composition
+                }
+                .addFailureListener { /* ignore preload failure */ }
+
+            LottieCompositionFactory.fromAsset(this, "lottie/success_animation.json")
+                .addListener { composition: LottieComposition? ->
+                    LottieCache.success = composition
+                }
+                .addFailureListener { /* ignore preload failure */ }
+        } catch (e: Exception) {
+            // don't block app startup if preloading fails
+            e.printStackTrace()
         }
     }
 }

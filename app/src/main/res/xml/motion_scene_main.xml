@@ -15,12 +15,20 @@
             <PropertySet android:alpha="0.9" />
             <Transform android:scaleX="0.98" android:scaleY="0.98" android:translationY="20dp" />
         </Constraint>
+
+        <Constraint android:id="@id/btnMainLock">
+            <Transform android:scaleX="1.0" android:scaleY="1.0" android:rotation="0" />
+        </Constraint>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
         <Constraint android:id="@id/quickActions">
             <PropertySet android:alpha="1.0" />
             <Transform android:scaleX="1.0" android:scaleY="1.0" android:translationY="0dp" />
+        </Constraint>
+
+        <Constraint android:id="@id/btnMainLock">
+            <Transform android:scaleX="1.06" android:scaleY="1.06" android:rotation="6" />
         </Constraint>
     </ConstraintSet>
 
