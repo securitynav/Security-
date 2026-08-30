@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.SecurityNav" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">#00E5FF</item>
-        <item name="colorPrimaryVariant">#00A8BF</item>
-        <item name="colorOnPrimary">#0A0E17</item>
-        <item name="colorSecondary">#FFD600</item>
-        <item name="android:statusBarColor">#061018</item>
-        <item name="android:navigationBarColor">#061018</item>
-        <item name="android:windowBackground">@color/bg_dark</item>
-        <item name="materialCardViewStyle">@style/Widget.SecurityNav.GlassCard</item>
-    </style>
-
+    <!-- Legacy / additional widget styles for glass effect. Theme.SecurityNav is defined in values/themes.xml to avoid duplicates -->
     <style name="Widget.SecurityNav.GlassCard" parent="Widget.MaterialComponents.CardView">
-        <item name="cardCornerRadius">16dp</item>
+        <item name="cardCornerRadius">12dp</item>
         <item name="cardUseCompatPadding">true</item>
         <item name="cardElevation">8dp</item>
-        <item name="cardBackgroundColor">#1AFFFFFF</item> <!-- translucent white -->
+        <item name="cardBackgroundColor">@color/surface_dark</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Widget.SecurityNav.Button.Transparent" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/neon_cyan</item>
+        <item name="android:textColor">@color/on_primary</item>
+        <item name="cornerRadius">10dp</item>
     </style>
 </resources>
