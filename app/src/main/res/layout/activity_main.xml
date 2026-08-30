@@ -41,7 +41,7 @@
         </LinearLayout>
 
         <!-- Blur background to create glass effect under cards -->
-        <com.eightbitlab.blurview.BlurView
+        <com.eightbitlab.com.blurview.BlurView
             android:id="@+id/blurView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

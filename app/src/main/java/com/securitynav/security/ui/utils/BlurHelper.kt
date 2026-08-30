@@ -6,8 +6,8 @@ import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.graphics.drawable.Drawable
-import com.eightbitlab.blurview.BlurView
-import com.eightbitlab.blurview.RenderScriptBlur
+import com.eightbitlab.com.blurview.BlurView
+import com.eightbitlab.com.blurview.RenderScriptBlur
 
 object BlurHelper {
 
