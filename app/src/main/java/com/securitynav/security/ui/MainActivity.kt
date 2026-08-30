@@ -2,24 +2,25 @@ package com.securitynav.security.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.media.RingtoneManager
 import android.net.VpnService
 import android.os.Build
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.google.android.material.navigation.NavigationView
+import com.airbnb.lottie.LottieCompositionFactory
+import com.eightbitlab.blurview.RenderScriptBlur
+import com.eightbitlab.blurview.BlurView
 import com.securitynav.security.R
 import com.securitynav.security.data.AuthManager
 import com.securitynav.security.databinding.ActivityMainBinding
 import com.securitynav.security.monitor.NetworkMonitor
 import com.securitynav.security.notifications.SecurityNotificationManager
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +35,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         authManager = AuthManager.getInstance(applicationContext)
+
+        // Preload Lottie compositions to avoid jank
+        LottieCompositionFactory.fromAsset(this, "lottie/lock_animation.json").addListener { comp ->
+            binding.lottieLock.setComposition(comp)
+        }
+        LottieCompositionFactory.fromAsset(this, "lottie/success_animation.json").addListener { comp ->
+            // success lottie used in RegisterActivity as well; set here for quick access
+            // If present in this binding, set it; else ignore
+            try {
+                binding.lottieLock.setProgress(0f)
+            } catch (_: Exception) {}
+        }
+
+        // Initialize BlurView for glass effect
+        initBlurView()
 
         // Register ActivityResultLauncher for VpnService.prepare() result
         vpnPrepareLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -56,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
         val drawerLayout = binding.drawerLayout
         val btnOpenMenu = binding.btnOpenMenu
-        val navView: NavigationView = binding.navigationView
+        val navView = binding.navigationView
         val btnMainLock = binding.btnMainLock
         val tvLockState = binding.tvLockState
         val btnViewCharts = binding.btnViewCharts
@@ -86,6 +102,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnMainLock.setOnClickListener {
+            // play lock animation on toggle
+            try {
+                binding.lottieLock.playAnimation()
+            } catch (_: Exception) {}
+
             when (btnMainLock.currentState) {
                 com.securitynav.security.ui.SecurityState.SECURE -> {
                     btnMainLock.setSecurityState(com.securitynav.security.ui.SecurityState.WARNING)
@@ -120,6 +141,23 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, DashboardActivity::class.java))
         }
 
+    }
+
+    private fun initBlurView() {
+        try {
+            val blurView = findViewById<BlurView>(R.id.blurView)
+            val rootView = findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup
+            val windowBackground = window.decorView.background
+            val radius = 12f
+            blurView.setupWith(rootView)
+                .setFrameClearDrawable(windowBackground)
+                .setBlurAlgorithm(RenderScriptBlur(this))
+                .setBlurRadius(radius)
+                .setOverlayColor(Color.parseColor("#1AFFFFFF"))
+        } catch (e: Exception) {
+            // Blur may fail on some devices, don't crash app
+            e.printStackTrace()
+        }
     }
 
     private fun maybeRequestNotificationPermission() {
