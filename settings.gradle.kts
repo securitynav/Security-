@@ -11,7 +11,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url = uri("https://jitpack.io") }
+        // Use JitPack with www to ensure resolution in all runners
+        maven { url = uri("https://www.jitpack.io") }
     }
 }
 
