@@ -5,7 +5,6 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.net.VpnService
-import android.os.Build
 import android.os.ParcelFileDescriptor
 import androidx.core.app.NotificationCompat
 import com.securitynav.security.R
@@ -15,9 +14,10 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 
 /**
- * LocalVpnService - a minimal, coroutine-powered VPN service template.
- * It establishes a VPN interface and reads/writes packets on a background coroutine.
- * Note: Production-grade packet parsing/filtering requires careful implementation.
+ * LocalVpnService - coroutine-powered VPN service running in foreground.
+ * - Uses Notification channel "vpn_service_channel" (created in Application)
+ * - Starts foreground with id = 1
+ * - Establishes a TUN interface and processes I/O on Dispatchers.IO
  */
 class LocalVpnService : VpnService() {
 
@@ -32,56 +32,67 @@ class LocalVpnService : VpnService() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         startForegroundIfNeeded()
 
-        // Build a very small VPN interface. Adapt addresses/routes as needed.
-        val builder = Builder()
-            .setSession("SecurityNavVPN")
-            .addAddress("10.0.0.2", 32)
-            .addRoute("0.0.0.0", 0)
-            .setMtu(1500)
+        // Build and establish TUN interface
+        try {
+            val builder = Builder()
+                .setSession("SecurityNavVPN")
+                .addAddress("10.0.0.2", 32)
+                .addRoute("0.0.0.0", 0)
+                .setMtu(1500)
 
-        vpnInterface?.close()
-        vpnInterface = builder.establish()
+            vpnInterface?.close()
+            vpnInterface = builder.establish()
 
-        vpnInterface?.let { pfd ->
-            workerJob?.cancel()
-            workerJob = serviceScope.launch {
-                runVpnLoop(pfd)
+            vpnInterface?.let { pfd ->
+                workerJob?.cancel()
+                workerJob = serviceScope.launch {
+                    runVpnLoop(pfd)
+                }
+            } ?: run {
+                // Could not establish VPN (user may have revoked); stop service
+                stopSelf()
             }
+        } catch (t: Throwable) {
+            t.printStackTrace()
+            stopSelf()
         }
 
         return Service.START_STICKY
     }
 
     private suspend fun runVpnLoop(pfd: ParcelFileDescriptor) {
-        // Read packets from VPN interface and count bytes for monitoring
-        val `in` = FileInputStream(pfd.fileDescriptor)
-        val out = FileOutputStream(pfd.fileDescriptor)
-        val buffer = ByteArray(32767)
+        val input = FileInputStream(pfd.fileDescriptor)
+        val output = FileOutputStream(pfd.fileDescriptor)
+        val buffer = ByteArray(32 * 1024)
 
         try {
             while (isActive) {
-                val read = withContext(Dispatchers.IO) { `in`.read(buffer) }
+                val read = withContext(Dispatchers.IO) { input.read(buffer) }
                 if (read > 0) {
                     NetworkMonitor.recordInbound(read.toLong())
-                    // For template purposes we echo the packet back (unsafe for production)
-                    withContext(Dispatchers.IO) { out.write(buffer, 0, read) }
+
+                    // TODO: Insert packet processing/filtering logic here.
+                    // For now we echo the bytes back (template). DON'T use this in production.
+                    withContext(Dispatchers.IO) { output.write(buffer, 0, read) }
                     NetworkMonitor.recordOutbound(read.toLong())
                 } else {
                     delay(50)
                 }
             }
+        } catch (ce: CancellationException) {
+            // normal cancellation
         } catch (e: Exception) {
-            // Log or handle errors appropriately (avoid exposing sensitive data in logs)
             e.printStackTrace()
         } finally {
-            try { `in`.close() } catch (_: Exception) {}
-            try { out.close() } catch (_: Exception) {}
+            try { input.close() } catch (_: Exception) {}
+            try { output.close() } catch (_: Exception) {}
         }
     }
 
     private fun startForegroundIfNeeded() {
         val notification = createNotification()
-        startForeground(1001, notification)
+        // Use id = 1 as required
+        startForeground(1, notification)
     }
 
     private fun createNotification(): Notification {
@@ -90,24 +101,26 @@ class LocalVpnService : VpnService() {
             this, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        return NotificationCompat.Builder(this, "securitynav_vpn_channel")
+        return NotificationCompat.Builder(this, "vpn_service_channel")
             .setContentTitle("SecurityNav VPN")
             .setContentText("VPN is running")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentIntent(pendingIntent)
+            .setOngoing(true)
             .build()
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         workerJob?.cancel()
         serviceScope.cancel()
         vpnInterface?.close()
         vpnInterface = null
+        super.onDestroy()
     }
 
     override fun onRevoke() {
-        super.onRevoke()
+        // Called when the VPN interface is revoked by user/system
         onDestroy()
+        super.onRevoke()
     }
 }
