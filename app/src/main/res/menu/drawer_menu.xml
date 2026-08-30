@@ -11,6 +11,21 @@
             android:id="@+id/nav_faq"
             android:title="Centro de Ayuda / FAQ" />
         <item
+            android:id="@+id/nav_start_vpn"
+            android:title="Iniciar Servicio VPN" />
+        <item
+            android:id="@+id/nav_stop_vpn"
+            android:title="Detener Servicio VPN" />
+        <item
+            android:id="@+id/nav_diagnostics"
+            android:title="Herramientas de Diagnóstico" />
+        <item
+            android:id="@+id/nav_about"
+            android:title="Acerca de SecurityNav" />
+        <item
+            android:id="@+id/nav_support"
+            android:title="Soporte y Reporte" />
+        <item
             android:id="@+id/nav_logout"
             android:title="Cerrar Sesión (Bloquear App)" />
     </group>

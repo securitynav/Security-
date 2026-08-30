@@ -71,6 +71,55 @@
                     android:textStyle="bold"
                     android:layout_marginBottom="24dp" />
 
+                <!-- Quick Actions: VPN control and Diagnostics -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4"
+                    android:layout_marginBottom="12dp">
+
+                    <Button
+                        android:id="@+id/btnStartVpn"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Iniciar VPN"
+                        android:backgroundTint="#00FF66"
+                        android:textColor="#0A0E17" />
+
+                    <Button
+                        android:id="@+id/btnStopVpn"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Detener VPN"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="#FF3366"
+                        android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:id="@+id/btnDiagnostics"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Diagnósticos"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="#FFD600"
+                        android:textColor="#0A0E17" />
+
+                    <Button
+                        android:id="@+id/btnAbout"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Acerca de"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="#00E5FF"
+                        android:textColor="#0A0E17" />
+
+                </LinearLayout>
+
                 <!-- TARJETA 1: CANALES HEURÍSTICOS & DEGRADACIÓN DE TORRE -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
