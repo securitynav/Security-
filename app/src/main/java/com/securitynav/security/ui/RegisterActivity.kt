@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.securitynav.security.R
 import com.securitynav.security.data.AuthManager
 import com.securitynav.security.databinding.ActivityRegisterBinding
-import com.securitynav.security.util.LottieCache
+import com.securitynav.security.utils.LottieCache
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -49,7 +49,9 @@ class RegisterActivity : AppCompatActivity() {
 
             // Play success animation then navigate
             try {
-                LottieCache.success?.let { binding.lottieSuccess.setComposition(it) } ?: binding.lottieSuccess.setAnimation("lottie/success_animation.json")
+                LottieCache.getCachedComposition("lottie/success_animation.json")?.let {
+                    binding.lottieSuccess.setComposition(it)
+                } ?: binding.lottieSuccess.setAnimation("lottie/success_animation.json")
                 binding.lottieSuccess.playAnimation()
             } catch (e: Exception) {
                 e.printStackTrace()

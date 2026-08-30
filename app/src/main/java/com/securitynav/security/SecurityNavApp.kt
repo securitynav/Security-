@@ -3,19 +3,20 @@ package com.securitynav.security
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.ComponentCallbacks2
+import android.content.res.Configuration
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Build
-import com.airbnb.lottie.LottieComposition
-import com.airbnb.lottie.LottieCompositionFactory
-import com.securitynav.security.util.LottieCache
+import com.securitynav.security.utils.LottieCache
 
-class SecurityNavApp : Application() {
+class SecurityNavApp : Application(), ComponentCallbacks2 {
 
     override fun onCreate() {
         super.onCreate()
         createVpnNotificationChannel()
-        preloadLottieAnimations()
+        registerComponentCallbacks(this)
+        initializeLottiePreload()
     }
 
     private fun createVpnNotificationChannel() {
@@ -41,23 +42,37 @@ class SecurityNavApp : Application() {
         }
     }
 
-    private fun preloadLottieAnimations() {
-        // Preload compositions asynchronously and cache them in LottieCache to reduce UI jank
+    private fun initializeLottiePreload() {
         try {
-            LottieCompositionFactory.fromAsset(this, "lottie/lock_animation.json")
-                .addListener { composition: LottieComposition? ->
-                    LottieCache.lock = composition
-                }
-                .addFailureListener { /* ignore preload failure */ }
-
-            LottieCompositionFactory.fromAsset(this, "lottie/success_animation.json")
-                .addListener { composition: LottieComposition? ->
-                    LottieCache.success = composition
-                }
-                .addFailureListener { /* ignore preload failure */ }
+            LottieCache.preloadComposition(this, "lottie/lock_animation.json")
+            LottieCache.preloadComposition(this, "lottie/success_animation.json")
         } catch (e: Exception) {
-            // don't block app startup if preloading fails
+            // don't block app startup
             e.printStackTrace()
         }
+    }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        when (level) {
+            ComponentCallbacks2.TRIM_MEMORY_RUNNING_MODERATE,
+            ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW,
+            ComponentCallbacks2.TRIM_MEMORY_RUNNING_CRITICAL -> {
+                LottieCache.trimCache()
+            }
+            ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN,
+            ComponentCallbacks2.TRIM_MEMORY_COMPLETE -> {
+                LottieCache.clearCache()
+            }
+        }
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        LottieCache.clearCache()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
     }
 }
