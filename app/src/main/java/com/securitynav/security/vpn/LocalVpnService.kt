@@ -4,7 +4,7 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.net.VpnService
 import android.os.ParcelFileDescriptor
-import com.securitynav.security.MainActivity
+import com.securitynav.security.ui.MainActivity
 
 class LocalVpnService : VpnService() {
 
