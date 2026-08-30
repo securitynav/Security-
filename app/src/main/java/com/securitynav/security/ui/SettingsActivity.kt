@@ -12,7 +12,7 @@ import com.securitynav.security.data.database.SecurityDatabase
 
 class SettingsActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    protected override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 

@@ -12,32 +12,34 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- Barra Superior Neón - Reparada -->
-        <RelativeLayout
+        <!-- Barra Superior Neón corregida -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="#161D2F"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:paddingHorizontal="16dp">
 
             <ImageButton
                 android:id="@+id/btnOpenMenu"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_centerVertical="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@android:drawable/ic_menu_sort_by_size"
                 app:tint="#00FF66" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="SECURITY NAV"
                 android:textColor="#00FF66"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -156,7 +158,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- TARJETA 3: INSPECCIÓN DE TRÁFICO VPN (ESTILO AMARILLO/DORADO DESPLEGABLE) -->
+                <!-- TARJETA 3: INSPECCIÓN DE TRÁFICO VPN -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
