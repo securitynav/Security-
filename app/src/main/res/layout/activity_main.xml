@@ -12,8 +12,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- Barra Superior Neón -->
-        <com.securitynav.security.ui.CustomPulseLockView
+        <!-- Barra Superior Neón - Reparada -->
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="#161D2F"
@@ -37,7 +37,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-        </com.securitynav.security.ui.CustomPulseLockView>
+        </RelativeLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -58,16 +58,7 @@
                     android:layout_marginVertical="20dp"
                     android:background="@drawable/ic_3d_shield_bg"
                     android:clickable="true"
-                    android:focusable="true">
-
-                    <ImageView
-                        android:id="@+id/ivLockIcon"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_3d_shield_fg" />
-
-                </com.securitynav.security.ui.CustomPulseLockView>
+                    android:focusable="true" />
 
                 <TextView
                     android:id="@+id/tvLockState"
