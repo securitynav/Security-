@@ -1,4 +1,6 @@
 package com.securitynav.security.ui.utils
+import eightbitlab.com.blurview.BlurView
+import eightbitlab.com.blurview.RenderScriptBlur
 
 import android.graphics.RenderEffect
 import android.graphics.Shader
@@ -6,8 +8,6 @@ import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.graphics.drawable.Drawable
-import com.eightbitlab.com.blurview.BlurView
-import com.eightbitlab.com.blurview.RenderScriptBlur
 
 object BlurHelper {
 
