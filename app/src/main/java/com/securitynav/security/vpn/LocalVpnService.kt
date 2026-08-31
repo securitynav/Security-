@@ -86,7 +86,7 @@ class LocalVpnService : VpnService() {
         val buffer = ByteArray(32 * 1024)
 
         try {
-            while (isActive) {
+            while (coroutineContext.isActive) {
                 val read = withContext(Dispatchers.IO) { input.read(buffer) }
                 if (read > 0) {
                     Log.d(TAG, "runVpnLoop: read $read bytes")
