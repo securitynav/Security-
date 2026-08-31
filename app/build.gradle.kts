@@ -83,7 +83,6 @@ dependencies {
 
     // UI Enhancements
     implementation("com.airbnb.android:lottie:6.4.0")
-    implementation("com.github.Dimezis:BlurView:version-2.0.6")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
@@ -92,4 +91,4 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
 
-dependencies { implementation("com.github.Dimezis:BlurView:version-2.0.6") }
+implementation("com.github.Dimezis:BlurView:version-2.0.3")
