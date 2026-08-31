@@ -18,7 +18,7 @@ class RegisterActivity : AppCompatActivity() {
         lottieSuccess?.playAnimation()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            // Siguiente pantalla o cierre
+            // Transición o cierre
         }, 2000)
     }
 }

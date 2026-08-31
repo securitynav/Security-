@@ -156,9 +156,8 @@ class MainActivity : AppCompatActivity() {
             val rootView = findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup
             val windowBackground = window.decorView.background
             val radius = 12f
-            blurView.setupWith(rootView)
+            blurView.setupWith(rootView, RenderScriptBlur(this))
                 .setFrameClearDrawable(windowBackground)
-                .setBlurAlgorithm(RenderScriptBlur(this))
                 .setBlurRadius(radius)
                 .setOverlayColor(Color.parseColor("#1AFFFFFF"))
         } catch (e: Exception) {
