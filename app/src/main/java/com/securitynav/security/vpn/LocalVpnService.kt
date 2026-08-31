@@ -1,3 +1,5 @@
+import kotlin.coroutines.coroutineContext
+import kotlinx.coroutines.isActive
 package com.securitynav.security.vpn
 
 import android.app.Notification

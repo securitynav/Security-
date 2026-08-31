@@ -1,3 +1,6 @@
+import android.os.Handler
+import android.os.Looper
+import com.airbnb.lottie.LottieAnimationView
 package com.securitynav.security.ui
 
 import android.content.Context
@@ -50,14 +53,14 @@ class RegisterActivity : AppCompatActivity() {
             // Play success animation then navigate
             try {
                 LottieCache.getCachedComposition("lottie/success_animation.json")?.let {
-                    binding.lottieSuccess.setComposition(it)
-                } ?: binding.lottieSuccess.setAnimation("lottie/success_animation.json")
-                binding.lottieSuccess.playAnimation()
+                    binding.findViewById<LottieAnimationView>(R.id.lottieSuccess).setComposition(it)
+                } ?: binding.findViewById<LottieAnimationView>(R.id.lottieSuccess).setAnimation("lottie/success_animation.json")
+                binding.findViewById<LottieAnimationView>(R.id.lottieSuccess).playAnimation()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
 
-            binding.postDelayed({
+            binding.Handler(Looper.getMainLooper()).postDelayed({
                 Toast.makeText(this, "Registro exitoso. Bóveda activada.", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
