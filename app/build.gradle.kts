@@ -83,7 +83,7 @@ dependencies {
 
     // UI Enhancements
     implementation("com.airbnb.android:lottie:6.4.0")
-    implementation("com.eightbitlab.blurview:blurview:1.6.6")
+    implementation("com.github.Dimezis:BlurView:version-1.6.6")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
