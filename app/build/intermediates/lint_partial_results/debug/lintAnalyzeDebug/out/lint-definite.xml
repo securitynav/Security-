@@ -1,0 +1,1716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.4.0" type="incidents">
+
+    <incident
+        id="ExportedService"
+        severity="warning"
+        message="Exported service does not require permission">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set permission"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="permission"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set exported=&quot;false&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="exported"
+                value="false"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="50"
+            column="10"
+            startOffset="2242"
+            endLine="50"
+            endColumn="17"
+            endOffset="2249"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;SecurityNav&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="24"
+            column="13"
+            startOffset="874"
+            endLine="24"
+            endColumn="39"
+            endOffset="900"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="29"
+            column="10"
+            startOffset="1048"
+            endLine="29"
+            endColumn="21"
+            endOffset="1059"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Create Account&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_register.xml"
+            line="18"
+            column="13"
+            startOffset="633"
+            endLine="18"
+            endColumn="42"
+            endOffset="662"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Full Name&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_register.xml"
+            line="37"
+            column="17"
+            startOffset="1451"
+            endLine="37"
+            endColumn="41"
+            endOffset="1475"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Email Address&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_register.xml"
+            line="54"
+            column="17"
+            startOffset="2232"
+            endLine="54"
+            endColumn="45"
+            endOffset="2260"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Secure Password&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_register.xml"
+            line="73"
+            column="17"
+            startOffset="3124"
+            endLine="73"
+            endColumn="47"
+            endOffset="3154"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Promo / Referral Code&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_register.xml"
+            line="97"
+            column="21"
+            startOffset="4202"
+            endLine="97"
+            endColumn="57"
+            endOffset="4238"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Apply&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_register.xml"
+            line="107"
+            column="17"
+            startOffset="4668"
+            endLine="107"
+            endColumn="37"
+            endOffset="4688"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Sign Up&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_register.xml"
+            line="126"
+            column="13"
+            startOffset="5359"
+            endLine="126"
+            endColumn="35"
+            endOffset="5381"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Continue with Google&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_register.xml"
+            line="135"
+            column="13"
+            startOffset="5692"
+            endLine="135"
+            endColumn="48"
+            endOffset="5727"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Basic Configuration&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_settings.xml"
+            line="16"
+            column="13"
+            startOffset="539"
+            endLine="16"
+            endColumn="47"
+            endOffset="573"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Real-time Security Notifications&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_settings.xml"
+            line="26"
+            column="13"
+            startOffset="973"
+            endLine="26"
+            endColumn="60"
+            endOffset="1020"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Cyberpunk OLED Theme&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_settings.xml"
+            line="33"
+            column="13"
+            startOffset="1295"
+            endLine="33"
+            endColumn="48"
+            endOffset="1330"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Background Scan Frequency&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_settings.xml"
+            line="40"
+            column="13"
+            startOffset="1557"
+            endLine="40"
+            endColumn="53"
+            endOffset="1597"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Advanced Configuration&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_settings.xml"
+            line="59"
+            column="13"
+            startOffset="2245"
+            endLine="59"
+            endColumn="50"
+            endOffset="2282"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Rotate SQLCipher Keys&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_settings.xml"
+            line="69"
+            column="13"
+            startOffset="2627"
+            endLine="69"
+            endColumn="49"
+            endOffset="2663"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;VPN App Exclusions&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_settings.xml"
+            line="77"
+            column="13"
+            startOffset="2948"
+            endLine="77"
+            endColumn="46"
+            endOffset="2981"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Packet Inspection Verbosity&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_settings.xml"
+            line="85"
+            column="13"
+            startOffset="3265"
+            endLine="85"
+            endColumn="55"
+            endOffset="3307"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Anti-tampering / Root Check&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_settings.xml"
+            line="99"
+            column="13"
+            startOffset="3841"
+            endLine="99"
+            endColumn="55"
+            endOffset="3883"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Cerrar Sesión / Logout&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_settings.xml"
+            line="107"
+            column="13"
+            startOffset="4154"
+            endLine="107"
+            endColumn="50"
+            endOffset="4191"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_splash.xml"
+            line="10"
+            column="6"
+            startOffset="394"
+            endLine="10"
+            endColumn="15"
+            endOffset="403"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;SecurityNav&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_splash.xml"
+            line="25"
+            column="9"
+            startOffset="963"
+            endLine="25"
+            endColumn="35"
+            endOffset="989"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;TUNER DE RED &amp; ANCHO DE BANDA&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/custom_tuner_container.xml"
+            line="22"
+            column="13"
+            startOffset="732"
+            endLine="22"
+            endColumn="61"
+            endOffset="780"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Accessibility Guard&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_guard.xml"
+            line="12"
+            column="9"
+            startOffset="410"
+            endLine="12"
+            endColumn="43"
+            endOffset="444"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Monitors active screen overlays and window changes to prevent unauthorized access and tampering.&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_guard.xml"
+            line="21"
+            column="9"
+            startOffset="720"
+            endLine="21"
+            endColumn="120"
+            endOffset="831"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Enable in Settings&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_guard.xml"
+            line="32"
+            column="9"
+            startOffset="1183"
+            endLine="32"
+            endColumn="42"
+            endOffset="1216"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;System Status: SECURE&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_security_hub.xml"
+            line="21"
+            column="9"
+            startOffset="743"
+            endLine="21"
+            endColumn="45"
+            endOffset="779"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Bandwidth: --&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_security_hub.xml"
+            line="31"
+            column="9"
+            startOffset="1087"
+            endLine="31"
+            endColumn="37"
+            endOffset="1115"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Key Vault (SQLCipher)&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_vault.xml"
+            line="12"
+            column="9"
+            startOffset="410"
+            endLine="12"
+            endColumn="45"
+            endOffset="446"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Highly encrypted storage for API keys and sensitive security events using SQLCipher 256-bit AES.&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_vault.xml"
+            line="21"
+            column="9"
+            startOffset="725"
+            endLine="21"
+            endColumn="120"
+            endOffset="836"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Unlock Vault&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_vault.xml"
+            line="32"
+            column="9"
+            startOffset="1188"
+            endLine="32"
+            endColumn="36"
+            endOffset="1215"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Private Local VPN&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_vpn.xml"
+            line="13"
+            column="9"
+            startOffset="447"
+            endLine="13"
+            endColumn="41"
+            endOffset="479"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;VPN Status: DISCONNECTED&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_vpn.xml"
+            line="22"
+            column="9"
+            startOffset="762"
+            endLine="22"
+            endColumn="48"
+            endOffset="801"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Connect VPN&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_vpn.xml"
+            line="32"
+            column="9"
+            startOffset="1103"
+            endLine="32"
+            endColumn="35"
+            endOffset="1129"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Vulnerability Trends&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_vulnerability_dashboard.xml"
+            line="12"
+            column="9"
+            startOffset="408"
+            endLine="12"
+            endColumn="44"
+            endOffset="443"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Visualizing common vulnerability occurrences over time.&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_vulnerability_dashboard.xml"
+            line="21"
+            column="9"
+            startOffset="711"
+            endLine="21"
+            endColumn="79"
+            endOffset="781"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_app_traffic.xml"
+            line="11"
+            column="6"
+            startOffset="373"
+            endLine="11"
+            endColumn="15"
+            endOffset="382"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Nombre App&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_app_traffic.xml"
+            line="28"
+            column="13"
+            startOffset="935"
+            endLine="28"
+            endColumn="38"
+            endOffset="960"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;com.example.app&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_app_traffic.xml"
+            line="37"
+            column="13"
+            startOffset="1249"
+            endLine="37"
+            endColumn="43"
+            endOffset="1279"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;0 KB&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_app_traffic.xml"
+            line="52"
+            column="13"
+            startOffset="1734"
+            endLine="52"
+            endColumn="32"
+            endOffset="1753"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;HTTP/GET&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_app_traffic.xml"
+            line="61"
+            column="13"
+            startOffset="2039"
+            endLine="61"
+            endColumn="36"
+            endOffset="2062"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_app_traffic.xml"
+            line="63"
+            column="13"
+            startOffset="2115"
+            endLine="63"
+            endColumn="36"
+            endOffset="2138"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Hub&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/bottom_nav_menu.xml"
+            line="6"
+            column="9"
+            startOffset="214"
+            endLine="6"
+            endColumn="28"
+            endOffset="233"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Analytics&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/bottom_nav_menu.xml"
+            line="10"
+            column="9"
+            startOffset="357"
+            endLine="10"
+            endColumn="34"
+            endOffset="382"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;VPN&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/bottom_nav_menu.xml"
+            line="14"
+            column="9"
+            startOffset="492"
+            endLine="14"
+            endColumn="28"
+            endOffset="511"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Guard&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/bottom_nav_menu.xml"
+            line="18"
+            column="9"
+            startOffset="623"
+            endLine="18"
+            endColumn="30"
+            endOffset="644"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Vault&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/bottom_nav_menu.xml"
+            line="22"
+            column="9"
+            startOffset="758"
+            endLine="22"
+            endColumn="30"
+            endOffset="779"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Panel de Gráficos (MPAndroidChart)&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/drawer_menu.xml"
+            line="6"
+            column="13"
+            startOffset="222"
+            endLine="6"
+            endColumn="63"
+            endOffset="272"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Configuración de Red y Conexiones&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/drawer_menu.xml"
+            line="9"
+            column="13"
+            startOffset="345"
+            endLine="9"
+            endColumn="62"
+            endOffset="394"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Centro de Ayuda / FAQ&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/drawer_menu.xml"
+            line="12"
+            column="13"
+            startOffset="462"
+            endLine="12"
+            endColumn="50"
+            endOffset="499"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Iniciar Servicio VPN&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/drawer_menu.xml"
+            line="15"
+            column="13"
+            startOffset="573"
+            endLine="15"
+            endColumn="49"
+            endOffset="609"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Detener Servicio VPN&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/drawer_menu.xml"
+            line="18"
+            column="13"
+            startOffset="682"
+            endLine="18"
+            endColumn="49"
+            endOffset="718"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Herramientas de Diagnóstico&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/drawer_menu.xml"
+            line="21"
+            column="13"
+            startOffset="794"
+            endLine="21"
+            endColumn="56"
+            endOffset="837"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Acerca de SecurityNav&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/drawer_menu.xml"
+            line="24"
+            column="13"
+            startOffset="907"
+            endLine="24"
+            endColumn="50"
+            endOffset="944"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Soporte y Reporte&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/drawer_menu.xml"
+            line="27"
+            column="13"
+            startOffset="1016"
+            endLine="27"
+            endColumn="46"
+            endOffset="1049"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Cerrar Sesión (Bloquear App)&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/drawer_menu.xml"
+            line="30"
+            column="13"
+            startOffset="1120"
+            endLine="30"
+            endColumn="57"
+            endOffset="1164"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `mipmap-anydpi`.">
+        <fix-data file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26" folderName="mipmap-anydpi" requiresApi="26"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26"/>
+    </incident>
+
+    <incident
+        id="MonochromeLauncherIcon"
+        severity="warning"
+        message="The application adaptive icon is missing a monochrome tag">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26/ic_launcher.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="5"
+            endColumn="17"
+            endOffset="258"/>
+    </incident>
+
+    <incident
+        id="MonochromeLauncherIcon"
+        severity="warning"
+        message="The application adaptive roundIcon is missing a monochrome tag">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26/ic_launcher_round.xml"
+            line="2"
+            column="1"
+            startOffset="39"
+            endLine="5"
+            endColumn="17"
+            endOffset="258"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 26">
+        <fix-data conditional="true"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/SecurityNavApp.kt"
+            line="23"
+            column="13"
+            startOffset="674"
+            endLine="23"
+            endColumn="59"
+            endOffset="720"/>
+    </incident>
+
+    <incident
+        id="SwitchIntDef"
+        severity="warning"
+        message="Switch statement on an `int` with known associated constant missing case `ComponentCallbacks2.TRIM_MEMORY_BACKGROUND`, `ComponentCallbacks2.TRIM_MEMORY_MODERATE`">
+        <fix-data cases="android.content.ComponentCallbacks2.TRIM_MEMORY_BACKGROUND, android.content.ComponentCallbacks2.TRIM_MEMORY_MODERATE"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/SecurityNavApp.kt"
+            line="57"
+            column="9"
+            startOffset="2175"
+            endLine="57"
+            endColumn="13"
+            endOffset="2179"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 26">
+        <fix-data conditional="true"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/notifications/NotificationHelper.kt"
+            line="28"
+            column="13"
+            startOffset="860"
+            endLine="28"
+            endColumn="59"
+            endOffset="906"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 26">
+        <fix-data conditional="true"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/notifications/SecurityNotificationManager.kt"
+            line="19"
+            column="13"
+            startOffset="494"
+            endLine="19"
+            endColumn="59"
+            endOffset="540"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 26">
+        <fix-data conditional="true"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/services/SecurityMonitorService.kt"
+            line="32"
+            column="13"
+            startOffset="1102"
+            endLine="32"
+            endColumn="59"
+            endOffset="1148"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/RegisterActivity.kt"
+            line="49"
+            column="39"
+            startOffset="2027"
+            endLine="49"
+            endColumn="51"
+            endOffset="2039"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/RegisterActivity.kt"
+            line="59"
+            column="54"
+            startOffset="2632"
+            endLine="59"
+            endColumn="108"
+            endOffset="2686"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/RegisterActivity.kt"
+            line="59"
+            column="55"
+            startOffset="2633"
+            endLine="59"
+            endColumn="64"
+            endOffset="2642"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/RegisterActivity.kt"
+            line="59"
+            column="66"
+            startOffset="2644"
+            endLine="59"
+            endColumn="83"
+            endOffset="2661"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/RegisterActivity.kt"
+            line="59"
+            column="85"
+            startOffset="2663"
+            endLine="59"
+            endColumn="107"
+            endOffset="2685"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/RegisterActivity.kt"
+            line="62"
+            column="54"
+            startOffset="2879"
+            endLine="62"
+            endColumn="86"
+            endOffset="2911"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/RegisterActivity.kt"
+            line="62"
+            column="55"
+            startOffset="2880"
+            endLine="62"
+            endColumn="69"
+            endOffset="2894"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/RegisterActivity.kt"
+            line="62"
+            column="71"
+            startOffset="2896"
+            endLine="62"
+            endColumn="85"
+            endOffset="2910"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/RegisterActivity.kt"
+            line="66"
+            column="51"
+            startOffset="3125"
+            endLine="66"
+            endColumn="88"
+            endOffset="3162"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/RegisterActivity.kt"
+            line="71"
+            column="47"
+            startOffset="3455"
+            endLine="71"
+            endColumn="81"
+            endOffset="3489"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/SecurityHubFragment.kt"
+            line="25"
+            column="26"
+            startOffset="880"
+            endLine="25"
+            endColumn="47"
+            endOffset="901"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/SecurityHubFragment.kt"
+            line="28"
+            column="29"
+            startOffset="966"
+            endLine="28"
+            endColumn="66"
+            endOffset="1003"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 26">
+        <fix-data conditional="true"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/VpnFragment.kt"
+            line="71"
+            column="13"
+            startOffset="2667"
+            endLine="71"
+            endColumn="59"
+            endOffset="2713"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/VpnFragment.kt"
+            line="82"
+            column="30"
+            startOffset="3006"
+            endLine="82"
+            endColumn="51"
+            endOffset="3027"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/VpnFragment.kt"
+            line="84"
+            column="31"
+            startOffset="3152"
+            endLine="84"
+            endColumn="45"
+            endOffset="3166"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/VpnFragment.kt"
+            line="87"
+            column="30"
+            startOffset="3358"
+            endLine="87"
+            endColumn="54"
+            endOffset="3382"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/VpnFragment.kt"
+            line="89"
+            column="31"
+            startOffset="3512"
+            endLine="89"
+            endColumn="42"
+            endOffset="3523"/>
+    </incident>
+
+    <incident
+        id="NotifyDataSetChanged"
+        severity="warning"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/settings/SettingsAdapter.kt"
+            line="31"
+            column="9"
+            startOffset="1107"
+            endLine="31"
+            endColumn="31"
+            endOffset="1129"/>
+    </incident>
+
+    <incident
+        id="DataBindingWithoutKapt"
+        severity="warning"
+        message="If you plan to use data binding in a Kotlin project, you should apply the kotlin-kapt plugin.">
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="44"
+            column="9"
+            startOffset="1194"
+            endLine="44"
+            endColumn="27"
+            endOffset="1212"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.core:core-ktx than 1.13.1 is available: 1.19.0">
+        <fix-replace
+            description="Change to 1.19.0"
+            family="Update versions"
+            oldString="1.13.1"
+            replacement="1.19.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="53"
+            column="21"
+            startOffset="1491"
+            endLine="53"
+            endColumn="50"
+            endOffset="1520"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.8.0">
+        <fix-replace
+            description="Change to 1.8.0"
+            family="Update versions"
+            oldString="1.7.0"
+            replacement="1.8.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="54"
+            column="21"
+            startOffset="1543"
+            endLine="54"
+            endColumn="55"
+            endOffset="1577"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.material:material than 1.12.0 is available: 1.14.0">
+        <fix-replace
+            description="Change to 1.14.0"
+            family="Update versions"
+            oldString="1.12.0"
+            replacement="1.14.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="55"
+            column="21"
+            startOffset="1600"
+            endLine="55"
+            endColumn="64"
+            endOffset="1643"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.2">
+        <fix-replace
+            description="Change to 2.2.2"
+            family="Update versions"
+            oldString="2.1.4"
+            replacement="2.2.2"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="56"
+            column="21"
+            startOffset="1666"
+            endLine="56"
+            endColumn="69"
+            endOffset="1714"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.recyclerview:recyclerview than 1.3.2 is available: 1.4.0">
+        <fix-replace
+            description="Change to 1.4.0"
+            family="Update versions"
+            oldString="1.3.2"
+            replacement="1.4.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="57"
+            column="21"
+            startOffset="1737"
+            endLine="57"
+            endColumn="61"
+            endOffset="1777"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.fragment:fragment-ktx than 1.6.2 is available: 1.9.0">
+        <fix-replace
+            description="Change to 1.9.0"
+            family="Update versions"
+            oldString="1.6.2"
+            replacement="1.9.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="59"
+            column="21"
+            startOffset="1863"
+            endLine="59"
+            endColumn="57"
+            endOffset="1899"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-core than 1.8.1 is available: 1.10.2">
+        <fix-replace
+            description="Change to 1.10.2"
+            family="Update versions"
+            oldString="1.8.1"
+            replacement="1.10.2"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="60"
+            column="21"
+            startOffset="1922"
+            endLine="60"
+            endColumn="72"
+            endOffset="1973"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-android than 1.8.1 is available: 1.10.2">
+        <fix-replace
+            description="Change to 1.10.2"
+            family="Update versions"
+            oldString="1.8.1"
+            replacement="1.10.2"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="61"
+            column="21"
+            startOffset="1996"
+            endLine="61"
+            endColumn="75"
+            endOffset="2050"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.1 is available: 2.11.0">
+        <fix-replace
+            description="Change to 2.11.0"
+            family="Update versions"
+            oldString="2.8.1"
+            replacement="2.11.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="62"
+            column="21"
+            startOffset="2073"
+            endLine="62"
+            endColumn="67"
+            endOffset="2119"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.8.1 is available: 2.11.0">
+        <fix-replace
+            description="Change to 2.11.0"
+            family="Update versions"
+            oldString="2.8.1"
+            replacement="2.11.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="63"
+            column="21"
+            startOffset="2142"
+            endLine="63"
+            endColumn="69"
+            endOffset="2190"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.security:security-crypto than 1.1.0-alpha06 is available: 1.1.0">
+        <fix-replace
+            description="Change to 1.1.0"
+            family="Update versions"
+            oldString="1.1.0-alpha06"
+            replacement="1.1.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="64"
+            column="21"
+            startOffset="2213"
+            endLine="64"
+            endColumn="68"
+            endOffset="2260"/>
+    </incident>
+
+    <incident
+        id="KtxExtensionAvailable"
+        severity="informational"
+        message="Add suffix `-ktx` to enable the Kotlin extensions for this library">
+        <fix-replace
+            description="Replace with KTX dependency"
+            oldString="androidx.sqlite:sqlite"
+            replacement="androidx.sqlite:sqlite-ktx"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="66"
+            column="21"
+            startOffset="2350"
+            endLine="66"
+            endColumn="49"
+            endOffset="2378"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.sqlite:sqlite than 2.4.0 is available: 2.7.0">
+        <fix-replace
+            description="Change to 2.7.0"
+            family="Update versions"
+            oldString="2.4.0"
+            replacement="2.7.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="66"
+            column="21"
+            startOffset="2350"
+            endLine="66"
+            endColumn="49"
+            endOffset="2378"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.squareup.retrofit2:retrofit than 2.11.0 is available: 2.12.0">
+        <fix-replace
+            description="Change to 2.12.0"
+            family="Update versions"
+            oldString="2.11.0"
+            replacement="2.12.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="67"
+            column="21"
+            startOffset="2401"
+            endLine="67"
+            endColumn="59"
+            endOffset="2439"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.code.gson:gson than 2.10.1 is available: 2.11.0">
+        <fix-replace
+            description="Change to 2.11.0"
+            family="Update versions"
+            oldString="2.10.1"
+            replacement="2.11.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="69"
+            column="21"
+            startOffset="2529"
+            endLine="69"
+            endColumn="53"
+            endOffset="2561"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.firebase:firebase-messaging than 23.4.1 is available: 25.1.2">
+        <fix-replace
+            description="Change to 25.1.2"
+            family="Update versions"
+            oldString="23.4.1"
+            replacement="25.1.2"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="72"
+            column="21"
+            startOffset="2711"
+            endLine="72"
+            endColumn="66"
+            endOffset="2756"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.android.gms:play-services-auth than 20.7.0 is available: 22.0.0">
+        <fix-replace
+            description="Change to 22.0.0"
+            family="Update versions"
+            oldString="20.7.0"
+            replacement="22.0.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="73"
+            column="21"
+            startOffset="2779"
+            endLine="73"
+            endColumn="69"
+            endOffset="2827"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/bg_dark` with a theme that also paints a background (inferred theme is `@style/Theme.SecurityNav`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="7"
+            column="5"
+            startOffset="295"
+            endLine="7"
+            endColumn="40"
+            endOffset="330"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/bg_dark` with a theme that also paints a background (inferred theme is `@style/Theme.SecurityNav`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_register.xml"
+            line="6"
+            column="5"
+            startOffset="251"
+            endLine="6"
+            endColumn="40"
+            endOffset="286"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/bg_dark` with a theme that also paints a background (inferred theme is `@style/Theme.SecurityNav`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_settings.xml"
+            line="5"
+            column="5"
+            startOffset="195"
+            endLine="5"
+            endColumn="40"
+            endOffset="230"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/bg_dark` with a theme that also paints a background (inferred theme is `@style/Theme.SecurityNav`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_splash.xml"
+            line="7"
+            column="5"
+            startOffset="298"
+            endLine="7"
+            endColumn="40"
+            endOffset="333"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/bg_dark` with a theme that also paints a background (inferred theme is `@style/Theme.SecurityNav`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_guard.xml"
+            line="7"
+            column="5"
+            startOffset="261"
+            endLine="7"
+            endColumn="40"
+            endOffset="296"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/bg_dark` with a theme that also paints a background (inferred theme is `@style/Theme.SecurityNav`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_security_hub.xml"
+            line="6"
+            column="5"
+            startOffset="253"
+            endLine="6"
+            endColumn="40"
+            endOffset="288"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/bg_dark` with a theme that also paints a background (inferred theme is `@style/Theme.SecurityNav`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_vault.xml"
+            line="7"
+            column="5"
+            startOffset="261"
+            endLine="7"
+            endColumn="40"
+            endOffset="296"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/bg_dark` with a theme that also paints a background (inferred theme is `@style/Theme.SecurityNav`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_vpn.xml"
+            line="7"
+            column="5"
+            startOffset="261"
+            endLine="7"
+            endColumn="40"
+            endOffset="296"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/bg_dark` with a theme that also paints a background (inferred theme is `@style/Theme.SecurityNav`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/fragment_vulnerability_dashboard.xml"
+            line="5"
+            column="5"
+            startOffset="197"
+            endLine="5"
+            endColumn="40"
+            endOffset="232"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `#161D2F` with a theme that also paints a background (inferred theme is `@style/Theme.SecurityNav`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_app_traffic.xml"
+            line="8"
+            column="5"
+            startOffset="299"
+            endLine="8"
+            endColumn="33"
+            endOffset="327"/>
+    </incident>
+
+</incidents>

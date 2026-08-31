@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:2:1-59:12
-INJECTED from /app/applet/app/src/main/AndroidManifest.xml:2:1-59:12
-INJECTED from /app/applet/app/src/main/AndroidManifest.xml:2:1-59:12
-INJECTED from /app/applet/app/src/main/AndroidManifest.xml:2:1-59:12
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:2:1-58:12
+INJECTED from /app/applet/app/src/main/AndroidManifest.xml:2:1-58:12
+INJECTED from /app/applet/app/src/main/AndroidManifest.xml:2:1-58:12
+INJECTED from /app/applet/app/src/main/AndroidManifest.xml:2:1-58:12
 MERGED from [androidx.databinding:databinding-adapters:8.4.0] /opt/gradle/.gradle/caches/9.3.1/transforms/19e26a310deb1842cf1222bed121ed0c/transformed/databinding-adapters-8.4.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.databinding:databinding-ktx:8.4.0] /opt/gradle/.gradle/caches/9.3.1/transforms/0182b5dbd029d97c979182eedbd1eea5/transformed/jetified-databinding-ktx-8.4.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.databinding:databinding-runtime:8.4.0] /opt/gradle/.gradle/caches/9.3.1/transforms/3aca34df47b95e55519f69d01572c69c/transformed/databinding-runtime-8.4.0/AndroidManifest.xml:2:1-7:12
@@ -106,8 +106,12 @@ MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] /opt/
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] /opt/gradle/.gradle/caches/9.3.1/transforms/9a657c149e4226eadbd5998d52128406/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:25:5-67
 	android:name
 		ADDED from /app/applet/app/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:6:5-75
+	android:name
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:6:22-72
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:6:5-79
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:7:5-79
 MERGED from [com.google.firebase:firebase-messaging:23.4.1] /opt/gradle/.gradle/caches/9.3.1/transforms/0fd5e8578ec5c29fecf9fed0ba324b7f/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:22:5-79
 MERGED from [com.google.firebase:firebase-messaging:23.4.1] /opt/gradle/.gradle/caches/9.3.1/transforms/0fd5e8578ec5c29fecf9fed0ba324b7f/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:22:5-79
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.1.0] /opt/gradle/.gradle/caches/9.3.1/transforms/37f625a1cba11f255dc7f5a9bcecdbb0/transformed/jetified-play-services-cloud-messaging-17.1.0/AndroidManifest.xml:7:5-79
@@ -119,32 +123,24 @@ MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] /opt/
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] /opt/gradle/.gradle/caches/9.3.1/transforms/fc956e6a1e8450c04a7042b90c60dac9/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:22:5-79
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] /opt/gradle/.gradle/caches/9.3.1/transforms/fc956e6a1e8450c04a7042b90c60dac9/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:22:5-79
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:6:22-76
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:7:22-76
 uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:7:5-77
-MERGED from [com.google.firebase:firebase-messaging:23.4.1] /opt/gradle/.gradle/caches/9.3.1/transforms/0fd5e8578ec5c29fecf9fed0ba324b7f/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:23:5-77
-MERGED from [com.google.firebase:firebase-messaging:23.4.1] /opt/gradle/.gradle/caches/9.3.1/transforms/0fd5e8578ec5c29fecf9fed0ba324b7f/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:23:5-77
-	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:7:22-74
-uses-permission#android.permission.FOREGROUND_SERVICE
 ADDED from /app/applet/app/src/main/AndroidManifest.xml:8:5-77
+MERGED from [com.google.firebase:firebase-messaging:23.4.1] /opt/gradle/.gradle/caches/9.3.1/transforms/0fd5e8578ec5c29fecf9fed0ba324b7f/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:23:5-77
+MERGED from [com.google.firebase:firebase-messaging:23.4.1] /opt/gradle/.gradle/caches/9.3.1/transforms/0fd5e8578ec5c29fecf9fed0ba324b7f/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:23:5-77
 	android:name
 		ADDED from /app/applet/app/src/main/AndroidManifest.xml:8:22-74
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:9:5-77
+	android:name
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:9:22-74
 uses-permission#android.permission.FOREGROUND_SERVICE_SPECIAL_USE
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:9:5-89
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:10:5-89
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:9:22-86
-uses-permission#android.permission.BIND_ACCESSIBILITY_SERVICE
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:10:5-85
-	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:10:22-82
-uses-permission#android.permission.BIND_VPN_SERVICE
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:11:5-75
-	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:11:22-72
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:10:22-86
 application
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:13:5-58:19
-INJECTED from /app/applet/app/src/main/AndroidManifest.xml:13:5-58:19
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:12:5-57:19
+INJECTED from /app/applet/app/src/main/AndroidManifest.xml:12:5-57:19
 MERGED from [com.airbnb.android:lottie:6.4.0] /opt/gradle/.gradle/caches/9.3.1/transforms/649590d29c657093156a1873e87bcc6f/transformed/jetified-lottie-6.4.0/AndroidManifest.xml:7:5-20
 MERGED from [com.airbnb.android:lottie:6.4.0] /opt/gradle/.gradle/caches/9.3.1/transforms/649590d29c657093156a1873e87bcc6f/transformed/jetified-lottie-6.4.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.material:material:1.12.0] /opt/gradle/.gradle/caches/9.3.1/transforms/c76a79ec3abfc269f6f219bba1be8c58/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
@@ -200,95 +196,95 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /opt/gradle/.gradle/caches/
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] /opt/gradle/.gradle/caches/9.3.1/transforms/5166e0ba6fe27ecde5ac337da71419b5/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:19:9-35
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:18:9-35
 	android:label
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:17:9-41
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:16:9-41
 	android:roundIcon
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:18:9-54
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:17:9-54
 	android:icon
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:16:9-43
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:15:9-43
 	android:allowBackup
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:15:9-36
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:14:9-36
 	android:theme
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:20:9-49
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:19:9-49
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:14:9-39
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:13:9-39
 activity#com.securitynav.security.ui.SplashActivity
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:22:9-27:20
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:21:9-26:20
 	android:exported
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:22:53-76
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:21:53-76
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:22:19-52
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:21:19-52
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:23:13-26:29
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:22:13-25:29
 action#android.intent.action.MAIN
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:24:17-69
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:23:17-69
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:24:25-66
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:23:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:25:17-77
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:24:17-77
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:25:27-74
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:24:27-74
 activity#com.securitynav.security.ui.MainActivity
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:29:9-78
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:28:9-78
 	android:exported
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:29:51-75
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:28:51-75
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:29:19-50
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:28:19-50
 activity#com.securitynav.security.ui.RegisterActivity
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:29:9-82
+	android:exported
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:29:55-79
+	android:name
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:29:19-54
+activity#com.securitynav.security.ui.SettingsActivity
 ADDED from /app/applet/app/src/main/AndroidManifest.xml:30:9-82
 	android:exported
 		ADDED from /app/applet/app/src/main/AndroidManifest.xml:30:55-79
 	android:name
 		ADDED from /app/applet/app/src/main/AndroidManifest.xml:30:19-54
-activity#com.securitynav.security.ui.SettingsActivity
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:31:9-82
-	android:exported
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:31:55-79
-	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:31:19-54
 service#com.securitynav.security.vpn.LocalVpnService
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:33:9-41:19
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:32:9-40:19
 	android:exported
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:36:13-37
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:35:13-37
 	android:permission
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:35:13-69
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:34:13-69
 	android:foregroundServiceType
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:37:13-55
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:36:13-55
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:34:13-48
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:33:13-48
 intent-filter#action:name:android.net.VpnService
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:38:13-40:29
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:37:13-39:29
 action#android.net.VpnService
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:39:17-65
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:38:17-65
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:39:25-62
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:38:25-62
 service#com.securitynav.security.services.AccessibilityMonitoringService
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:43:9-50:19
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:42:9-49:19
 	android:exported
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:46:13-37
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:45:13-37
 	android:permission
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:45:13-79
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:44:13-79
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:44:13-68
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:43:13-68
 intent-filter#action:name:android.accessibilityservice.AccessibilityService
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:47:13-49:29
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:46:13-48:29
 action#android.accessibilityservice.AccessibilityService
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:48:17-92
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:47:17-92
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:48:25-89
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:47:25-89
 service#com.securitynav.security.notifications.SecurityFirebaseMessagingService
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:51:9-57:19
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:50:9-56:19
 	android:exported
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:53:13-36
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:52:13-36
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:52:13-75
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:51:13-75
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:54:13-56:29
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:53:13-55:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from /app/applet/app/src/main/AndroidManifest.xml:55:17-78
+ADDED from /app/applet/app/src/main/AndroidManifest.xml:54:17-78
 	android:name
-		ADDED from /app/applet/app/src/main/AndroidManifest.xml:55:25-75
+		ADDED from /app/applet/app/src/main/AndroidManifest.xml:54:25-75
 uses-sdk
 INJECTED from /app/applet/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /app/applet/app/src/main/AndroidManifest.xml

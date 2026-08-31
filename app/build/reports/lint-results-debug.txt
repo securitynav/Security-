@@ -1,0 +1,600 @@
+/app/applet/app/src/main/java/com/securitynav/security/ui/SplashActivity.kt:11: Warning: The application should not provide its own launch screen [CustomSplashScreen]
+class SplashActivity : AppCompatActivity() {
+      ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "CustomSplashScreen":
+   Starting in Android 12 (API 31+), the application's Launch Screen is
+   provided by the system and the application should not create its own,
+   otherwise the user will see two splashscreens. Please check the
+   SplashScreen class to check how the Splash Screen can be controlled and
+   customized.
+
+   https://developer.android.com/guide/topics/ui/splash-screen
+
+/app/applet/app/src/main/java/com/securitynav/security/engine/AntivirusEngine.kt:20: Warning: As of Android 11, this method no longer returns information about all apps; see https://g.co/dev/packagevisibility for details [QueryPermissionsNeeded]
+        val installedApps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "QueryPermissionsNeeded":
+   Apps that target Android 11 cannot query or interact with other installed
+   apps by default. If you need to query or interact with other installed
+   apps, you may need to add a <queries> declaration in your manifest.
+
+   As a corollary, the methods PackageManager#getInstalledPackages and
+   PackageManager#getInstalledApplications will no longer return information
+   about all installed apps. To query specific apps or types of apps, you can
+   use methods like PackageManager#getPackageInfo or
+   PackageManager#queryIntentActivities.
+
+   https://g.co/dev/packagevisibility
+
+/app/applet/app/build.gradle.kts:53: Warning: A newer version of androidx.core:core-ktx than 1.13.1 is available: 1.19.0 [GradleDependency]
+    implementation("androidx.core:core-ktx:1.13.1")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:54: Warning: A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.8.0 [GradleDependency]
+    implementation("androidx.appcompat:appcompat:1.7.0")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:55: Warning: A newer version of com.google.android.material:material than 1.12.0 is available: 1.14.0 [GradleDependency]
+    implementation("com.google.android.material:material:1.12.0")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:56: Warning: A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.2 [GradleDependency]
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:57: Warning: A newer version of androidx.recyclerview:recyclerview than 1.3.2 is available: 1.4.0 [GradleDependency]
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:59: Warning: A newer version of androidx.fragment:fragment-ktx than 1.6.2 is available: 1.9.0 [GradleDependency]
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:60: Warning: A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-core than 1.8.1 is available: 1.10.2 [GradleDependency]
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:61: Warning: A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-android than 1.8.1 is available: 1.10.2 [GradleDependency]
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:62: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.1 is available: 2.11.0 [GradleDependency]
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.1")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:63: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.8.1 is available: 2.11.0 [GradleDependency]
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:64: Warning: A newer version of androidx.security:security-crypto than 1.1.0-alpha06 is available: 1.1.0 [GradleDependency]
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:66: Warning: A newer version of androidx.sqlite:sqlite than 2.4.0 is available: 2.7.0 [GradleDependency]
+    implementation("androidx.sqlite:sqlite:2.4.0")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:67: Warning: A newer version of com.squareup.retrofit2:retrofit than 2.11.0 is available: 2.12.0 [GradleDependency]
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:69: Warning: A newer version of com.google.code.gson:gson than 2.10.1 is available: 2.11.0 [GradleDependency]
+    implementation("com.google.code.gson:gson:2.10.1")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:72: Warning: A newer version of com.google.firebase:firebase-messaging than 23.4.1 is available: 25.1.2 [GradleDependency]
+    implementation("com.google.firebase:firebase-messaging:23.4.1")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/build.gradle.kts:73: Warning: A newer version of com.google.android.gms:play-services-auth than 20.7.0 is available: 22.0.0 [GradleDependency]
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+/app/applet/app/src/main/java/com/securitynav/security/SecurityNavApp.kt:57: Warning: Switch statement on an int with known associated constant missing case ComponentCallbacks2.TRIM_MEMORY_BACKGROUND, ComponentCallbacks2.TRIM_MEMORY_MODERATE [SwitchIntDef]
+        when (level) {
+        ~~~~
+
+   Explanation for issues of type "SwitchIntDef":
+   This check warns if a switch statement does not explicitly include all the
+   values declared by the typedef @IntDef declaration.
+
+/app/applet/app/build.gradle.kts:44: Warning: If you plan to use data binding in a Kotlin project, you should apply the kotlin-kapt plugin. [DataBindingWithoutKapt]
+        dataBinding = true
+        ~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "DataBindingWithoutKapt":
+   Apps that use Kotlin and data binding should also apply the kotlin-kapt
+   plugin.
+
+   https://kotlinlang.org/docs/reference/kapt.html
+
+/app/applet/app/src/main/AndroidManifest.xml:50: Warning: Exported service does not require permission [ExportedService]
+        <service
+         ~~~~~~~
+
+   Explanation for issues of type "ExportedService":
+   Exported services (services which either set exported=true or contain an
+   intent-filter and do not specify exported=false) should define a permission
+   that an entity must have in order to launch the service or bind to it.
+   Without this, any application can use this service.
+
+   https://goo.gle/ExportedService
+
+/app/applet/app/src/main/AndroidManifest.xml:14: Warning: The attribute android:allowBackup is deprecated from Android 12 and higher and may be removed in future versions. Consider adding the attribute android:dataExtractionRules specifying an @xml resource which configures cloud backups and device transfers on Android 12 and higher. [DataExtractionRules]
+        android:allowBackup="false"
+                             ~~~~~
+
+   Explanation for issues of type "DataExtractionRules":
+   Before Android 12, the attributes android:allowBackup and
+   android:fullBackupContent were used to configure all forms of backup,
+   including cloud backups, device-to-device transfers and adb backup.
+
+   In Android 12 and higher, these attributes have been deprecated and will
+   only apply to cloud backups. You should instead use the attribute
+   android:dataExtractionRules, specifying an @xml resource that configures
+   which files to back up, for cloud backups and for device-to-device
+   transfers, separately. If your minSdkVersion supports older versions,
+   you'll still want to specify an android:fullBackupContent resource if the
+   default behavior is not right for your app.
+
+   https://developer.android.com/about/versions/12/backup-restore#xml-changes
+   https://goo.gle/DataExtractionRules
+
+/app/applet/app/src/main/java/com/securitynav/security/ui/settings/SettingsAdapter.kt:31: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged()
+        ~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "NotifyDataSetChanged":
+   The RecyclerView adapter's onNotifyDataSetChanged method does not specify
+   what about the data set has changed, forcing any observers to assume that
+   all existing items and structure may no longer be valid. `LayoutManager`s
+   will be forced to fully rebind and relayout all visible views.
+
+/app/applet/app/src/main/java/com/securitynav/security/notifications/NotificationHelper.kt:28: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/services/SecurityMonitorService.kt:32: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/SecurityNavApp.kt:23: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/notifications/SecurityNotificationManager.kt:19: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/VpnFragment.kt:71: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/mipmap-anydpi-v26: Warning: This folder configuration (v26) is unnecessary; minSdkVersion is 26. Merge all the resources in this folder into mipmap-anydpi. [ObsoleteSdkInt]
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+/app/applet/app/src/main/res/layout/activity_main.xml:7: Warning: Possible overdraw: Root element paints background @color/bg_dark with a theme that also paints a background (inferred theme is @style/Theme.SecurityNav) [Overdraw]
+    android:background="@color/bg_dark">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_register.xml:6: Warning: Possible overdraw: Root element paints background @color/bg_dark with a theme that also paints a background (inferred theme is @style/Theme.SecurityNav) [Overdraw]
+    android:background="@color/bg_dark">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_settings.xml:5: Warning: Possible overdraw: Root element paints background @color/bg_dark with a theme that also paints a background (inferred theme is @style/Theme.SecurityNav) [Overdraw]
+    android:background="@color/bg_dark">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_splash.xml:7: Warning: Possible overdraw: Root element paints background @color/bg_dark with a theme that also paints a background (inferred theme is @style/Theme.SecurityNav) [Overdraw]
+    android:background="@color/bg_dark"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_guard.xml:7: Warning: Possible overdraw: Root element paints background @color/bg_dark with a theme that also paints a background (inferred theme is @style/Theme.SecurityNav) [Overdraw]
+    android:background="@color/bg_dark">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_security_hub.xml:6: Warning: Possible overdraw: Root element paints background @color/bg_dark with a theme that also paints a background (inferred theme is @style/Theme.SecurityNav) [Overdraw]
+    android:background="@color/bg_dark"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_vault.xml:7: Warning: Possible overdraw: Root element paints background @color/bg_dark with a theme that also paints a background (inferred theme is @style/Theme.SecurityNav) [Overdraw]
+    android:background="@color/bg_dark">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_vpn.xml:7: Warning: Possible overdraw: Root element paints background @color/bg_dark with a theme that also paints a background (inferred theme is @style/Theme.SecurityNav) [Overdraw]
+    android:background="@color/bg_dark">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_vulnerability_dashboard.xml:5: Warning: Possible overdraw: Root element paints background @color/bg_dark with a theme that also paints a background (inferred theme is @style/Theme.SecurityNav) [Overdraw]
+    android:background="@color/bg_dark"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/item_app_traffic.xml:8: Warning: Possible overdraw: Root element paints background #161D2F with a theme that also paints a background (inferred theme is @style/Theme.SecurityNav) [Overdraw]
+    android:background="#161D2F"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "Overdraw":
+   If you set a background drawable on a root view, then you should use a
+   custom theme where the theme background is null. Otherwise, the theme
+   background will be painted first, only to have your custom background
+   completely cover it; this is called "overdraw".
+
+   NOTE: This detector relies on figuring out which layouts are associated
+   with which activities based on scanning the Java code, and it's currently
+   doing that using an inexact pattern matching algorithm. Therefore, it can
+   incorrectly conclude which activity the layout is associated with and then
+   wrongly complain that a background-theme is hidden.
+
+   If you want your custom background on multiple pages, then you should
+   consider making a custom theme with your custom background and just using
+   that theme instead of a root element background.
+
+   Of course it's possible that your custom drawable is translucent and you
+   want it to be mixed with the background. However, you will get better
+   performance if you pre-mix the background with your drawable and use that
+   resulting image or color as a custom theme background instead.
+
+/app/applet/app/src/main/res/xml/accessibility_config.xml:2: Warning: The resource R.xml.accessibility_config appears to be unused [UnusedResources]
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+^
+/app/applet/app/src/main/res/drawable/bg_glass_card.xml:2: Warning: The resource R.drawable.bg_glass_card appears to be unused [UnusedResources]
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+^
+/app/applet/app/src/main/res/values/colors.xml:13: Warning: The resource R.color.on_primary appears to be unused [UnusedResources]
+    <color name="on_primary">#000000</color>
+           ~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/colors.xml:14: Warning: The resource R.color.on_secondary appears to be unused [UnusedResources]
+    <color name="on_secondary">#000000</color>
+           ~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/drawer_menu.xml:2: Warning: The resource R.menu.drawer_menu appears to be unused [UnusedResources]
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/app/applet/app/src/main/res/values/strings.xml:6: Warning: The resource R.string.main_title appears to be unused [UnusedResources]
+    <string name="main_title">SECURITY NAV</string>
+            ~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/strings.xml:7: Warning: The resource R.string.action_start_vpn appears to be unused [UnusedResources]
+    <string name="action_start_vpn">Iniciar VPN</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/strings.xml:8: Warning: The resource R.string.action_stop_vpn appears to be unused [UnusedResources]
+    <string name="action_stop_vpn">Detener VPN</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/strings.xml:9: Warning: The resource R.string.action_diagnostics appears to be unused [UnusedResources]
+    <string name="action_diagnostics">Diagnósticos</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/strings.xml:10: Warning: The resource R.string.action_about appears to be unused [UnusedResources]
+    <string name="action_about">Acerca de</string>
+            ~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/strings.xml:11: Warning: The resource R.string.card_heuristics appears to be unused [UnusedResources]
+    <string name="card_heuristics">Análisis Heurístico y Red Móvil</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/strings.xml:12: Warning: The resource R.string.card_interface_protection appears to be unused [UnusedResources]
+    <string name="card_interface_protection">Protección de Interfaz y Permisos</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/strings.xml:13: Warning: The resource R.string.card_vpn_inspection appears to be unused [UnusedResources]
+    <string name="card_vpn_inspection">VPN Local e Inspección de Paquetes por App</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/strings.xml:14: Warning: The resource R.string.btn_view_charts appears to be unused [UnusedResources]
+    <string name="btn_view_charts">ABRIR GRÁFICAS DE TRÁFICO EN TIEMPO REAL</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/strings.xml:17: Warning: The resource R.string.diagnostics_title appears to be unused [UnusedResources]
+    <string name="diagnostics_title">Diagnósticos de Red</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/strings.xml:18: Warning: The resource R.string.about_title appears to be unused [UnusedResources]
+    <string name="about_title">Acerca de SecurityNav</string>
+            ~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/strings.xml:19: Warning: The resource R.string.about_message appears to be unused [UnusedResources]
+    <string name="about_message">SecurityNav v1.0\nProtección local ligera\nContacto: soporte@securitynav.local</string>
+            ~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/styles.xml:4: Warning: The resource R.style.Widget_SecurityNav_GlassCard appears to be unused [UnusedResources]
+    <style name="Widget.SecurityNav.GlassCard" parent="Widget.MaterialComponents.CardView">
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/values/styles.xml:12: Warning: The resource R.style.Widget_SecurityNav_Button_Transparent appears to be unused [UnusedResources]
+    <style name="Widget.SecurityNav.Button.Transparent" parent="Widget.MaterialComponents.Button">
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+/app/applet/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml:2: Warning: The application adaptive icon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/app/applet/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml:2: Warning: The application adaptive roundIcon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+
+   Explanation for issues of type "MonochromeLauncherIcon":
+   If android:roundIcon and android:icon are both in your manifest, you must
+   either remove the reference to android:roundIcon if it is not needed; or,
+   supply the monochrome icon in the drawable defined by the android:roundIcon
+   and android:icon attribute.
+
+   For example, if android:roundIcon and android:icon are both in the
+   manifest, a launcher might choose to use android:roundIcon over
+   android:icon to display the adaptive app icon. Therefore, your themed
+   application iconwill not show if your monochrome attribute is not also
+   specified in android:roundIcon.
+
+/app/applet/app/src/main/res/layout/item_app_traffic.xml:63: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+            android:textSize="10sp" />
+            ~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SmallSp":
+   Avoid using sizes smaller than 11sp.
+
+/app/applet/app/build.gradle.kts:66: Information: Add suffix -ktx to enable the Kotlin extensions for this library [KtxExtensionAvailable]
+    implementation("androidx.sqlite:sqlite:2.4.0")
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "KtxExtensionAvailable":
+   Android KTX extensions augment some libraries with support for modern
+   Kotlin language features like extension functions, extension properties,
+   lambdas, named parameters, coroutines, and more.
+
+   In Kotlin projects, use the KTX version of a library by replacing the
+   dependency in your build.gradle file. For example, you can replace
+   androidx.fragment:fragment with androidx.fragment:fragment-ktx.
+
+   https://developer.android.com/kotlin/ktx
+
+/app/applet/app/src/main/res/layout/activity_main.xml:29: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+         ~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_splash.xml:10: Warning: Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+     ~~~~~~~~~
+/app/applet/app/src/main/res/layout/item_app_traffic.xml:11: Warning: Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+     ~~~~~~~~~
+
+   Explanation for issues of type "ContentDescription":
+   Non-textual widgets like ImageViews and ImageButtons should use the
+   contentDescription attribute to specify a textual description of the widget
+   such that screen readers and other accessibility tools can adequately
+   describe the user interface.
+
+   Note that elements in application screens that are purely decorative and do
+   not provide any content or enable a user action should not have
+   accessibility content descriptions. In this case, set their descriptions to
+   @null. If your app's minSdkVersion is 16 or higher, you can instead set
+   these graphical elements' android:importantForAccessibility attributes to
+   no.
+
+   Note that for text fields, you should not set both the hint and the
+   contentDescription attributes since the hint will never be shown. Just set
+   the hint.
+
+   https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases
+
+/app/applet/app/src/main/java/com/securitynav/security/ui/RegisterActivity.kt:49: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                tvPromoStatus.text = "Verifying..."
+                                      ~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/RegisterActivity.kt:59: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                                tvPromoStatus.text = "Success: \${body.message} (-\${body.discountValue}%)"
+                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/RegisterActivity.kt:59: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                                tvPromoStatus.text = "Success: \${body.message} (-\${body.discountValue}%)"
+                                                      ~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/RegisterActivity.kt:59: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                                tvPromoStatus.text = "Success: \${body.message} (-\${body.discountValue}%)"
+                                                                 ~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/RegisterActivity.kt:59: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                                tvPromoStatus.text = "Success: \${body.message} (-\${body.discountValue}%)"
+                                                                                    ~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/RegisterActivity.kt:62: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                                tvPromoStatus.text = "Invalid Code: \${body.message}"
+                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/RegisterActivity.kt:62: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                                tvPromoStatus.text = "Invalid Code: \${body.message}"
+                                                      ~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/RegisterActivity.kt:62: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                                tvPromoStatus.text = "Invalid Code: \${body.message}"
+                                                                      ~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/RegisterActivity.kt:66: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                            tvPromoStatus.text = "Server Error: Could not validate code"
+                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/RegisterActivity.kt:71: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                        tvPromoStatus.text = "Promo applied successfully! (Mock)"
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/SecurityHubFragment.kt:25: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        tvStatus.text = "System Status: SECURE"
+                         ~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/SecurityHubFragment.kt:28: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        tvBandwidth.text = "Bandwidth: 1.2 MB/s | Scanning active"
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/VpnFragment.kt:82: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            tvStatus.text = "VPN Status: CONNECTED"
+                             ~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/VpnFragment.kt:84: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            btnToggle.text = "Disconnect VPN"
+                              ~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/VpnFragment.kt:87: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            tvStatus.text = "VPN Status: DISCONNECTED"
+                             ~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/java/com/securitynav/security/ui/VpnFragment.kt:89: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            btnToggle.text = "Connect VPN"
+                              ~~~~~~~~~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+/app/applet/app/src/main/res/layout/activity_main.xml:24: Warning: Hardcoded string "SecurityNav", should use @string resource [HardcodedText]
+            android:text="SecurityNav"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_register.xml:18: Warning: Hardcoded string "Create Account", should use @string resource [HardcodedText]
+            android:text="Create Account"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_register.xml:37: Warning: Hardcoded string "Full Name", should use @string resource [HardcodedText]
+                android:hint="Full Name"
+                ~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_register.xml:54: Warning: Hardcoded string "Email Address", should use @string resource [HardcodedText]
+                android:hint="Email Address"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_register.xml:73: Warning: Hardcoded string "Secure Password", should use @string resource [HardcodedText]
+                android:hint="Secure Password"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_register.xml:97: Warning: Hardcoded string "Promo / Referral Code", should use @string resource [HardcodedText]
+                    android:hint="Promo / Referral Code"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_register.xml:107: Warning: Hardcoded string "Apply", should use @string resource [HardcodedText]
+                android:text="Apply"
+                ~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_register.xml:126: Warning: Hardcoded string "Sign Up", should use @string resource [HardcodedText]
+            android:text="Sign Up"
+            ~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_register.xml:135: Warning: Hardcoded string "Continue with Google", should use @string resource [HardcodedText]
+            android:text="Continue with Google"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_settings.xml:16: Warning: Hardcoded string "Basic Configuration", should use @string resource [HardcodedText]
+            android:text="Basic Configuration"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_settings.xml:26: Warning: Hardcoded string "Real-time Security Notifications", should use @string resource [HardcodedText]
+            android:text="Real-time Security Notifications"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_settings.xml:33: Warning: Hardcoded string "Cyberpunk OLED Theme", should use @string resource [HardcodedText]
+            android:text="Cyberpunk OLED Theme"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_settings.xml:40: Warning: Hardcoded string "Background Scan Frequency", should use @string resource [HardcodedText]
+            android:text="Background Scan Frequency"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_settings.xml:59: Warning: Hardcoded string "Advanced Configuration", should use @string resource [HardcodedText]
+            android:text="Advanced Configuration"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_settings.xml:69: Warning: Hardcoded string "Rotate SQLCipher Keys", should use @string resource [HardcodedText]
+            android:text="Rotate SQLCipher Keys"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_settings.xml:77: Warning: Hardcoded string "VPN App Exclusions", should use @string resource [HardcodedText]
+            android:text="VPN App Exclusions"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_settings.xml:85: Warning: Hardcoded string "Packet Inspection Verbosity", should use @string resource [HardcodedText]
+            android:text="Packet Inspection Verbosity"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_settings.xml:99: Warning: Hardcoded string "Anti-tampering / Root Check", should use @string resource [HardcodedText]
+            android:text="Anti-tampering / Root Check"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_settings.xml:107: Warning: Hardcoded string "Cerrar Sesión / Logout", should use @string resource [HardcodedText]
+            android:text="Cerrar Sesión / Logout"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/activity_splash.xml:25: Warning: Hardcoded string "SecurityNav", should use @string resource [HardcodedText]
+        android:text="SecurityNav"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/bottom_nav_menu.xml:6: Warning: Hardcoded string "Hub", should use @string resource [HardcodedText]
+        android:title="Hub" />
+        ~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/bottom_nav_menu.xml:10: Warning: Hardcoded string "Analytics", should use @string resource [HardcodedText]
+        android:title="Analytics" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/bottom_nav_menu.xml:14: Warning: Hardcoded string "VPN", should use @string resource [HardcodedText]
+        android:title="VPN" />
+        ~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/bottom_nav_menu.xml:18: Warning: Hardcoded string "Guard", should use @string resource [HardcodedText]
+        android:title="Guard" />
+        ~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/bottom_nav_menu.xml:22: Warning: Hardcoded string "Vault", should use @string resource [HardcodedText]
+        android:title="Vault" />
+        ~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/custom_tuner_container.xml:22: Warning: Hardcoded string "TUNER DE RED & ANCHO DE BANDA", should use @string resource [HardcodedText]
+            android:text="TUNER DE RED &amp; ANCHO DE BANDA"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/drawer_menu.xml:6: Warning: Hardcoded string "Panel de Gráficos (MPAndroidChart)", should use @string resource [HardcodedText]
+            android:title="Panel de Gráficos (MPAndroidChart)" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/drawer_menu.xml:9: Warning: Hardcoded string "Configuración de Red y Conexiones", should use @string resource [HardcodedText]
+            android:title="Configuración de Red y Conexiones" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/drawer_menu.xml:12: Warning: Hardcoded string "Centro de Ayuda / FAQ", should use @string resource [HardcodedText]
+            android:title="Centro de Ayuda / FAQ" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/drawer_menu.xml:15: Warning: Hardcoded string "Iniciar Servicio VPN", should use @string resource [HardcodedText]
+            android:title="Iniciar Servicio VPN" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/drawer_menu.xml:18: Warning: Hardcoded string "Detener Servicio VPN", should use @string resource [HardcodedText]
+            android:title="Detener Servicio VPN" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/drawer_menu.xml:21: Warning: Hardcoded string "Herramientas de Diagnóstico", should use @string resource [HardcodedText]
+            android:title="Herramientas de Diagnóstico" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/drawer_menu.xml:24: Warning: Hardcoded string "Acerca de SecurityNav", should use @string resource [HardcodedText]
+            android:title="Acerca de SecurityNav" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/drawer_menu.xml:27: Warning: Hardcoded string "Soporte y Reporte", should use @string resource [HardcodedText]
+            android:title="Soporte y Reporte" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/menu/drawer_menu.xml:30: Warning: Hardcoded string "Cerrar Sesión (Bloquear App)", should use @string resource [HardcodedText]
+            android:title="Cerrar Sesión (Bloquear App)" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_guard.xml:12: Warning: Hardcoded string "Accessibility Guard", should use @string resource [HardcodedText]
+        android:text="Accessibility Guard"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_guard.xml:21: Warning: Hardcoded string "Monitors active screen overlays and window changes to prevent unauthorized access and tampering.", should use @string resource [HardcodedText]
+        android:text="Monitors active screen overlays and window changes to prevent unauthorized access and tampering."
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_guard.xml:32: Warning: Hardcoded string "Enable in Settings", should use @string resource [HardcodedText]
+        android:text="Enable in Settings"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_security_hub.xml:21: Warning: Hardcoded string "System Status: SECURE", should use @string resource [HardcodedText]
+        android:text="System Status: SECURE"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_security_hub.xml:31: Warning: Hardcoded string "Bandwidth: --", should use @string resource [HardcodedText]
+        android:text="Bandwidth: --"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_vault.xml:12: Warning: Hardcoded string "Key Vault (SQLCipher)", should use @string resource [HardcodedText]
+        android:text="Key Vault (SQLCipher)"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_vault.xml:21: Warning: Hardcoded string "Highly encrypted storage for API keys and sensitive security events using SQLCipher 256-bit AES.", should use @string resource [HardcodedText]
+        android:text="Highly encrypted storage for API keys and sensitive security events using SQLCipher 256-bit AES."
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_vault.xml:32: Warning: Hardcoded string "Unlock Vault", should use @string resource [HardcodedText]
+        android:text="Unlock Vault"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_vpn.xml:13: Warning: Hardcoded string "Private Local VPN", should use @string resource [HardcodedText]
+        android:text="Private Local VPN"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_vpn.xml:22: Warning: Hardcoded string "VPN Status: DISCONNECTED", should use @string resource [HardcodedText]
+        android:text="VPN Status: DISCONNECTED"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_vpn.xml:32: Warning: Hardcoded string "Connect VPN", should use @string resource [HardcodedText]
+        android:text="Connect VPN"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_vulnerability_dashboard.xml:12: Warning: Hardcoded string "Vulnerability Trends", should use @string resource [HardcodedText]
+        android:text="Vulnerability Trends"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/fragment_vulnerability_dashboard.xml:21: Warning: Hardcoded string "Visualizing common vulnerability occurrences over time.", should use @string resource [HardcodedText]
+        android:text="Visualizing common vulnerability occurrences over time."
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/item_app_traffic.xml:28: Warning: Hardcoded string "Nombre App", should use @string resource [HardcodedText]
+            android:text="Nombre App"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/item_app_traffic.xml:37: Warning: Hardcoded string "com.example.app", should use @string resource [HardcodedText]
+            android:text="com.example.app"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/item_app_traffic.xml:52: Warning: Hardcoded string "0 KB", should use @string resource [HardcodedText]
+            android:text="0 KB"
+            ~~~~~~~~~~~~~~~~~~~
+/app/applet/app/src/main/res/layout/item_app_traffic.xml:61: Warning: Hardcoded string "HTTP/GET", should use @string resource [HardcodedText]
+            android:text="HTTP/GET"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "HardcodedText":
+   Hardcoding text attributes directly in layout files is bad for several
+   reasons:
+
+   * When creating configuration variations (for example for landscape or
+   portrait) you have to repeat the actual text (and keep it up to date when
+   making changes)
+
+   * The application cannot be translated to other languages by just adding
+   new translations for existing string resources.
+
+   There are quickfixes to automatically extract this hardcoded string into a
+   resource lookup.
+
+0 errors, 132 warnings

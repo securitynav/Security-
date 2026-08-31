@@ -6,6 +6,7 @@ import android.telephony.TelephonyManager
 class CellAnomalyDetector(private val context: Context) {
     private val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 
+    @android.annotation.SuppressLint("MissingPermission")
     fun isDangerousDowngrade(): Boolean {
         val networkType = telephonyManager.networkType
         // Detectar si la red cambia abruptamente a tecnologías sin cifrado fuerte (GSM/2G/GPRS/EDGE)

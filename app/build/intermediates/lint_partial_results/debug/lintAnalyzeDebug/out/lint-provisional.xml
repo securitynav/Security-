@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.4.0" type="conditional_incidents">
+
+    <incident
+        id="QueryPermissionsNeeded"
+        severity="warning"
+        message="As of Android 11, this method no longer returns information about all apps; see https://g.co/dev/packagevisibility for details">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/engine/AntivirusEngine.kt"
+            line="20"
+            column="44"
+            startOffset="612"
+            endLine="20"
+            endColumn="68"
+            endOffset="636"/>
+        <map>
+            <entry
+                name="queryAll"
+                boolean="true"/>
+        </map>
+    </incident>
+
+    <incident
+        id="NotificationPermission"
+        severity="error"
+        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission">
+        <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/notifications/NotificationHelper.kt"
+            line="101"
+            column="13"
+            startOffset="4278"
+            endLine="101"
+            endColumn="92"
+            endOffset="4357"/>
+    </incident>
+
+    <incident
+        id="NotificationPermission"
+        severity="error"
+        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission">
+        <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/notifications/NotificationHelper.kt"
+            line="124"
+            column="13"
+            startOffset="5222"
+            endLine="124"
+            endColumn="92"
+            endOffset="5301"/>
+    </incident>
+
+    <incident
+        id="NotificationPermission"
+        severity="error"
+        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission">
+        <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/notifications/SecurityFirebaseMessagingService.kt"
+            line="59"
+            column="9"
+            startOffset="2219"
+            endLine="59"
+            endColumn="69"
+            endOffset="2279"/>
+    </incident>
+
+    <incident
+        id="NotificationPermission"
+        severity="error"
+        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission">
+        <fix-data missing="android.permission.POST_NOTIFICATIONS"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/notifications/SecurityNotificationManager.kt"
+            line="42"
+            column="9"
+            startOffset="1511"
+            endLine="42"
+            endColumn="73"
+            endOffset="1575"/>
+    </incident>
+
+    <incident
+        id="CustomSplashScreen"
+        severity="warning"
+        message="The application should not provide its own launch screen">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/securitynav/security/ui/SplashActivity.kt"
+            line="11"
+            column="7"
+            startOffset="281"
+            endLine="11"
+            endColumn="21"
+            endOffset="295"/>
+        <map>
+            <condition targetGE="31"/>
+        </map>
+    </incident>
+
+</incidents>
