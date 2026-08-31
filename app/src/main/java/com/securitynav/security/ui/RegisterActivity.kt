@@ -13,9 +13,9 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val lottieSuccess = findViewById<LottieAnimationView>(R.id.binding.lottieSuccess)
-        binding.lottieSuccess?.visibility = View.VISIBLE
-        binding.lottieSuccess?.playAnimation()
+        val lottieSuccess = findViewById<LottieAnimationView?>(R.id.lottieSuccess)
+        lottieSuccess?.visibility = View.VISIBLE
+        lottieSuccess?.playAnimation()
 
         Handler(Looper.getMainLooper()).postDelayed({
             // Siguiente pantalla o cierre
