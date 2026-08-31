@@ -21,7 +21,7 @@ object BlurHelper {
             // Use native RenderEffect on API 31+ for better performance
             try {
                 // Hide the BlurView since we'll apply RenderEffect directly to the container
-                blurView.visibility = View.GONE
+                (blurView as android.view.View).visibility = android.view.View.GONE
                 decorView.setRenderEffect(
                     RenderEffect.createBlurEffect(blurRadius, blurRadius, Shader.TileMode.CLAMP)
                 )
@@ -33,7 +33,7 @@ object BlurHelper {
                         .setFrameRate(60f)
                     windowBackground?.let { blurView.setWindowBackground(it) }
                 } catch (ex: Exception) {
-                    blurView.visibility = View.GONE
+                    (blurView as android.view.View).visibility = android.view.View.GONE
                 }
             }
         } else {
@@ -48,7 +48,7 @@ object BlurHelper {
                 }
             } catch (e: Exception) {
                 // Disable blur on failure to avoid crashes
-                blurView.visibility = View.GONE
+                (blurView as android.view.View).visibility = android.view.View.GONE
             }
         }
     }

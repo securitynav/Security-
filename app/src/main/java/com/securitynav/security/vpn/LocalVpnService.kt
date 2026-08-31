@@ -1,6 +1,6 @@
+package com.securitynav.security.vpn
 import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.isActive
-package com.securitynav.security.vpn
 
 import android.app.Notification
 import android.app.PendingIntent
