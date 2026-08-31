@@ -147,6 +147,16 @@
 
                 </androidx.constraintlayout.motion.widget.MotionLayout>
 
+                <!-- View Charts Button -->
+                <Button
+                    android:id="@+id/btnViewCharts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_view_charts"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/neon_cyan"
+                    android:textColor="@color/on_primary" />
+
                 <!-- Cards... (unchanged) -->
 
             </LinearLayout>

@@ -1,8 +1,8 @@
 package com.securitynav.security.ui.utils
 
 import android.view.View
-import eightbitlab.com.blurview.BlurView
-import eightbitlab.com.blurview.RenderScriptBlur
+import com.eightbitlab.com.blurview.BlurView
+import com.eightbitlab.com.blurview.RenderScriptBlur
 
 object BlurHelper {
     fun setupBlur(blurView: BlurView, rootView: View) {
@@ -15,7 +15,7 @@ object BlurHelper {
             .setBlurRadius(radius)
         
         windowBackground?.let {
-            blurView.setWindowBackground(it)
+            blurView.setFrameClearDrawable(it)
         }
     }
 }

@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnDiagnostics.setOnClickListener { showDiagnostics() }
         binding.btnAbout.setOnClickListener { showAbout() }
 
-        findViewById<android.view.View>(R.id.btnViewCharts).setOnClickListener {
+        btnViewCharts.setOnClickListener {
             startActivity(Intent(this, DashboardActivity::class.java))
         }
 

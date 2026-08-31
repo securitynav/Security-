@@ -84,6 +84,8 @@ dependencies {
     // UI Enhancements
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.github.Dimezis:BlurView:version-2.0.6")
+    // BlurView library for eightbitlab imports
+    implementation("com.github.mmin18:BlurView:1.6.6")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
@@ -91,5 +93,3 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
-
-dependencies { implementation("com.github.Dimezis:BlurView:version-2.0.6") }
