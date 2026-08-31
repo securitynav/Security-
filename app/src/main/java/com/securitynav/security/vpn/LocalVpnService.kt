@@ -15,6 +15,7 @@ import com.securitynav.security.monitor.NetworkMonitor
 import kotlinx.coroutines.*
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.io.IOException
 
 /**
  * LocalVpnService - coroutine-powered VPN service running in foreground.
@@ -40,41 +41,47 @@ class LocalVpnService : VpnService() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.i(TAG, "onStartCommand: starting VPN service (startId=$startId)")
-        startForegroundIfNeeded()
-
-        val monitorOnly = intent?.getBooleanExtra("monitor_only", true) ?: true
-        Log.i(TAG, "VPN mode monitorOnly=$monitorOnly")
-
-        // Build and establish TUN interface
+        
         try {
-            val builder = Builder()
-                .setSession("SecurityNavVPN")
-                .addAddress("10.0.0.2", 32)
-                .setMtu(1500)
+            startForegroundIfNeeded()
 
-            if (!monitorOnly) {
-                // Only add default route if not in monitor-only mode (advanced usage)
-                builder.addRoute("0.0.0.0", 0)
-            }
+            val monitorOnly = intent?.getBooleanExtra("monitor_only", true) ?: true
+            Log.i(TAG, "VPN mode monitorOnly=$monitorOnly")
 
-            vpnInterface?.close()
-            vpnInterface = builder.establish()
+            // Build and establish TUN interface
+            try {
+                val builder = Builder()
+                    .setSession("SecurityNavVPN")
+                    .addAddress("10.0.0.2", 32)
+                    .setMtu(1500)
 
-            if (vpnInterface != null) {
-                Log.i(TAG, "VPN interface established: ${vpnInterface}")
-                workerJob?.cancel()
-                workerJob = serviceScope.launch {
-                    Log.i(TAG, "VPN loop: starting worker job")
-                    runVpnLoop(vpnInterface!!, monitorOnly)
-                    Log.i(TAG, "VPN loop: worker job finished")
+                if (!monitorOnly) {
+                    // Only add default route if not in monitor-only mode (advanced usage)
+                    builder.addRoute("0.0.0.0", 0)
                 }
-            } else {
-                Log.e(TAG, "Failed to establish VPN interface: vpnInterface == null")
-                // Could not establish VPN (user may have revoked); stop service
+
+                vpnInterface?.close()
+                vpnInterface = builder.establish()
+
+                if (vpnInterface != null) {
+                    Log.i(TAG, "VPN interface established: ${vpnInterface}")
+                    workerJob?.cancel()
+                    workerJob = serviceScope.launch {
+                        Log.i(TAG, "VPN loop: starting worker job")
+                        runVpnLoop(vpnInterface!!, monitorOnly)
+                        Log.i(TAG, "VPN loop: worker job finished")
+                    }
+                } else {
+                    Log.e(TAG, "Failed to establish VPN interface: vpnInterface == null")
+                    // Could not establish VPN (user may have revoked); stop service
+                    stopSelf()
+                }
+            } catch (t: Throwable) {
+                Log.e(TAG, "Exception while establishing VPN: ${t.localizedMessage}", t)
                 stopSelf()
             }
-        } catch (t: Throwable) {
-            Log.e(TAG, "Exception while establishing VPN: ${t.localizedMessage}", t)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error in onStartCommand: ${e.localizedMessage}", e)
             stopSelf()
         }
 
@@ -83,33 +90,61 @@ class LocalVpnService : VpnService() {
 
     private suspend fun runVpnLoop(pfd: ParcelFileDescriptor, monitorOnly: Boolean) {
         Log.i(TAG, "runVpnLoop: entering loop (monitorOnly=$monitorOnly)")
-        val input = FileInputStream(pfd.fileDescriptor)
-        val output = FileOutputStream(pfd.fileDescriptor)
-        val buffer = ByteArray(32 * 1024)
-
+        var input: FileInputStream? = null
+        var output: FileOutputStream? = null
+        
         try {
-            while (isActive) {
-                val read = withContext(Dispatchers.IO) { input.read(buffer) }
-                if (read > 0) {
-                    Log.d(TAG, "runVpnLoop: read $read bytes")
-                    NetworkMonitor.recordInbound(read.toLong())
+            input = FileInputStream(pfd.fileDescriptor)
+            output = FileOutputStream(pfd.fileDescriptor)
+            val buffer = ByteArray(32 * 1024)
 
-                    // If monitorOnly we do minimal processing and don't block forwarding.
-                    // For demo purposes echoing back; in monitorOnly mode this won't affect device connectivity since no default route.
-                    withContext(Dispatchers.IO) { output.write(buffer, 0, read) }
-                    NetworkMonitor.recordOutbound(read.toLong())
-                } else {
-                    delay(50)
+            while (coroutineContext.isActive) {
+                try {
+                    val read = withContext(Dispatchers.IO) { 
+                        input.read(buffer)
+                    }
+                    
+                    if (read > 0) {
+                        Log.d(TAG, "runVpnLoop: read $read bytes")
+                        NetworkMonitor.recordInbound(read.toLong())
+
+                        // If monitorOnly we do minimal processing and don't block forwarding.
+                        // For demo purposes echoing back; in monitorOnly mode this won't affect device connectivity since no default route.
+                        withContext(Dispatchers.IO) { 
+                            output.write(buffer, 0, read) 
+                        }
+                        NetworkMonitor.recordOutbound(read.toLong())
+                    } else {
+                        delay(50)
+                    }
+                } catch (ioEx: IOException) {
+                    Log.w(TAG, "runVpnLoop: IOException - ${ioEx.localizedMessage}")
+                    if (coroutineContext.isActive) {
+                        delay(100)
+                    }
                 }
             }
         } catch (ce: CancellationException) {
-            Log.i(TAG, "runVpnLoop: cancelled")
+            Log.i(TAG, "runVpnLoop: coroutine cancelled")
+            throw ce
         } catch (e: Exception) {
             Log.e(TAG, "runVpnLoop: exception - ${e.localizedMessage}", e)
         } finally {
-            try { input.close() } catch (ex: Exception) { Log.w(TAG, "runVpnLoop: error closing input: ${ex.localizedMessage}") }
-            try { output.close() } catch (ex: Exception) { Log.w(TAG, "runVpnLoop: error closing output: ${ex.localizedMessage}") }
+            closeQuietly(input, "input")
+            closeQuietly(output, "output")
             Log.i(TAG, "runVpnLoop: exiting loop and cleaned resources")
+        }
+    }
+
+    private fun closeQuietly(resource: Any?, name: String) {
+        try {
+            when (resource) {
+                is FileInputStream -> resource.close()
+                is FileOutputStream -> resource.close()
+                is AutoCloseable -> resource.close()
+            }
+        } catch (ex: Exception) {
+            Log.w(TAG, "runVpnLoop: error closing $name: ${ex.localizedMessage}")
         }
     }
 
@@ -121,31 +156,44 @@ class LocalVpnService : VpnService() {
     }
 
     private fun createNotification(): Notification {
-        val intent = Intent(this, Class.forName("com.securitynav.security.ui.MainActivity"))
-        val pendingIntent = PendingIntent.getActivity(
-            this, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-        )
+        return try {
+            val intent = Intent(this, Class.forName("com.securitynav.security.ui.MainActivity"))
+            val pendingIntent = PendingIntent.getActivity(
+                this, 0, intent, 
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
 
-        return NotificationCompat.Builder(this, "vpn_service_channel")
-            .setContentTitle("SecurityNav VPN")
-            .setContentText("VPN is running")
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentIntent(pendingIntent)
-            .setOngoing(true)
-            .build()
+            NotificationCompat.Builder(this, "vpn_service_channel")
+                .setContentTitle("SecurityNav VPN")
+                .setContentText("VPN is running")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentIntent(pendingIntent)
+                .setOngoing(true)
+                .build()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error creating notification: ${e.localizedMessage}", e)
+            // Fallback notification
+            NotificationCompat.Builder(this, "vpn_service_channel")
+                .setContentTitle("SecurityNav VPN")
+                .setContentText("VPN is running")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setOngoing(true)
+                .build()
+        }
     }
 
     override fun onDestroy() {
         Log.i(TAG, "onDestroy: destroying LocalVpnService")
-        workerJob?.cancel()
-        serviceScope.cancel()
         try {
+            workerJob?.cancel()
+            serviceScope.cancel()
             vpnInterface?.close()
         } catch (e: Exception) {
-            Log.w(TAG, "onDestroy: error closing vpnInterface: ${e.localizedMessage}")
+            Log.w(TAG, "onDestroy: error during cleanup: ${e.localizedMessage}")
+        } finally {
+            vpnInterface = null
+            super.onDestroy()
         }
-        vpnInterface = null
-        super.onDestroy()
     }
 
     override fun onRevoke() {
