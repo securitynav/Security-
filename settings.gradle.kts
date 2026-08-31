@@ -1,8 +1,8 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
@@ -11,10 +11,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // Use JitPack with www to ensure resolution in all runners
-        maven { url = uri("https://www.jitpack.io") }
+        maven("https://jitpack.io")
     }
 }
 
-rootProject.name = "Security-"
+rootProject.name = "Security"
 include(":app")
