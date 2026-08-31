@@ -1,0 +1,7 @@
+{
+  "event_id": "evt_991823741",
+  "event_type": "ACCESSIBILITY_ABUSE",
+  "description": "Unauthorized overlay attempt detected from external package.",
+  "severity": "HIGH",
+  "timestamp": 1717152005000
+}

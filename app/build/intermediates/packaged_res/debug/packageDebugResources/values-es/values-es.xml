@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_message">SecurityNav v1.0\nProtección local ligera\nContacto: soporte@securitynav.local</string>
+    <string name="about_title">Acerca de SecurityNav</string>
+    <string name="action_about">Acerca de</string>
+    <string name="action_diagnostics">Diagnósticos</string>
+    <string name="action_start_vpn">Iniciar VPN</string>
+    <string name="action_stop_vpn">Detener VPN</string>
+    <string name="app_name">SecurityNav</string>
+    <string name="btn_view_charts">ABRIR GRÁFICAS DE TRÁFICO EN TIEMPO REAL</string>
+    <string name="card_heuristics">Análisis Heurístico y Red Móvil</string>
+    <string name="card_interface_protection">Protección de Interfaz y Permisos</string>
+    <string name="card_vpn_inspection">VPN Local e Inspección de Paquetes por App</string>
+    <string name="diagnostics_title">Diagnósticos de Red</string>
+    <string name="main_title">SECURITY NAV</string>
+</resources>

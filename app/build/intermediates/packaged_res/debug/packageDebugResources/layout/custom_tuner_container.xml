@@ -1,0 +1,48 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    app:cardBackgroundColor="#121212"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="8dp"
+    app:strokeColor="#00FFCC"
+    app:strokeWidth="1.5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TUNER DE RED &amp; ANCHO DE BANDA"
+            android:textColor="#00FFCC"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="12dp"/>
+
+        <FrameLayout
+            android:id="@+id/tunerContentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="120dp"/>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/tunerSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:valueFrom="0f"
+            android:valueTo="100f"
+            android:value="50f"
+            app:trackColorActive="#00FFCC"
+            app:trackColorInactive="#333333"
+            app:thumbColor="#00FFCC"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

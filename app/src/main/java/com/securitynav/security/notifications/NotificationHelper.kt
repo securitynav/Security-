@@ -10,7 +10,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.securitynav.security.ui.DashboardActivity
+import com.securitynav.security.ui.MainActivity
 
 class NotificationHelper(private val context: Context) {
 
@@ -74,7 +74,7 @@ class NotificationHelper(private val context: Context) {
     }
 
     fun triggerCriticalAlert(title: String, details: String) {
-        val intent = Intent(context, DashboardActivity::class.java).apply {
+        val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent = PendingIntent.getActivity(
@@ -105,7 +105,7 @@ class NotificationHelper(private val context: Context) {
     }
 
     fun triggerWarningAlert(title: String, details: String) {
-        val intent = Intent(context, DashboardActivity::class.java)
+        val intent = Intent(context, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(
             context, 0, intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE

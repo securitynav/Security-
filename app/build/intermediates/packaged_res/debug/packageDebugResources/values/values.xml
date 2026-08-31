@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_dark">#0F0F1A</color>
+    <color name="black">#000000</color>
+    <color name="error">#FF0055</color>
+    <color name="neon_cyan">#00FFC2</color>
+    <color name="neon_green">#39FF14</color>
+    <color name="neon_purple">#9D00FF</color>
+    <color name="neon_red">#FF0055</color>
+    <color name="neon_yellow">#FFF000</color>
+    <color name="on_primary">#000000</color>
+    <color name="on_secondary">#000000</color>
+    <color name="surface_dark">#1A1A24</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3B3B3</color>
+    <string name="about_message">SecurityNav v1.0\nProtección local ligera\nContacto: soporte@securitynav.local</string>
+    <string name="about_title">Acerca de SecurityNav</string>
+    <string name="action_about">Acerca de</string>
+    <string name="action_diagnostics">Diagnósticos</string>
+    <string name="action_start_vpn">Iniciar VPN</string>
+    <string name="action_stop_vpn">Detener VPN</string>
+    <string name="app_name">SecurityNav</string>
+    <string name="btn_view_charts">ABRIR GRÁFICAS DE TRÁFICO EN TIEMPO REAL</string>
+    <string name="card_heuristics">Análisis Heurístico y Red Móvil</string>
+    <string name="card_interface_protection">Protección de Interfaz y Permisos</string>
+    <string name="card_vpn_inspection">VPN Local e Inspección de Paquetes por App</string>
+    <string name="diagnostics_title">Diagnósticos de Red</string>
+    <string name="main_title">SECURITY NAV</string>
+    <style name="Theme.SecurityNav" parent="Theme.Material3.Dark.NoActionBar">
+        
+        <item name="colorPrimary">@color/neon_cyan</item>
+        <item name="colorOnPrimary">@color/bg_dark</item>
+        <item name="colorSecondary">@color/neon_green</item>
+        <item name="android:colorBackground">@color/bg_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        
+        <item name="materialCardViewStyle">@style/Widget.SecurityNav.CardView</item>
+
+        
+        <item name="materialButtonStyle">@style/Widget.SecurityNav.Button</item>
+    </style>
+    <style name="Widget.SecurityNav.Button" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/neon_cyan</item>
+        <item name="android:textColor">@color/bg_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+    <style name="Widget.SecurityNav.Button.Transparent" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/neon_cyan</item>
+        <item name="android:textColor">@color/on_primary</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+    <style name="Widget.SecurityNav.CardView" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/surface_dark</item>
+        <item name="strokeColor">@color/neon_cyan</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">6dp</item>
+    </style>
+    <style name="Widget.SecurityNav.GlassCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardElevation">8dp</item>
+        <item name="cardBackgroundColor">@color/surface_dark</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+</resources>

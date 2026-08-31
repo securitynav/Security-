@@ -1,0 +1,86 @@
+[
+    {
+        "merged": "com.securitynav.security.app-debug-4:/layout_fragment_vault.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/layout/fragment_vault.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/layout_activity_settings.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/drawable_bg_glass_card.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/drawable/bg_glass_card.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/menu_drawer_menu.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/menu/drawer_menu.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/drawable_ic_3d_shield_fg.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/drawable/ic_3d_shield_fg.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/layout_fragment_guard.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/layout/fragment_guard.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/raw_success_anim.json.flat",
+        "source": "com.securitynav.security.app-main-6:/raw/success_anim.json"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/layout_fragment_vpn.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/layout/fragment_vpn.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/xml_accessibility_config.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/xml/accessibility_config.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/layout_activity_splash.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/layout_fragment_vulnerability_dashboard.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/layout/fragment_vulnerability_dashboard.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/drawable_ic_3d_shield_bg.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/drawable/ic_3d_shield_bg.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/layout_activity_register.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/layout/activity_register.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/layout_activity_main.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/layout_fragment_security_hub.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/layout/fragment_security_hub.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/layout_custom_tuner_container.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/layout/custom_tuner_container.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/layout_item_app_traffic.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/layout/item_app_traffic.xml"
+    },
+    {
+        "merged": "com.securitynav.security.app-debug-4:/xml_motion_scene_splash.xml.flat",
+        "source": "com.securitynav.security.app-main-6:/xml/motion_scene_splash.xml"
+    }
+]

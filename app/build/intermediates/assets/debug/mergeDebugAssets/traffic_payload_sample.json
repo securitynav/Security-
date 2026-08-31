@@ -1,0 +1,10 @@
+{
+  "packet_id": "pkt_84920194821",
+  "timestamp": 1717152000000,
+  "source_ip": "10.0.0.2",
+  "destination_ip": "142.250.190.46",
+  "method": "POST",
+  "payload_size": 1024,
+  "bandwidth_usage": 45.2,
+  "status_code": 200
+}
