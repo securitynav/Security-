@@ -3,15 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android") version "2.0.10" apply false
 }
 
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        maven { url = uri("https://jitpack.io") }
-    }
-}
-
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
