@@ -1,8 +1,8 @@
 package com.securitynav.security.ui.utils
 
 import android.view.View
-import eightbitlab.com.blurview.blurview.BlurView
-import eightbitlab.com.blurview.blurview.RenderScriptBlur
+import eightbitlab.com.blurview.BlurView
+import eightbitlab.com.blurview.RenderScriptBlur
 
 object BlurHelper {
     fun setupBlur(blurView: BlurView, rootView: View) {

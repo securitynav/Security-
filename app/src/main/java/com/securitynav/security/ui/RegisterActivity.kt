@@ -13,7 +13,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val binding.lottieSuccess = findViewById<LottieAnimationView>(R.id.binding.lottieSuccess)
+        val lottieSuccess = findViewById<LottieAnimationView>(R.id.binding.lottieSuccess)
         binding.lottieSuccess?.visibility = View.VISIBLE
         binding.lottieSuccess?.playAnimation()
 
