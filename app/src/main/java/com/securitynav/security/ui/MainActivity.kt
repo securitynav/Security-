@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity() {
         val navView = binding.navigationView
         val btnMainLock = binding.btnMainLock
         val tvLockState = binding.tvLockState
-        val btnViewCharts = binding.btnViewCharts
         val motionLayout = findViewById<MotionLayout>(R.id.motionLayout)
 
         val notificationManager = SecurityNotificationManager(this)
@@ -148,10 +147,6 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnDiagnostics.setOnClickListener { showDiagnostics() }
         binding.btnAbout.setOnClickListener { showAbout() }
-
-        findViewById<android.view.View>(R.id.btnViewCharts).setOnClickListener {
-            startActivity(Intent(this, DashboardActivity::class.java))
-        }
 
     }
 
