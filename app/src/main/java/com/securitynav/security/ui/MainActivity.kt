@@ -15,8 +15,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.airbnb.lottie.LottieCompositionFactory
-import com.github.Dimezis.blurview.RenderScriptBlur
-import com.github.Dimezis.blurview.BlurView
+import com.github.dimezis.blurview.RenderScriptBlur
+import com.github.dimezis.blurview.BlurView
 import com.securitynav.security.R
 import com.securitynav.security.data.AuthManager
 import com.securitynav.security.databinding.ActivityMainBinding

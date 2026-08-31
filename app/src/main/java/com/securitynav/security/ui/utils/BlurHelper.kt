@@ -1,8 +1,8 @@
 package com.securitynav.security.ui.utils
 
 import android.view.View
-import com.github.Dimezis.blurview.BlurView
-import com.github.Dimezis.blurview.RenderScriptBlur
+import com.github.dimezis.blurview.BlurView
+import com.github.dimezis.blurview.RenderScriptBlur
 
 object BlurHelper {
     fun setupBlur(blurView: BlurView, rootView: View) {
